@@ -1,6 +1,6 @@
 import { Info, Links, Title } from "./components";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const App = () => {
   return (
