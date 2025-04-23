@@ -1,5 +1,5 @@
 export const mainLinks = [
-    {name: 'instagram', url: 'https://www.instagram.com/bytcd.official/'},
+    {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
     // {name: 'INSTAGRAM', url: 'https://www.instagram.com/surreal4you/'},
 ]
 
