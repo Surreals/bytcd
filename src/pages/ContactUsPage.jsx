@@ -34,17 +34,17 @@ const ContactUsPage = () => {
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <Mail size={48} className="text-blue-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Email</h3>
-              <a href="mailto:info@bytcd.com" className="text-lg text-blue-600 hover:underline">info@bytcd.com</a>
+              <a href="mailto:bytcdco@gmail.com" className="text-lg text-blue-600 hover:underline">info@bytcd.com</a>
             </div>
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <Phone size={48} className="text-blue-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Phone</h3>
-              <a href="tel:+1234567890" className="text-lg text-blue-600 hover:underline">+1 (234) 567-890</a>
+              <a href="tel:+380508489815" className="text-lg text-blue-600 hover:underline">+1 (234) 567-890</a>
             </div>
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <MapPin size={48} className="text-blue-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Location</h3>
-              <p className="text-lg">Your City, Your Country</p>
+              <p className="text-lg">Uzhhorod, Ukraine</p>
             </div>
           </div>
 
