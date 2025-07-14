@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'; // Import Link
+
 const Info = () => {
   return (
     <div className="w-full flex items-start justify-between">
@@ -7,8 +9,9 @@ const Info = () => {
         <p>Design Solutions</p>
       </div>
       <div className="text-center md:text-left">
-        <p>THIS_PAGE_IS_%</p>
-        <p>UNDER_CONSTRUCTION</p>
+        <Link to="/contact-us" className="hover:text-blue-500 transition-colors">
+          <p>CONTACT US</p>
+        </Link>
       </div>
       <p className="hover:text-blue-500 transition-colors">.com</p>
     </div>
