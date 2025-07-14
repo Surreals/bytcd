@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, Links, Title } from "../components";
+import { Info, Links, Title, ThreeDShowcase } from "../components";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -18,6 +18,7 @@ const LandingPage = () => {
   };
 
   const { ref: heroRef, inView: heroInView } = useAnimatedSection();
+  const { ref: threeDRef, inView: threeDInView } = useAnimatedSection();
   const { ref: aboutRef, inView: aboutInView } = useAnimatedSection();
   const { ref: servicesRef, inView: servicesInView } = useAnimatedSection();
   const { ref: contactRef, inView: contactInView } = useAnimatedSection();
@@ -41,6 +42,23 @@ const LandingPage = () => {
         <p className="mt-8 text-xl md:text-2xl text-center max-w-2xl">
           Crafting unique and convenient design and development solutions for your digital presence.
         </p>
+      </motion.section>
+
+      {/* Three.js Showcase Section */}
+      <motion.section
+        ref={threeDRef}
+        initial="hidden"
+        animate={threeDInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="bg-black text-white p-8 md:p-16 py-20 flex flex-col items-center justify-center"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">Our Creative Vision</h2>
+        <p className="text-lg md:text-xl mb-12 text-center max-w-3xl">
+          Explore a glimpse of our innovative design approach through interactive 3D experiences.
+        </p>
+        <div className="w-full max-w-4xl aspect-video bg-gray-900 rounded-lg overflow-hidden">
+          <ThreeDShowcase />
+        </div>
       </motion.section>
 
       {/* About Section */}
