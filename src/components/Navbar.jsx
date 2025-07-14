@@ -32,8 +32,8 @@ const Navbar = () => {
     { name: 'Home', path: '/', sectionId: 'hero' },
     { name: 'About', path: '/', sectionId: 'about' },
     { name: 'Services', path: '/', sectionId: 'services' },
-    // { name: 'Contact', path: '/', sectionId: 'contact' },
-    { name: 'Contact', path: '/contact-us' },
+    { name: 'Contact', path: '/', sectionId: 'contact' },
+    { name: 'Us', path: '/contact-us' },
   ];
 
   return (
