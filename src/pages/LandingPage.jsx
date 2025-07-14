@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection } from "../components"; // Added ProcessSection
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection, ClientShowcaseSection } from "../components"; // Added ProcessSection and ClientShowcaseSection
 
 const LandingPage = () => {
   return (
@@ -9,7 +9,8 @@ const LandingPage = () => {
       <HeroSection id="hero" />
       <ThreeDShowcaseSection />
       <AboutSection id="about" />
-      <ProcessSection id="process" /> {/* New Process Section */}
+      <ProcessSection id="process" />
+      <ClientShowcaseSection id="work" /> {/* New Client Showcase Section */}
       <ServicesSection id="services" />
       <ContactSection id="contact" />
 

@@ -39,3 +39,34 @@ export const processSteps = [
     iconName: "Wrench",
   },
 ];
+
+export const clientProjects = [
+  {
+    id: 'project-1',
+    title: 'E-commerce Redesign',
+    description: 'A modern, responsive e-commerce platform with enhanced user experience and conversion optimization.',
+    image: 'https://via.placeholder.com/400x300/007bff/ffffff?text=Project+1',
+    link: '#', // Placeholder link
+  },
+  {
+    id: 'project-2',
+    title: 'Mobile App Development',
+    description: 'Intuitive iOS and Android application for seamless on-the-go access to services.',
+    image: 'https://via.placeholder.com/400x300/28a745/ffffff?text=Project+2',
+    link: '#',
+  },
+  {
+    id: 'project-3',
+    title: 'Brand Identity & Website',
+    description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
+    image: 'https://via.placeholder.com/400x300/ffc107/000000?text=Project+3',
+    link: '#',
+  },
+  {
+    id: 'project-4',
+    title: 'SaaS Platform UI/UX',
+    description: 'Streamlined user interface and experience design for a complex B2B SaaS application.',
+    image: 'https://via.placeholder.com/400x300/dc3545/ffffff?text=Project+4',
+    link: '#',
+  },
+];

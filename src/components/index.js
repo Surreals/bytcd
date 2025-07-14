@@ -12,7 +12,9 @@ import AnimatedBackground from "./AnimatedBackground";
 import ContactForm from "./ContactForm";
 import Navbar from "./Navbar";
 import BackToTopButton from "./BackToTopButton";
-import ProcessSection from "./ProcessSection"; // New import
+import ProcessSection from "./ProcessSection";
+import ClientShowcaseSection from "./ClientShowcaseSection"; // New import
+import ClientCard3D from "./ClientCard3D"; // New import
 
 export {
     Links,
@@ -29,5 +31,7 @@ export {
     ContactForm,
     Navbar,
     BackToTopButton,
-    ProcessSection, // New export
+    ProcessSection,
+    ClientShowcaseSection, // New export
+    ClientCard3D, // New export
 }
