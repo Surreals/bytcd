@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { showSuccess, showError } from '../utils/toast'; // Import toast utilities
+import { showSuccess, showError, showLoading, dismissToast } from '../utils/toast'; // Import toast utilities
+import { db } from '../firebase'; // Import Firestore instance
+import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ const ContactForm = () => {
     email: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,24 +21,44 @@ const ContactForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    const loadingToastId = showLoading('Sending your message...');
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
+      dismissToast(loadingToastId);
       showError('Please fill in all fields.');
+      setIsSubmitting(false);
       return;
     }
 
-    // For now, just log the data and show a success toast
-    console.log('Form submitted:', formData);
-    showSuccess('Your message has been sent!');
+    try {
+      // Add a new document with a generated ID to the "messages" collection
+      await addDoc(collection(db, 'messages'), {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        timestamp: Timestamp.now(), // Add a timestamp
+      });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-    });
+      dismissToast(loadingToastId);
+      showSuccess('Your message has been sent successfully!');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Error sending message: ', error);
+      dismissToast(loadingToastId);
+      showError('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -52,6 +75,7 @@ const ContactForm = () => {
           onChange={handleChange}
           className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
+          disabled={isSubmitting}
         />
       </div>
       <div>
@@ -66,6 +90,7 @@ const ContactForm = () => {
           onChange={handleChange}
           className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
+          disabled={isSubmitting}
         />
       </div>
       <div>
@@ -80,13 +105,15 @@ const ContactForm = () => {
           onChange={handleChange}
           className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
+          disabled={isSubmitting}
         ></textarea>
       </div>
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+        className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={isSubmitting}
       >
-        Send Message
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   );
