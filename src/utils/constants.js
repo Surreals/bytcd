@@ -61,7 +61,7 @@ export const clientProjects = [
     id: 'project-3',
     title: 'Brand Identity & Website',
     description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
-    image: 'https://images.unsplash.com/photo-1522199755839-fd245a284972?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
   {
