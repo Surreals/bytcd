@@ -15,7 +15,7 @@ import BackToTopButton from "./BackToTopButton";
 import ProcessSection from "./ProcessSection";
 import ClientShowcaseSection from "./ClientShowcaseSection";
 import ClientCard3D from "./ClientCard3D";
-import ProjectModal from "./ProjectModal"; // New import
+// Removed ProjectModal import
 
 export {
     Links,
@@ -35,5 +35,5 @@ export {
     ProcessSection,
     ClientShowcaseSection,
     ClientCard3D,
-    ProjectModal, // New export
+    // Removed ProjectModal export
 }
