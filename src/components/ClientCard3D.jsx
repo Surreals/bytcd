@@ -3,9 +3,9 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
-import { Link } from 'react-router-dom';
+// Removed Link import as the parent will handle the click for the modal
 
-const ClientCard3D = ({ project }) => {
+const ClientCard3D = ({ project, onClick }) => { // Added onClick prop
   const mountRef = useRef(null);
   const meshRef = useRef(null);
   const textureRef = useRef(null);
@@ -36,11 +36,17 @@ const ClientCard3D = ({ project }) => {
     scene.add(mesh);
     meshRef.current = mesh;
 
-    // Load texture
+    // Load texture (using project.logo now)
     const loader = new THREE.TextureLoader();
-    loader.load(project.image, (texture) => {
+    loader.load(project.logo, (texture) => { // Use project.logo here
       textureRef.current = texture;
       mesh.material.map = texture;
+      mesh.material.needsUpdate = true;
+    }, undefined, (error) => {
+      console.error('Error loading texture:', error);
+      // Fallback to a solid color or default image if logo fails to load
+      mesh.material.color.set(0x333333); // Dark gray fallback
+      mesh.material.map = null;
       mesh.material.needsUpdate = true;
     });
 
@@ -89,16 +95,16 @@ const ClientCard3D = ({ project }) => {
       material.dispose();
       if (textureRef.current) textureRef.current.dispose();
     };
-  }, [project]);
+  }, [project]); // Re-run effect if project changes
 
   return (
-    <Link to={project.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative group">
+    <div onClick={() => onClick(project)} className="block w-full h-full relative group cursor-pointer">
       <div ref={mountRef} className="absolute inset-0 w-full h-full"></div>
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <h3 className="text-white text-xl font-bold mb-2">{project.title}</h3>
         <p className="text-gray-300 text-sm">{project.description}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

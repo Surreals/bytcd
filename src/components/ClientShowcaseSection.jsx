@@ -1,13 +1,26 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react'; // Import useState
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import ClientCard3D from './ClientCard3D';
+import ProjectModal from './ProjectModal'; // Import ProjectModal
 import { clientProjects } from '../utils/constants';
 
 const ClientShowcaseSection = ({ id }) => {
   const { ref, inView } = useAnimatedSection();
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
     <motion.section
@@ -29,10 +42,14 @@ const ClientShowcaseSection = ({ id }) => {
             key={project.id}
             className="w-full aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg"
           >
-            <ClientCard3D project={project} />
+            <ClientCard3D project={project} onClick={handleCardClick} />
           </div>
         ))}
       </div>
+
+      {isModalOpen && (
+        <ProjectModal project={selectedProject} onClose={handleCloseModal} />
+      )}
     </motion.section>
   );
 };

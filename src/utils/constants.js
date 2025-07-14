@@ -47,7 +47,8 @@ export const clientProjects = [
     id: 'carbook',
     title: 'Carbook.pro',
     description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
-    image: carbookImage, // Using the imported local image
+    image: carbookImage, // Full project screenshot
+    logo: 'https://carbook.mobi/wp-content/uploads/2023/09/logo-carbook-pro.svg', // Placeholder logo
     link: 'https://carbook.mobi/',
   },
   {
@@ -55,6 +56,7 @@ export const clientProjects = [
     title: 'Mobile App Development',
     description: 'Intuitive iOS and Android application for seamless on-the-go access to services.',
     image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Mobile+Logo', // Placeholder logo
     link: '#',
   },
   {
@@ -62,6 +64,7 @@ export const clientProjects = [
     title: 'Brand Identity & Website',
     description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
     image: 'https://images.unsplash.com/photo-1522199755839-fd245a284972?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Brand+Logo', // Placeholder logo
     link: '#',
   },
   {
@@ -69,6 +72,7 @@ export const clientProjects = [
     title: 'SaaS Platform UI/UX',
     description: 'Streamlined user interface and experience design for a complex B2B SaaS application.',
     image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://via.placeholder.com/150/008000/FFFFFF?text=SaaS+Logo', // Placeholder logo
     link: '#',
   },
 ];

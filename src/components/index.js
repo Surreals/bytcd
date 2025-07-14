@@ -13,8 +13,9 @@ import ContactForm from "./ContactForm";
 import Navbar from "./Navbar";
 import BackToTopButton from "./BackToTopButton";
 import ProcessSection from "./ProcessSection";
-import ClientShowcaseSection from "./ClientShowcaseSection"; // New import
-import ClientCard3D from "./ClientCard3D"; // New import
+import ClientShowcaseSection from "./ClientShowcaseSection";
+import ClientCard3D from "./ClientCard3D";
+import ProjectModal from "./ProjectModal"; // New import
 
 export {
     Links,
@@ -32,6 +33,7 @@ export {
     Navbar,
     BackToTopButton,
     ProcessSection,
-    ClientShowcaseSection, // New export
-    ClientCard3D, // New export
+    ClientShowcaseSection,
+    ClientCard3D,
+    ProjectModal, // New export
 }
