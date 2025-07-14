@@ -1,4 +1,4 @@
-import { mainLinks, sideLinks } from "../../utils/constants";
+import { mainLinks, sideLinks } from "../utils/constants";
 
 const Links = () => {
   const buildLink = ({ name, url }) => {
