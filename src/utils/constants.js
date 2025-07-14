@@ -1,3 +1,5 @@
+import carbookImage from '../assets/carbook.jpg'; // Assuming the image is named carbook.jpg in src/assets
+
 export const mainLinks = [
     {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
     // {name: 'INSTAGRAM', url: 'https://www.instagram.com/surreal4you/'},
@@ -45,8 +47,8 @@ export const clientProjects = [
     id: 'carbook',
     title: 'Carbook.pro',
     description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
-    image: 'https://carbook.mobi/wp-content/uploads/Directories-jobs-spare-parts-customers-cars.jpg',
-    link: 'https://carbook.mobi/', // Placeholder link
+    image: carbookImage, // Using the imported local image
+    link: 'https://carbook.mobi/',
   },
   {
     id: 'project-2',
