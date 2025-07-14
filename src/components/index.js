@@ -10,8 +10,8 @@ import ContactSection from "./ContactSection";
 import ServiceCard from "./ServiceCard";
 import AnimatedBackground from "./AnimatedBackground";
 import ContactForm from "./ContactForm";
-import Navbar from "./Navbar"; // New export
-import BackToTopButton from "./BackToTopButton"; // New export
+import Navbar from "./Navbar";
+import BackToTopButton from "./BackToTopButton";
 
 export {
     Links,
@@ -26,6 +26,6 @@ export {
     ServiceCard,
     AnimatedBackground,
     ContactForm,
-    Navbar, // New export
-    BackToTopButton, // New export
+    Navbar,
+    BackToTopButton,
 }
