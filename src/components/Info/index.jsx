@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom'; // Import Link
 const Info = () => {
   return (
     <div className="w-full flex items-start justify-between">
-      <p><a href="/" className="hover:text-blue-500 transition-colors">(002) <p>bytcd</p></a></p>
+      <p>
+        <Link to="/" className="hover:text-blue-500 transition-colors">
+          (002) <span>bytcd</span>
+        </Link>
+      </p>
       <div className="text-left md:block hidden">
         <p>Unique & Convenient</p>
         <p>Design Solutions</p>
