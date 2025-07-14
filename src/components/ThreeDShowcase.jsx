@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'; // Import OrbitControls
+import { gsap } from 'gsap'; // Import GSAP
 
 // Define geometries and materials outside the component to ensure they are created only once
 const GEOMETRIES = [
@@ -13,17 +13,16 @@ const GEOMETRIES = [
   new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
 ];
 const MATERIALS = [
-  new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5 }), // Blue
-  new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5 }), // Orange
-  new THREE.MeshStandardMaterial({ color: 0x28a745, roughness: 0.5, metalness: 0.5 }), // Green
-  new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5 }), // Red
-  new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5 }), // Purple
+  new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
+  new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
+  new THREE.MeshStandardMaterial({ color: 0x28a745, roughness: 0.5, metalness: 0.5, transparent: true }), // Green
+  new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5, transparent: true }), // Red
+  new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5, transparent: true }), // Purple
 ];
 
 const ThreeDShowcase = () => {
   const mountRef = useRef(null);
   const meshRef = useRef(null); // Ref to store the main 3D object
-  const controlsRef = useRef(null); // Ref to store OrbitControls
   const [currentShapeIndex, setCurrentShapeIndex] = useState(0);
 
   useEffect(() => {
@@ -49,7 +48,7 @@ const ThreeDShowcase = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Initial Mesh
-    const initialMesh = new THREE.Mesh(GEOMETRIES[currentShapeIndex], MATERIALS[currentShapeIndex]);
+    const initialMesh = new THREE.Mesh(GEOMETRIES[currentShapeIndex], MATERIALS[currentShapeIndex].clone());
     scene.add(initialMesh);
     meshRef.current = initialMesh; // Store reference to the mesh
 
@@ -60,16 +59,16 @@ const ThreeDShowcase = () => {
     directionalLight.position.set(0, 1, 1);
     scene.add(directionalLight);
 
-    // OrbitControls for interaction
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; // Smooth camera movement
-    controls.dampingFactor = 0.05;
-    controlsRef.current = controls;
-
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      controls.update(); // Update controls
+
+      // Continuous rotation for the object
+      if (meshRef.current) {
+        meshRef.current.rotation.x += 0.005;
+        meshRef.current.rotation.y += 0.005;
+      }
+
       renderer.render(scene, camera);
     };
     animate();
@@ -113,18 +112,48 @@ const ThreeDShowcase = () => {
       // Dispose of geometries and materials only once on component unmount
       GEOMETRIES.forEach(g => g.dispose());
       MATERIALS.forEach(m => m.dispose());
-      if (controlsRef.current) {
-        controlsRef.current.dispose();
-      }
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
   // Effect to update the mesh when currentShapeIndex changes
   useEffect(() => {
     if (meshRef.current) {
-      // Update geometry and material of the existing mesh
-      meshRef.current.geometry = GEOMETRIES[currentShapeIndex];
-      meshRef.current.material = MATERIALS[currentShapeIndex];
+      const currentMesh = meshRef.current;
+      const newGeometry = GEOMETRIES[currentShapeIndex];
+      const newMaterial = MATERIALS[currentShapeIndex].clone(); // Clone material to animate opacity independently
+
+      // Ensure the new material is transparent and starts at opacity 0
+      newMaterial.transparent = true;
+      newMaterial.opacity = 0;
+
+      // Animate current mesh out (scale down and fade out)
+      gsap.to(currentMesh.scale, {
+        x: 0, y: 0, z: 0,
+        duration: 0.3,
+        ease: "power2.in",
+      });
+      gsap.to(currentMesh.material, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+          // Change geometry and material after the old one fades out
+          currentMesh.geometry = newGeometry;
+          currentMesh.material = newMaterial; // Assign the new, transparent material
+
+          // Animate new mesh in (scale up and fade in)
+          gsap.to(currentMesh.scale, {
+            x: 1, y: 1, z: 1,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+          gsap.to(currentMesh.material, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+        }
+      });
     }
   }, [currentShapeIndex]); // This effect runs when currentShapeIndex changes
 
