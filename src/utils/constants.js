@@ -45,7 +45,7 @@ export const clientProjects = [
     id: 'carbook',
     title: 'E-commerce Redesign',
     description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
-    image: 'https://via.placeholder.com/400x300/007bff/ffffff?text=Project+1',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJGd2p2_FJ-e6o54FfdrPUh94Gq_OwTMqouA&s',
     link: 'https://carbook.mobi/', // Placeholder link
   },
   {
