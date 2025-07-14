@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Info from '../components/Info';
 import Links from '../components/Links';
+import ContactForm from '../components/ContactForm'; // Import the new ContactForm
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 
 const ContactUsPage = () => {
@@ -48,10 +49,11 @@ const ContactUsPage = () => {
             </div>
           </div>
 
+          {/* Add the ContactForm component here */}
           <p className="text-lg md:text-xl">
             Alternatively, you can fill out the form below, and we'll get back to you as soon as possible.
           </p>
-          {/* You can add a contact form here if needed */}
+          <ContactForm />
         </div>
       </motion.section>
 
