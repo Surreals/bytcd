@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { showSuccess, showError, showLoading, dismissToast } from '../utils/toast'; // Import toast utilities
 import { db } from '../firebase'; // Import Firestore instance
 import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
+import { Loader2 } from 'lucide-react'; // Import Loader2 icon for spinner
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -113,7 +114,14 @@ const ContactForm = () => {
         className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isSubmitting}
       >
-        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {isSubmitting ? (
+          <>
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+            Sending...
+          </>
+        ) : (
+          'Send Message'
+        )}
       </button>
     </form>
   );
