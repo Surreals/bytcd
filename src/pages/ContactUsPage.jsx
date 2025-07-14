@@ -31,7 +31,7 @@ const ContactUsPage = () => {
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <Mail size={48} className="text-blue-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Email</h3>
-              <a href="mailto:bytcdco@gmail.com" className="text-lg text-blue-600 hover:underline">info@bytcd.com</a>
+              <a href="mailto:bytcdco@gmail.com" className="text-lg text-blue-600 hover:underline">bytcdco@gmail.com</a>
             </div>
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <Phone size={48} className="text-blue-600 mb-4" />
