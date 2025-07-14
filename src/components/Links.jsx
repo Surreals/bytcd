@@ -1,10 +1,15 @@
 import { mainLinks, sideLinks } from "../utils/constants";
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 const Links = () => {
+  const { t } = useTranslation(); // Initialize useTranslation
+
   const buildLink = ({ name, url }) => {
+    // Use translation for the 'soon' link name
+    const displayName = name === 'soon' ? t('links_section.soon') : name;
     return (
       <a target="_blank" key={name} href={url} className="w-auto hover:text-blue-500 transition-colors">
-        {name}
+        {displayName}
       </a>
     );
   };

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import ServiceCard from './ServiceCard'; // Import the new ServiceCard
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -15,46 +16,47 @@ const containerVariants = {
 
 const ServicesSection = ({ id }) => { // Accept id prop
   const { ref, inView } = useAnimatedSection();
+  const { t } = useTranslation(); // Initialize useTranslation
 
   const services = [
     {
-      title: "Design",
+      title: t("services_section.design_title"),
       iconName: "Palette", // Icon from Lucide React
       items: [
-        "UI/UX Design",
-        "Brand Identity & Logo Design",
-        "Web & Mobile App Design",
-        "Graphic Design",
+        t("services_section.design_items.0"),
+        t("services_section.design_items.1"),
+        t("services_section.design_items.2"),
+        t("services_section.design_items.3"),
       ],
     },
     {
-      title: "Development",
+      title: t("services_section.development_title"),
       iconName: "Code", // Icon from Lucide React
       items: [
-        "Frontend Development (React, Vue)",
-        "Backend Development (Node.js, Firebase)",
-        "Custom Web Applications",
-        "E-commerce Solutions",
+        t("services_section.development_items.0"),
+        t("services_section.development_items.1"),
+        t("services_section.development_items.2"),
+        t("services_section.development_items.3"),
       ],
     },
     {
-      title: "Consulting",
+      title: t("services_section.consulting_title"),
       iconName: "Lightbulb", // Icon from Lucide React
       items: [
-        "Digital Strategy",
-        "Technology Roadmapping",
-        "Performance Optimization",
-        "Scalability Planning",
+        t("services_section.consulting_items.0"),
+        t("services_section.consulting_items.1"),
+        t("services_section.consulting_items.2"),
+        t("services_section.consulting_items.3"),
       ],
     },
     {
-      title: "Maintenance & Support",
+      title: t("services_section.maintenance_title"),
       iconName: "Wrench", // Icon from Lucide React
       items: [
-        "Ongoing Website Maintenance",
-        "Technical Support",
-        "Security Updates",
-        "Content Management",
+        t("services_section.maintenance_items.0"),
+        t("services_section.maintenance_items.1"),
+        t("services_section.maintenance_items.2"),
+        t("services_section.maintenance_items.3"),
       ],
     },
   ];
@@ -69,7 +71,7 @@ const ServicesSection = ({ id }) => { // Accept id prop
       className="bg-white text-black p-8 md:p-16 py-20"
     >
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12">Our Services</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-12">{t('services_section.title')}</h2>
         <motion.div
           variants={containerVariants}
           initial="hidden"

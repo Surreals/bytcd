@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'; // Import Link
+import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 const Info = () => {
+  const { t } = useTranslation(); // Initialize useTranslation
+
   return (
     <div className="w-full flex items-start justify-between">
       <p>
@@ -9,8 +12,8 @@ const Info = () => {
         </Link>
       </p>
       <div className="text-left md:block hidden">
-        <p>Unique & Convenient</p>
-        <p>Design Solutions</p>
+        <p>{t('info_section.slogan_line1')}</p>
+        <p>{t('info_section.slogan_line2')}</p>
       </div>
       {/* The contact link will be moved to the new Navbar */}
       <p className="hover:text-blue-500 transition-colors">.com</p>
