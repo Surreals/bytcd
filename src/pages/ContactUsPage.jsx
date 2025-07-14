@@ -36,7 +36,7 @@ const ContactUsPage = () => {
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <Phone size={48} className="text-blue-600 mb-4" />
               <h3 className="text-2xl font-semibold mb-2">Phone</h3>
-              <a href="tel:+380508489815" className="text-lg text-blue-600 hover:underline">+1 (234) 567-890</a>
+              <a href="tel:+380508489815" className="text-lg text-blue-600 hover:underline">+38 (050) 848-98-15</a>
             </div>
             <div className="flex flex-col items-center text-center p-6 bg-gray-100 rounded-lg shadow-md">
               <MapPin size={48} className="text-blue-600 mb-4" />
