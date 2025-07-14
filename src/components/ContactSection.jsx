@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
+import { Mail } from 'lucide-react'; // Import Mail icon
 
 const ContactSection = () => {
   const { ref, inView } = useAnimatedSection();
@@ -20,8 +21,9 @@ const ContactSection = () => {
         </p>
         <a
           href="mailto:info@bytcd.com"
-          className="inline-block bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors"
+          className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors"
         >
+          <Mail size={24} />
           Contact Us
         </a>
       </div>

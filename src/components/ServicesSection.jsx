@@ -1,9 +1,63 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
+import ServiceCard from './ServiceCard'; // Import the new ServiceCard
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Stagger the animation of child components
+    },
+  },
+};
 
 const ServicesSection = () => {
   const { ref, inView } = useAnimatedSection();
+
+  const services = [
+    {
+      title: "Design",
+      iconName: "Palette", // Icon from Lucide React
+      items: [
+        "UI/UX Design",
+        "Brand Identity & Logo Design",
+        "Web & Mobile App Design",
+        "Graphic Design",
+      ],
+    },
+    {
+      title: "Development",
+      iconName: "Code", // Icon from Lucide React
+      items: [
+        "Frontend Development (React, Vue)",
+        "Backend Development (Node.js, Firebase)",
+        "Custom Web Applications",
+        "E-commerce Solutions",
+      ],
+    },
+    {
+      title: "Consulting",
+      iconName: "Lightbulb", // Icon from Lucide React
+      items: [
+        "Digital Strategy",
+        "Technology Roadmapping",
+        "Performance Optimization",
+        "Scalability Planning",
+      ],
+    },
+    {
+      title: "Maintenance & Support",
+      iconName: "Wrench", // Icon from Lucide React
+      items: [
+        "Ongoing Website Maintenance",
+        "Technical Support",
+        "Security Updates",
+        "Content Management",
+      ],
+    },
+  ];
 
   return (
     <motion.section
@@ -13,28 +67,23 @@ const ServicesSection = () => {
       variants={sectionVariants}
       className="bg-white text-black p-8 md:p-16 py-20"
     >
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Design</h3>
-            <ul className="list-disc list-inside space-y-2 text-lg">
-              <li>UI/UX Design</li>
-              <li>Brand Identity & Logo Design</li>
-              <li>Web & Mobile App Design</li>
-              <li>Graphic Design</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Development</h3>
-            <ul className="list-disc list-inside space-y-2 text-lg">
-              <li>Frontend Development (React, Vue)</li>
-              <li>Backend Development (Node.js, Firebase)</li>
-              <li>Custom Web Applications</li>
-              <li>E-commerce Solutions</li>
-            </ul>
-          </div>
-        </div>
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-12">Our Services</h2>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              title={service.title}
+              items={service.items}
+              iconName={service.iconName}
+            />
+          ))}
+        </motion.div>
       </div>
     </motion.section>
   );

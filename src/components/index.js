@@ -7,6 +7,7 @@ import ThreeDShowcaseSection from "./ThreeDShowcaseSection";
 import AboutSection from "./AboutSection";
 import ServicesSection from "./ServicesSection";
 import ContactSection from "./ContactSection";
+import ServiceCard from "./ServiceCard"; // New export
 
 export {
     Links,
@@ -18,4 +19,5 @@ export {
     AboutSection,
     ServicesSection,
     ContactSection,
+    ServiceCard, // New export
 }
