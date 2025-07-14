@@ -42,7 +42,7 @@ const ThreeDShowcase = () => {
 
     // Font and Text setup
     const loader = new FontLoader();
-    loader.load('/fonts/helvetiker_regular.typeface.json', function (font) {
+    loader.load('/fonts/helvetiker_bold.typeface.json', function (font) { // Changed font path
       const text = "BYTCD";
       const textMaterial = new THREE.MeshStandardMaterial({ color: 0x007bff }); // Blue accent color
 
