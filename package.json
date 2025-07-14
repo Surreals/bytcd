@@ -14,8 +14,10 @@
     "@vercel/speed-insights": "^1.0.10",
     "firebase": "^10.9.0",
     "firebase-tools": "^13.5.2",
+    "framer-motion": "^12.23.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",

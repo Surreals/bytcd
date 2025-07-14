@@ -1,7 +1,27 @@
 import React from 'react';
 import { Info, Links, Title } from "../components";
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const LandingPage = () => {
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
+  const useAnimatedSection = () => {
+    const [ref, inView] = useInView({
+      triggerOnce: true, // Only trigger the animation once
+      threshold: 0.1,    // Trigger when 10% of the section is visible
+    });
+    return { ref, inView };
+  };
+
+  const { ref: heroRef, inView: heroInView } = useAnimatedSection();
+  const { ref: aboutRef, inView: aboutInView } = useAnimatedSection();
+  const { ref: servicesRef, inView: servicesInView } = useAnimatedSection();
+  const { ref: contactRef, inView: contactInView } = useAnimatedSection();
+
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header/Info Section */}
@@ -10,25 +30,43 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen bg-white text-black p-4 md:p-8">
+      <motion.section
+        ref={heroRef}
+        initial="hidden"
+        animate={heroInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="relative flex flex-col items-center justify-center min-h-screen bg-white text-black p-4 md:p-8"
+      >
         <Title />
         <p className="mt-8 text-xl md:text-2xl text-center max-w-2xl">
           Crafting unique and convenient design and development solutions for your digital presence.
         </p>
-      </section>
+      </motion.section>
 
       {/* About Section */}
-      <section className="bg-black text-white p-8 md:p-16 py-20">
+      <motion.section
+        ref={aboutRef}
+        initial="hidden"
+        animate={aboutInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="bg-black text-white p-8 md:p-16 py-20"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">About BYTCD</h2>
           <p className="text-lg md:text-xl leading-relaxed">
             BYTCD is a creative studio specializing in bespoke design and robust development. We transform ideas into stunning digital experiences, focusing on user-centric design and cutting-edge technology to deliver solutions that stand out.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Services Section */}
-      <section className="bg-white text-black p-8 md:p-16 py-20">
+      <motion.section
+        ref={servicesRef}
+        initial="hidden"
+        animate={servicesInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="bg-white text-black p-8 md:p-16 py-20"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
@@ -52,10 +90,16 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section className="bg-black text-white p-8 md:p-16 py-20">
+      <motion.section
+        ref={contactRef}
+        initial="hidden"
+        animate={contactInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="bg-black text-white p-8 md:p-16 py-20"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Get in Touch</h2>
           <p className="text-lg md:text-xl mb-8">
@@ -68,7 +112,7 @@ const LandingPage = () => {
             Contact Us
           </a>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer/Links Section */}
       <footer className="bg-black text-white p-4 md:p-8">
