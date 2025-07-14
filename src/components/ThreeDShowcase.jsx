@@ -13,10 +13,10 @@ const ThreeDShowcase = () => {
   const { geometries, materials } = useMemo(() => {
     const GEOMETRIES = [
       new THREE.BoxGeometry(1, 1, 1),
-      new THREE.SphereGeometry(0.75, 32, 32),
       new THREE.TorusGeometry(0.6, 0.2, 16, 100),
       new THREE.ConeGeometry(0.7, 1.2, 32),
       new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
+      new THREE.SphereGeometry(0.75, 32, 32),
     ];
     const MATERIALS = [
       new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
