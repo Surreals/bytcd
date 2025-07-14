@@ -75,7 +75,7 @@ const Title = () => {
         },
       };
     },
-    reset: {
+    reset: (i) => ({ // Changed to a function that accepts 'i'
       rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0,
       transition: {
         type: "spring",
@@ -83,7 +83,7 @@ const Title = () => {
         damping: 10,
         delay: characters.length * 0.02 - i * 0.02, // Staggered reset
       },
-    }
+    })
   };
 
   return (
