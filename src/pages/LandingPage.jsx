@@ -63,7 +63,7 @@ const LandingPage = () => {
           </p>
           <a
             href="mailto:info@bytcd.com"
-            className="inline-block bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-gray-200 transition-colors"
+            className="inline-block bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors"
           >
             Contact Us
           </a>
