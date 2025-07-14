@@ -4,5 +4,5 @@ export const mainLinks = [
 ]
 
 export const sideLinks = [
-    {name: 'soon', url: '#'},
+    // {name: 'soon', url: '#'},
 ]
