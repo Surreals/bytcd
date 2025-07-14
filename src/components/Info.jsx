@@ -4,7 +4,7 @@ const Info = () => {
   return (
     <div className="w-full flex items-start justify-between">
       <p>
-        <Link to="/" className="hover:text-blue-500 transition-colors">
+        <Link to="/" className="hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
           (002) <span>bytcd</span>
         </Link>
       </p>

@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <nav className="bg-black text-white p-4 md:p-8 sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-500 transition-colors">
+        <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
           BYTCD
         </Link>
 
@@ -50,7 +50,7 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               onClick={(e) => link.sectionId ? handleNavLinkClick(e, link.sectionId) : setIsOpen(false)}
-              className="hover:text-blue-500 transition-colors"
+              className="hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
             >
               {link.name}
             </Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
+          <button onClick={toggleMenu} className="text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
@@ -74,7 +74,7 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 onClick={(e) => link.sectionId ? handleNavLinkClick(e, link.sectionId) : setIsOpen(false)}
-                className="block w-full text-center py-2 hover:bg-gray-800 transition-colors"
+                className="block w-full text-center py-2 hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
               >
                 {link.name}
               </Link>
