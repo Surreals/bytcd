@@ -2,6 +2,7 @@ import React from 'react';
 import { Info, Links, Title } from "../components";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import ThreeDBox from '../components/ThreeDBox'; // Import the new ThreeDBox component
 
 const LandingPage = () => {
   const sectionVariants = {
@@ -20,6 +21,7 @@ const LandingPage = () => {
   const { ref: heroRef, inView: heroInView } = useAnimatedSection();
   const { ref: aboutRef, inView: aboutInView } = useAnimatedSection();
   const { ref: servicesRef, inView: servicesInView } = useAnimatedSection();
+  const { ref: designDemoRef, inView: designDemoInView } = useAnimatedSection(); // New ref for 3D section
   const { ref: contactRef, inView: contactInView } = useAnimatedSection();
 
   return (
@@ -89,6 +91,25 @@ const LandingPage = () => {
               </ul>
             </div>
           </div>
+        </div>
+      </motion.section>
+
+      {/* Three.js Design Demo Section */}
+      <motion.section
+        ref={designDemoRef}
+        initial="hidden"
+        animate={designDemoInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+        className="bg-black text-white p-8 md:p-16 py-20 flex flex-col items-center justify-center"
+      >
+        <div className="max-w-4xl mx-auto text-center mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Innovative Design Solutions</h2>
+          <p className="text-lg md:text-xl">
+            Explore a glimpse of our creative capabilities with this interactive 3D demonstration.
+          </p>
+        </div>
+        <div className="w-full max-w-3xl h-[500px] bg-gray-900 rounded-lg overflow-hidden">
+          <ThreeDBox />
         </div>
       </motion.section>
 

@@ -6,10 +6,6 @@ const Info = () => {
         <p>Unique & Convenient</p>
         <p>Design Solutions</p>
       </div>
-      <div className="text-center md:text-left">
-        <p>THIS_PAGE_IS_%</p>
-        <p>UNDER_CONSTRUCTION</p>
-      </div>
       <p className="hover:text-blue-500 transition-colors">.com</p>
     </div>
   );
