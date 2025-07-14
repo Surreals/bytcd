@@ -88,7 +88,9 @@ const ProcessSection = ({ id }) => {
                 }`}
               >
                 {/* Circle Indicator */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-600 rounded-full z-10 border-4 border-white"></div>
+                <div className={`absolute w-6 h-6 bg-blue-600 rounded-full z-10 border-4 border-white top-1/2 -translate-y-1/2 ${
+                  isEven ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'
+                }`}></div>
 
                 <div
                   className={`flex flex-col p-6 rounded-lg shadow-lg bg-gray-100 w-full ${
