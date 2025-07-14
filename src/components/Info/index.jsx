@@ -12,11 +12,7 @@ const Info = () => {
         <p>Unique & Convenient</p>
         <p>Design Solutions</p>
       </div>
-      <div className="text-center md:text-left">
-        <Link to="/contact-us" className="hover:text-blue-500 transition-colors">
-          <p>CONTACT US</p>
-        </Link>
-      </div>
+      {/* The contact link will be moved to the new Navbar */}
       <p className="hover:text-blue-500 transition-colors">.com</p>
     </div>
   );

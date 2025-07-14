@@ -3,9 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import Info from '../components/Info';
-import Links from '../components/Links';
-import ContactForm from '../components/ContactForm'; // Import the new ContactForm
+import { Navbar, Links, ContactForm } from '../components'; // Import Navbar, remove Info
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 
 const ContactUsPage = () => {
@@ -13,10 +11,8 @@ const ContactUsPage = () => {
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">
-      {/* Header/Info Section */}
-      <header className="bg-black text-white p-4 md:p-8">
-        <Info />
-      </header>
+      {/* Header/Info Section - Replaced with Navbar */}
+      <Navbar />
 
       <motion.section
         ref={ref}
@@ -49,7 +45,6 @@ const ContactUsPage = () => {
             </div>
           </div>
 
-          {/* Add the ContactForm component here */}
           <p className="text-lg md:text-xl">
             Alternatively, you can fill out the form below, and we'll get back to you as soon as possible.
           </p>

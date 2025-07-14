@@ -13,7 +13,7 @@ const containerVariants = {
   },
 };
 
-const ServicesSection = () => {
+const ServicesSection = ({ id }) => { // Accept id prop
   const { ref, inView } = useAnimatedSection();
 
   const services = [
@@ -62,6 +62,7 @@ const ServicesSection = () => {
   return (
     <motion.section
       ref={ref}
+      id={id} {/* Apply the ID here */}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}

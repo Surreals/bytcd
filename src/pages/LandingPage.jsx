@@ -1,24 +1,23 @@
 import React from 'react';
-import { Info, Links, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection } from "../components";
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, BackToTopButton } from "../components"; // Import BackToTopButton
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white text-black">
-      {/* Header/Info Section */}
-      <header className="bg-black text-white p-4 md:p-8">
-        <Info />
-      </header>
+      <Navbar />
 
-      <HeroSection />
+      <HeroSection id="hero" />
       <ThreeDShowcaseSection />
-      <AboutSection />
-      <ServicesSection />
-      <ContactSection />
+      <AboutSection id="about" />
+      <ServicesSection id="services" />
+      <ContactSection id="contact" />
 
       {/* Footer/Links Section */}
       <footer className="bg-black text-white p-4 md:p-8">
-        <Links />
+        {/* Links component can remain in the footer */}
       </footer>
+
+      <BackToTopButton /> {/* Add the BackToTopButton here */}
     </div>
   );
 };

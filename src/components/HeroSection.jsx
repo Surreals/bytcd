@@ -4,12 +4,13 @@ import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection
 import Title from './Title';
 import AnimatedBackground from './AnimatedBackground'; // Import the new component
 
-const HeroSection = () => {
+const HeroSection = ({ id }) => { // Accept id prop
   const { ref, inView } = useAnimatedSection();
 
   return (
     <motion.section
       ref={ref}
+      id={id} {/* Apply the ID here */}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}

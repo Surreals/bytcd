@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import { Mail } from 'lucide-react'; // Import Mail icon
 
-const ContactSection = () => {
+const ContactSection = ({ id }) => { // Accept id prop
   const { ref, inView } = useAnimatedSection();
 
   return (
     <motion.section
       ref={ref}
+      id={id} {/* Apply the ID here */}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
