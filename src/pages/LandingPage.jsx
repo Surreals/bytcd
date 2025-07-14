@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, BackToTopButton } from "../components"; // Import BackToTopButton
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, BackToTopButton, Links } from "../components"; // Import Links
 
 const LandingPage = () => {
   return (
@@ -14,10 +14,10 @@ const LandingPage = () => {
 
       {/* Footer/Links Section */}
       <footer className="bg-black text-white p-4 md:p-8">
-        {/* Links component can remain in the footer */}
+        <Links /> {/* Add the Links component here */}
       </footer>
 
-      <BackToTopButton /> {/* Add the BackToTopButton here */}
+      <BackToTopButton />
     </div>
   );
 };
