@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
+import { showError } from '../utils/toast'; // Import showError
 
 const ClientCard3D = ({ project }) => {
   const mountRef = useRef(null);
@@ -38,15 +39,37 @@ const ClientCard3D = ({ project }) => {
 
     // Load texture
     const loader = new THREE.TextureLoader();
-    loader.load(project.image, (texture) => {
-      textureRef.current = texture;
-      mesh.material.map = texture;
-      mesh.material.needsUpdate = true;
-    });
+    loader.load(
+      project.image,
+      (texture) => {
+        // On load success
+        textureRef.current = texture;
+        mesh.material.map = texture;
+        mesh.material.needsUpdate = true;
+        console.log(`Texture loaded successfully for ${project.title}:`, project.image);
+      },
+      undefined, // onProgress callback (optional)
+      (error) => {
+        // On load error
+        console.error(`Error loading texture for ${project.title} from ${project.image}:`, error);
+        showError(`Failed to load image for ${project.title}. Check console for details.`);
+        // Optionally, set a fallback color or a "broken image" texture
+        mesh.material.color.set(0x808080); // Set to gray on error
+        mesh.material.map = null; // Remove any previous map
+        mesh.material.needsUpdate = true;
+      }
+    );
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
+
+      // Continuous rotation for the object
+      if (meshRef.current) {
+        meshRef.current.rotation.x += 0.005;
+        meshRef.current.rotation.y += 0.005;
+      }
+
       renderer.render(scene, camera);
     };
     animate();
