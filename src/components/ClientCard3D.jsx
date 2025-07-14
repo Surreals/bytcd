@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
 
-const ClientCard3D = ({ project, position, rotation }) => {
+const ClientCard3D = ({ project }) => { // Removed position and rotation props
   const mountRef = useRef(null);
   const meshRef = useRef(null);
   const textureRef = useRef(null);
@@ -16,7 +16,7 @@ const ClientCard3D = ({ project, position, rotation }) => {
 
     // Scene, Camera, Renderer for this individual card
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000); // Aspect ratio 1 for square card
+    const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000); // Use actual aspect ratio
     camera.position.z = 1.5;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -39,10 +39,6 @@ const ClientCard3D = ({ project, position, rotation }) => {
       mesh.material.needsUpdate = true;
     });
 
-    // Initial positioning and rotation (from props)
-    mesh.position.set(position[0], position[1], position[2]);
-    mesh.rotation.set(rotation[0], rotation[1], rotation[2]);
-
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
@@ -58,16 +54,28 @@ const ClientCard3D = ({ project, position, rotation }) => {
 
     const handleMouseLeave = () => {
       gsap.to(mesh.scale, { x: 1, y: 1, z: 1, duration: 0.3, ease: "power2.out" });
-      gsap.to(mesh.rotation, { y: rotation[1], duration: 0.3, ease: "power2.out" }); // Reset to initial Y rotation
+      gsap.to(mesh.rotation, { y: 0, duration: 0.3, ease: "power2.out" }); // Reset to 0 Y rotation
     };
 
     currentMount.addEventListener('mouseenter', handleMouseEnter);
     currentMount.addEventListener('mouseleave', handleMouseLeave);
 
+    // Handle window resize for individual card
+    const handleResize = () => {
+      if (currentMount) {
+        camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
+
     // Cleanup
     return () => {
       currentMount.removeEventListener('mouseenter', handleMouseEnter);
       currentMount.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('resize', handleResize); // Remove resize listener
       if (currentMount && renderer.domElement) {
         currentMount.removeChild(renderer.domElement);
       }
@@ -76,7 +84,7 @@ const ClientCard3D = ({ project, position, rotation }) => {
       material.dispose();
       if (textureRef.current) textureRef.current.dispose();
     };
-  }, [project, position, rotation]);
+  }, [project]); // project is a dependency because its image is used
 
   return (
     <Link to={project.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative group">
