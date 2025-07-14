@@ -1,29 +1,32 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import * as THREE from 'three';
-import { gsap } from 'gsap'; // Import GSAP
-
-// Define geometries and materials outside the component to ensure they are created only once
-const GEOMETRIES = [
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.SphereGeometry(0.75, 32, 32),
-  new THREE.TorusGeometry(0.6, 0.2, 16, 100),
-  new THREE.ConeGeometry(0.7, 1.2, 32),
-  new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
-];
-const MATERIALS = [
-  new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
-  new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
-  new THREE.MeshStandardMaterial({ color: 0x28a745, roughness: 0.5, metalness: 0.5, transparent: true }), // Green
-  new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5, transparent: true }), // Red
-  new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5, transparent: true }), // Purple
-];
+import { gsap } from 'gsap';
 
 const ThreeDShowcase = () => {
   const mountRef = useRef(null);
-  const meshRef = useRef(null); // Ref to store the main 3D object
+  const meshRef = useRef(null);
   const [currentShapeIndex, setCurrentShapeIndex] = useState(0);
+
+  // Memoize geometries and materials to create them once per component instance
+  const { geometries, materials } = useMemo(() => {
+    const GEOMETRIES = [
+      new THREE.BoxGeometry(1, 1, 1),
+      new THREE.SphereGeometry(0.75, 32, 32),
+      new THREE.TorusGeometry(0.6, 0.2, 16, 100),
+      new THREE.ConeGeometry(0.7, 1.2, 32),
+      new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
+    ];
+    const MATERIALS = [
+      new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
+      new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
+      new THREE.MeshStandardMaterial({ color: 0x28a745, roughness: 0.5, metalness: 0.5, transparent: true }), // Green
+      new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5, transparent: true }), // Red
+      new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5, transparent: true }), // Purple
+    ];
+    return { geometries: GEOMETRIES, materials: MATERIALS };
+  }, []); // Empty dependency array means these are created once when the component mounts
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -48,7 +51,7 @@ const ThreeDShowcase = () => {
     currentMount.appendChild(renderer.domElement);
 
     // Initial Mesh
-    const initialMesh = new THREE.Mesh(GEOMETRIES[currentShapeIndex], MATERIALS[currentShapeIndex].clone());
+    const initialMesh = new THREE.Mesh(geometries[currentShapeIndex], materials[currentShapeIndex].clone());
     scene.add(initialMesh);
     meshRef.current = initialMesh; // Store reference to the mesh
 
@@ -96,7 +99,7 @@ const ThreeDShowcase = () => {
 
       if (intersects.length > 0) {
         // Only change shape if the current mesh is intersected
-        setCurrentShapeIndex((prevIndex) => (prevIndex + 1) % GEOMETRIES.length);
+        setCurrentShapeIndex((prevIndex) => (prevIndex + 1) % geometries.length);
       }
     };
     renderer.domElement.addEventListener('click', onClick);
@@ -109,18 +112,17 @@ const ThreeDShowcase = () => {
         currentMount.removeChild(renderer.domElement);
       }
       renderer.dispose();
-      // Dispose of geometries and materials only once on component unmount
-      GEOMETRIES.forEach(g => g.dispose());
-      MATERIALS.forEach(m => m.dispose());
+      // Dispose of geometries and materials here if they were created per instance
+      // (They are now managed by useMemo, so their disposal is handled by GC when component unmounts)
     };
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, [geometries, materials]); // Add geometries and materials to dependencies
 
   // Effect to update the mesh when currentShapeIndex changes
   useEffect(() => {
     if (meshRef.current) {
       const currentMesh = meshRef.current;
-      const newGeometry = GEOMETRIES[currentShapeIndex];
-      const newMaterial = MATERIALS[currentShapeIndex].clone(); // Clone material to animate opacity independently
+      const newGeometry = geometries[currentShapeIndex];
+      const newMaterial = materials[currentShapeIndex].clone(); // Clone material to animate opacity independently
 
       // Ensure the new material is transparent and starts at opacity 0
       newMaterial.transparent = true;
@@ -155,7 +157,7 @@ const ThreeDShowcase = () => {
         }
       });
     }
-  }, [currentShapeIndex]); // This effect runs when currentShapeIndex changes
+  }, [currentShapeIndex, geometries, materials]); // Add geometries and materials to dependencies
 
   return (
     <div ref={mountRef} className="w-full h-full flex items-center justify-center">

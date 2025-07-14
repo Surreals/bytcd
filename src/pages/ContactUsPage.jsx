@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { Navbar, Links, ContactForm, BackToTopButton } from '../components'; // Import BackToTopButton
+import { Navbar, Links, ContactForm } from '../components'; // Removed BackToTopButton
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 
 const ContactUsPage = () => {
@@ -56,7 +56,6 @@ const ContactUsPage = () => {
       <footer className="bg-black text-white p-4 md:p-8 mt-auto">
         <Links />
       </footer>
-      <BackToTopButton /> {/* Add the BackToTopButton here */}
     </div>
   );
 };
