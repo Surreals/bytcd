@@ -20,10 +20,10 @@ const ThreeDShowcase = () => {
     ];
     const MATERIALS = [
       new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
-      new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
       new THREE.MeshStandardMaterial({ color: 0x28a745, roughness: 0.5, metalness: 0.5, transparent: true }), // Green
       new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5, transparent: true }), // Red
       new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5, transparent: true }), // Purple
+      new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
     ];
     return { geometries: GEOMETRIES, materials: MATERIALS };
   }, []); // Empty dependency array means these are created once when the component mounts
