@@ -1,0 +1,80 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact_us": "Contact Us"
+  },
+  "hero_section": {
+    "tagline": "Crafting unique and convenient design and development solutions for your digital presence."
+  },
+  "about_section": {
+    "title": "About BYTCD",
+    "description": "BYTCD is a creative studio specializing in bespoke design and robust development. We transform ideas into stunning digital experiences, focusing on user-centric design and cutting-edge technology to deliver solutions that stand out."
+  },
+  "services_section": {
+    "title": "Our Services",
+    "design_title": "Design",
+    "design_items": [
+      "UI/UX Design",
+      "Brand Identity & Logo Design",
+      "Web & Mobile App Design",
+      "Graphic Design"
+    ],
+    "development_title": "Development",
+    "development_items": [
+      "Frontend Development (React, Vue)",
+      "Backend Development (Node.js, Firebase)",
+      "Custom Web Applications",
+      "E-commerce Solutions"
+    ],
+    "consulting_title": "Consulting",
+    "consulting_items": [
+      "Digital Strategy",
+      "Technology Roadmapping",
+      "Performance Optimization",
+      "Scalability Planning"
+    ],
+    "maintenance_title": "Maintenance & Support",
+    "maintenance_items": [
+      "Ongoing Website Maintenance",
+      "Technical Support",
+      "Security Updates",
+      "Content Management"
+    ]
+  },
+  "contact_section": {
+    "title": "Get in Touch",
+    "description": "Ready to start your next project? Let's create something amazing together.",
+    "button": "Contact Us"
+  },
+  "contact_us_page": {
+    "title": "Contact Us",
+    "description": "We'd love to hear from you! Whether you have a project in mind, a question, or just want to say hello, feel free to reach out.",
+    "email_title": "Email",
+    "phone_title": "Phone",
+    "location_title": "Location",
+    "location_text": "Uzhhorod, Ukraine",
+    "form_intro": "Alternatively, you can fill out the form below, and we'll get back to you as soon as possible.",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_message": "Message",
+    "form_send": "Send Message",
+    "form_sending": "Sending...",
+    "form_success": "Your message has been sent successfully!",
+    "form_error_fill_all": "Please fill in all fields.",
+    "form_error_failed_send": "Failed to send message. Please try again."
+  },
+  "not_found_page": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you're looking for doesn't exist. It might have been moved or deleted.",
+    "go_home": "Go to Homepage"
+  },
+  "info_section": {
+    "slogan_line1": "Unique & Convenient",
+    "slogan_line2": "Design Solutions"
+  },
+  "links_section": {
+    "soon": "soon"
+  }
+}
