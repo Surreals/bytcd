@@ -12,6 +12,7 @@ import AnimatedBackground from "./AnimatedBackground";
 import ContactForm from "./ContactForm";
 import Navbar from "./Navbar";
 import BackToTopButton from "./BackToTopButton";
+import ProcessSection from "./ProcessSection"; // New import
 
 export {
     Links,
@@ -28,4 +29,5 @@ export {
     ContactForm,
     Navbar,
     BackToTopButton,
+    ProcessSection, // New export
 }

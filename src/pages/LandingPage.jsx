@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links } from "../components"; // Removed BackToTopButton
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection } from "../components"; // Added ProcessSection
 
 const LandingPage = () => {
   return (
@@ -9,6 +9,7 @@ const LandingPage = () => {
       <HeroSection id="hero" />
       <ThreeDShowcaseSection />
       <AboutSection id="about" />
+      <ProcessSection id="process" /> {/* New Process Section */}
       <ServicesSection id="services" />
       <ContactSection id="contact" />
 
