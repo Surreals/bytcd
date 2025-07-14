@@ -45,28 +45,28 @@ export const clientProjects = [
     id: 'carbook',
     title: 'Carbook.pro',
     description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJGd2p2_FJ-e6o54FfdrPUh94Gq_OwTMqouA&s',
+    image: 'https://images.unsplash.com/photo-1551288259-cd117a05419d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: 'https://carbook.mobi/', // Placeholder link
   },
   {
     id: 'project-2',
     title: 'Mobile App Development',
     description: 'Intuitive iOS and Android application for seamless on-the-go access to services.',
-    image: 'https://via.placeholder.com/400x300/28a745/ffffff?text=Project+2',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
   {
     id: 'project-3',
     title: 'Brand Identity & Website',
     description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
-    image: 'https://via.placeholder.com/400x300/ffc107/000000?text=Project+3',
+    image: 'https://images.unsplash.com/photo-1522199755839-fd245a284972?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
   {
     id: 'project-4',
     title: 'SaaS Platform UI/UX',
     description: 'Streamlined user interface and experience design for a complex B2B SaaS application.',
-    image: 'https://via.placeholder.com/400x300/dc3545/ffffff?text=Project+4',
+    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     link: '#',
   },
 ];
