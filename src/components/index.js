@@ -8,7 +8,8 @@ import AboutSection from "./AboutSection";
 import ServicesSection from "./ServicesSection";
 import ContactSection from "./ContactSection";
 import ServiceCard from "./ServiceCard";
-import AnimatedBackground from "./AnimatedBackground"; // New export
+import AnimatedBackground from "./AnimatedBackground";
+import ContactForm from "./ContactForm"; // New export
 
 export {
     Links,
@@ -21,5 +22,6 @@ export {
     ServicesSection,
     ContactSection,
     ServiceCard,
-    AnimatedBackground, // New export
+    AnimatedBackground,
+    ContactForm, // New export
 }
