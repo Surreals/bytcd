@@ -9,7 +9,7 @@ const Links = () => {
     );
   };
   return (
-    <div className="flex md:text-1xl font-light text-2xl justify-between">
+    <div className="flex md:text-xl font-light text-2xl justify-between">
       <div className="flex flex-col text-left">{mainLinks.map((lnk) => buildLink(lnk))}</div>
       <div className="flex flex-col text-right">{sideLinks.map((lnk) => buildLink(lnk))}</div>
     </div>
