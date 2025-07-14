@@ -42,11 +42,11 @@ export const processSteps = [
 
 export const clientProjects = [
   {
-    id: 'project-1',
+    id: 'carbook',
     title: 'E-commerce Redesign',
-    description: 'A modern, responsive e-commerce platform with enhanced user experience and conversion optimization.',
+    description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
     image: 'https://via.placeholder.com/400x300/007bff/ffffff?text=Project+1',
-    link: '#', // Placeholder link
+    link: 'https://carbook.mobi/', // Placeholder link
   },
   {
     id: 'project-2',
