@@ -20,7 +20,7 @@ const ContactSection = () => {
           Ready to start your next project? Let's create something amazing together.
         </p>
         <a
-          href="mailto:info@bytcd.com"
+          href="mailto:bytcdco@gmail.com"
           className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors"
         >
           <Mail size={24} />
