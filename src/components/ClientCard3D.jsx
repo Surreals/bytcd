@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
 
-const ClientCard3D = ({ project }) => { // Removed position and rotation props
+const ClientCard3D = ({ project }) => {
   const mountRef = useRef(null);
   const meshRef = useRef(null);
   const textureRef = useRef(null);
@@ -16,15 +16,20 @@ const ClientCard3D = ({ project }) => { // Removed position and rotation props
 
     // Scene, Camera, Renderer for this individual card
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000); // Use actual aspect ratio
-    camera.position.z = 1.5;
+    const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
+    camera.position.z = 1.5; // Position camera to view the plane
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     currentMount.appendChild(renderer.domElement);
 
+    // Calculate visible dimensions at z=0 to make the plane fill the camera's view
+    const vFOV = camera.fov * Math.PI / 180; // convert vertical fov to radians
+    const planeHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
+    const planeWidth = planeHeight * camera.aspect;
+
     // Card Geometry and Material
-    const geometry = new THREE.PlaneGeometry(1, 0.75); // Aspect ratio for a card
+    const geometry = new THREE.PlaneGeometry(planeWidth, planeHeight); // Use calculated dimensions
     const material = new THREE.MeshBasicMaterial({ color: 0xffffff }); // White base, texture will overlay
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -75,7 +80,7 @@ const ClientCard3D = ({ project }) => { // Removed position and rotation props
     return () => {
       currentMount.removeEventListener('mouseenter', handleMouseEnter);
       currentMount.removeEventListener('mouseleave', handleMouseLeave);
-      window.removeEventListener('resize', handleResize); // Remove resize listener
+      window.removeEventListener('resize', handleResize);
       if (currentMount && renderer.domElement) {
         currentMount.removeChild(renderer.domElement);
       }
@@ -84,7 +89,7 @@ const ClientCard3D = ({ project }) => { // Removed position and rotation props
       material.dispose();
       if (textureRef.current) textureRef.current.dispose();
     };
-  }, [project]); // project is a dependency because its image is used
+  }, [project]);
 
   return (
     <Link to={project.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative group">
