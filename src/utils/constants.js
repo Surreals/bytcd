@@ -45,7 +45,7 @@ export const clientProjects = [
     id: 'carbook',
     title: 'Carbook.pro',
     description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
-    image: 'https://help.carbook.pro/wp-content/uploads/2022/12/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA-%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0-2022-12-15-%D0%BE-10.27.33.png',
+    image: 'https://carbook.mobi/wp-content/uploads/Directories-jobs-spare-parts-customers-cars.jpg',
     link: 'https://carbook.mobi/', // Placeholder link
   },
   {
