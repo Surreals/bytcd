@@ -17,6 +17,9 @@ const ThreeDShowcase = () => {
       new THREE.ConeGeometry(0.7, 1.2, 32),
       new THREE.CylinderGeometry(0.5, 0.5, 1.5, 32),
       new THREE.SphereGeometry(0.75, 32, 32),
+      new THREE.OctahedronGeometry(0.8), // New geometry: Octahedron
+      new THREE.DodecahedronGeometry(0.8), // New geometry: Dodecahedron
+      new THREE.IcosahedronGeometry(0.8), // New geometry: Icosahedron
     ];
     const MATERIALS = [
       new THREE.MeshStandardMaterial({ color: 0x007bff, roughness: 0.5, metalness: 0.5, transparent: true }), // Blue
@@ -24,6 +27,9 @@ const ThreeDShowcase = () => {
       new THREE.MeshStandardMaterial({ color: 0xdc3545, roughness: 0.5, metalness: 0.5, transparent: true }), // Red
       new THREE.MeshStandardMaterial({ color: 0x6f42c1, roughness: 0.5, metalness: 0.5, transparent: true }), // Purple
       new THREE.MeshStandardMaterial({ color: 0xffa500, roughness: 0.5, metalness: 0.5, transparent: true }), // Orange
+      new THREE.MeshStandardMaterial({ color: 0x17a2b8, roughness: 0.5, metalness: 0.5, transparent: true }), // New material: Cyan
+      new THREE.MeshStandardMaterial({ color: 0x6c757d, roughness: 0.5, metalness: 0.5, transparent: true }), // New material: Gray
+      new THREE.MeshStandardMaterial({ color: 0xf8f9fa, roughness: 0.5, metalness: 0.5, transparent: true }), // New material: Light Gray
     ];
     return { geometries: GEOMETRIES, materials: MATERIALS };
   }, []); // Empty dependency array means these are created once when the component mounts
