@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { showSuccess, showError, showLoading, dismissToast } from '../utils/toast'; // Import toast utilities
 import { db } from '../firebase'; // Import Firestore instance
 import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +12,6 @@ const ContactForm = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { t } = useTranslation(); // Initialize useTranslation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,12 +24,12 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const loadingToastId = showLoading(t('contact_us_page.form_sending'));
+    const loadingToastId = showLoading('Sending your message...');
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       dismissToast(loadingToastId);
-      showError(t('contact_us_page.form_error_fill_all'));
+      showError('Please fill in all fields.');
       setIsSubmitting(false);
       return;
     }
@@ -46,7 +44,7 @@ const ContactForm = () => {
       });
 
       dismissToast(loadingToastId);
-      showSuccess(t('contact_us_page.form_success'));
+      showSuccess('Your message has been sent successfully!');
 
       // Reset form
       setFormData({
@@ -57,7 +55,7 @@ const ContactForm = () => {
     } catch (error) {
       console.error('Error sending message: ', error);
       dismissToast(loadingToastId);
-      showError(t('contact_us_page.form_error_failed_send'));
+      showError('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -67,7 +65,7 @@ const ContactForm = () => {
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto mt-12 space-y-6">
       <div>
         <label htmlFor="name" className="block text-lg font-medium text-gray-700 mb-2">
-          {t('contact_us_page.form_name')}
+          Name
         </label>
         <input
           type="text"
@@ -82,7 +80,7 @@ const ContactForm = () => {
       </div>
       <div>
         <label htmlFor="email" className="block text-lg font-medium text-gray-700 mb-2">
-          {t('contact_us_page.form_email')}
+          Email
         </label>
         <input
           type="email"
@@ -97,7 +95,7 @@ const ContactForm = () => {
       </div>
       <div>
         <label htmlFor="message" className="block text-lg font-medium text-gray-700 mb-2">
-          {t('contact_us_page.form_message')}
+          Message
         </label>
         <textarea
           id="message"
@@ -115,7 +113,7 @@ const ContactForm = () => {
         className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isSubmitting}
       >
-        {isSubmitting ? t('contact_us_page.form_sending') : t('contact_us_page.form_send')}
+        {isSubmitting ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   );
