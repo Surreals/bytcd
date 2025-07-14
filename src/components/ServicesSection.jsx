@@ -62,7 +62,7 @@ const ServicesSection = ({ id }) => { // Accept id prop
   return (
     <motion.section
       ref={ref}
-      id={id} {/* Apply the ID here */}
+      id={id}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
