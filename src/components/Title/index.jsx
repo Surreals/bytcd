@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 
 const Title = () => {
   const titleRef = useRef(null);
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const text = "BYTCD";
+  const characters = text.split("");
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -20,15 +22,11 @@ const Title = () => {
       const offsetX = (mouseX - centerX) / (width / 2);
       const offsetY = (mouseY - centerY) / (height / 2);
 
-      // Map offset to rotation angles (e.g., -10 to 10 degrees)
-      const rotateY = offsetX * 10; // Rotate around Y-axis based on X mouse position
-      const rotateX = -offsetY * 10; // Rotate around X-axis based on Y mouse position (inverted for natural feel)
-
-      setRotation({ x: rotateX, y: rotateY });
+      setMousePosition({ x: offsetX, y: offsetY });
     };
 
     const handleMouseLeave = () => {
-      setRotation({ x: 0, y: 0 }); // Reset rotation on mouse leave
+      setMousePosition({ x: 0, y: 0 }); // Reset position on mouse leave
     };
 
     const currentTitleRef = titleRef.current;
@@ -45,22 +43,67 @@ const Title = () => {
     };
   }, []);
 
-  return (
-    <motion.h1
-      ref={titleRef}
-      className="font-bold uppercase text-8xl md:text-9xl tracking-wides"
-      style={{
-        rotateX: rotation.x,
-        rotateY: rotation.y,
-        perspective: 1000, // Add perspective for 3D effect
-      }}
-      transition={{
+  const letterVariants = {
+    initial: { rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0 },
+    hovered: (i) => {
+      const totalLetters = characters.length;
+      const midIndex = totalLetters / 2 - 0.5; // Center index for odd/even
+      const distanceFactor = Math.abs(i - midIndex) / midIndex; // 0 at center, 1 at edges
+
+      // Base rotation from mouse position
+      const baseRotateY = mousePosition.x * 15; // Increased sensitivity
+      const baseRotateX = -mousePosition.y * 15; // Increased sensitivity
+
+      // Parallax translation
+      const parallaxX = mousePosition.x * 10 * (i - midIndex); // Letters move more based on distance from center
+      const parallaxY = mousePosition.y * 10 * (i - midIndex);
+
+      // Depth effect: letters pop out more when mouse is further from center
+      const depthZ = (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 10; // Max 20px pop out
+
+      return {
+        rotateX: baseRotateX + (mousePosition.y * 5 * distanceFactor), // Add slight variation based on letter position
+        rotateY: baseRotateY + (mousePosition.x * 5 * distanceFactor),
+        translateZ: depthZ,
+        x: parallaxX,
+        y: parallaxY,
+        transition: {
+          type: "spring",
+          stiffness: 150, // Make it a bit snappier
+          damping: 15,
+          delay: i * 0.02, // Staggered delay
+        },
+      };
+    },
+    reset: {
+      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0,
+      transition: {
         type: "spring",
         stiffness: 100,
         damping: 10,
-      }}
+        delay: characters.length * 0.02 - i * 0.02, // Staggered reset
+      },
+    }
+  };
+
+  return (
+    <motion.h1
+      ref={titleRef}
+      className="font-bold uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
+      style={{ perspective: 1000 }} // Apply perspective to the container
     >
-      BYTCD
+      {characters.map((char, i) => (
+        <motion.span
+          key={i}
+          variants={letterVariants}
+          initial="initial"
+          animate={mousePosition.x !== 0 || mousePosition.y !== 0 ? "hovered" : "reset"}
+          custom={i} // Pass index as custom prop for variants
+          className="inline-block" // Ensure each span is a block for transformations
+        >
+          {char === " " ? "\u00A0" : char} {/* Handle spaces */}
+        </motion.span>
+      ))}
     </motion.h1>
   );
 };
