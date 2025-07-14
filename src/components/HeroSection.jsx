@@ -3,11 +3,9 @@ import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import Title from './Title';
 import AnimatedBackground from './AnimatedBackground';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
 const HeroSection = ({ id }) => {
   const { ref, inView } = useAnimatedSection();
-  const { t } = useTranslation(); // Initialize useTranslation
 
   return (
     <motion.section
@@ -22,7 +20,7 @@ const HeroSection = ({ id }) => {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <Title />
         <p className="mt-8 text-xl md:text-2xl text-center max-w-2xl">
-          {t('hero_section.tagline')}
+          Crafting unique and convenient design and development solutions for your digital presence.
         </p>
       </div>
     </motion.section>

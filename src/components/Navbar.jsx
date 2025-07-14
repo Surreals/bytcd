@@ -3,13 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react'; // Icons for mobile menu
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
-import LanguageSwitcher from './LanguageSwitcher'; // Import LanguageSwitcher
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { t } = useTranslation(); // Initialize useTranslation
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -32,10 +29,11 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: t('navbar.home'), path: '/', sectionId: 'hero' },
-    { name: t('navbar.about'), path: '/', sectionId: 'about' },
-    { name: t('navbar.services'), path: '/', sectionId: 'services' },
-    { name: t('navbar.contact_us'), path: '/contact-us' },
+    { name: 'Home', path: '/', sectionId: 'hero' },
+    { name: 'About', path: '/', sectionId: 'about' },
+    { name: 'Services', path: '/', sectionId: 'services' },
+    // { name: 'Contact', path: '/', sectionId: 'contact' },
+    { name: 'Contact Us', path: '/contact-us' },
   ];
 
   return (
@@ -46,7 +44,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8 text-lg">
+        <div className="hidden md:flex space-x-8 text-lg">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -57,13 +55,11 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <LanguageSwitcher /> {/* Add LanguageSwitcher here */}
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
-          <LanguageSwitcher /> {/* Add LanguageSwitcher for mobile */}
-          <button onClick={toggleMenu} className="text-white focus:outline-none ml-4">
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="text-white focus:outline-none">
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
