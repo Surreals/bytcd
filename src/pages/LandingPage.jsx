@@ -1,10 +1,10 @@
 import React from 'react';
-import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection, ClientShowcaseSection, CustomCursor } from "../components"; // Added CustomCursor
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection, ClientShowcaseSection } from "../components"; // Removed CustomCursor
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white text-black">
-      <CustomCursor /> {/* Render CustomCursor here */}
+      {/* CustomCursor removed from here */}
       <Navbar />
 
       <HeroSection id="hero" />
