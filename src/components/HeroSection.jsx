@@ -20,7 +20,7 @@ const HeroSection = ({ id }) => {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <Title />
         <p className="mt-8 text-xl md:text-3xl font-light text-center max-w-3xl leading-relaxed">
-          Crafting <span className="font-bold hover:text-blue-600 transition-colors">unique</span> and <span className="font-bold hover:text-blue-600 transition-colors">convenient</span> design and development solutions for your digital presence.
+          Crafting <span className="font-semibold hover:text-blue-600 transition-colors">unique</span> and <span className="font-semibold hover:text-blue-600 transition-colors">convenient</span> design and development solutions for your digital presence.
         </p>
       </div>
     </motion.section>
