@@ -72,7 +72,7 @@ const Title = () => {
       const dy = letterCenterY - mouseY_pixel;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      const maxRepulsionDistance = 100; // Increased max distance (in pixels) for the repulsion effect
+      const maxRepulsionDistance = 150; // Increased max distance (in pixels) for the repulsion effect
       const repulsionStrength = 60; // Increased max pixel movement for repulsion
 
       let repulsionTranslateX = 0;
