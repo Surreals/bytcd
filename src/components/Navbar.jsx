@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-black/80 backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-4 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
+      className={`bg-black/50 backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-4 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
