@@ -244,7 +244,7 @@ const FlappyBlockGame = () => {
     this.obstacleSpeed = 2; // Speed at which obstacles move left
     this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
 
-    this.gravity = new JVector(0, .05);
+    this.gravity = new JVector(0, .05); // Reduced gravity for slower falling
 
     this.startGame = function() {
       this.startScreen = false;
@@ -282,7 +282,6 @@ const FlappyBlockGame = () => {
 
         // Check for collision with obstacles
         var collision = this.obstacleManager.detectCollisions(this.player);
-        // Removed the check for collision with bottom of canvas here
         // The Bird.checkWorld() method now handles clamping to the bottom
 
         if (collision) {
