@@ -1,86 +1,110 @@
-"use client";
-
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Title = () => {
   const titleRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const text = "BYTCD";
+  const characters = text.split("");
 
-  const mainText = "BYTCD";
-  const subText = "SOLUTIONS"; // New subtitle for the hover effect
-  const mainCharacters = mainText.split("");
-  const subCharacters = subText.split("");
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!titleRef.current) return;
 
-  // Variants for the container (h1 elements) to stagger children
-  const containerVariants = {
-    initial: {
-      // No specific animation for container itself, just for staggering children
-    },
-    visible: {
-      transition: {
-        staggerChildren: 0.02, // Stagger for initial reveal
-      },
-    },
-    hovered: {
-      transition: {
-        staggerChildren: 0.02, // Stagger for hover effect
-      },
-    },
-  };
+      const { left, top, width, height } = titleRef.current.getBoundingClientRect();
+      const centerX = left + width / 2;
+      const centerY = top + height / 2;
 
-  // Variants for individual letters (spans)
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      // Calculate offset from center, normalized to -1 to 1
+      const offsetX = (mouseX - centerX) / (width / 2);
+      const offsetY = (mouseY - centerY) / (height / 2);
+
+      setMousePosition({ x: offsetX, y: offsetY });
+    };
+
+    const handleMouseLeave = () => {
+      setMousePosition({ x: 0, y: 0 }); // Reset position on mouse leave
+    };
+
+    const currentTitleRef = titleRef.current;
+    if (currentTitleRef) {
+      currentTitleRef.addEventListener('mousemove', handleMouseMove);
+      currentTitleRef.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
+      if (currentTitleRef) {
+        currentTitleRef.removeEventListener('mousemove', handleMouseMove);
+        currentTitleRef.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, []);
+
   const letterVariants = {
-    initial: { y: "100%" }, // Start below the visible area
-    visible: { y: "0%", transition: { duration: 0.6, ease: [0.65, 0, 0.21, 1.47] } }, // Animate to visible position
-    hovered: { y: "-100%", transition: { duration: 0.6, ease: [0.65, 0, 0.21, 1.47] } }, // Animate up on hover
+    initial: { rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0 },
+    hovered: (i) => {
+      const totalLetters = characters.length;
+      const midIndex = totalLetters / 2 - 0.5; // Center index for odd/even
+      const distanceFactor = Math.abs(i - midIndex) / midIndex; // 0 at center, 1 at edges
+
+      // Base rotation from mouse position (reduced intensity)
+      const baseRotateY = mousePosition.x * 8;
+      const baseRotateX = -mousePosition.y * 8;
+
+      // Parallax translation (reduced intensity)
+      const parallaxX = mousePosition.x * 5 * (i - midIndex);
+      const parallaxY = mousePosition.y * 5 * (i - midIndex);
+
+      // Depth effect: letters pop out more when mouse is further from center (reduced intensity)
+      const depthZ = (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 5;
+
+      return {
+        rotateX: baseRotateX + (mousePosition.y * 3 * distanceFactor), // Add slight variation based on letter position
+        rotateY: baseRotateY + (mousePosition.x * 3 * distanceFactor),
+        translateZ: depthZ,
+        x: parallaxX,
+        y: parallaxY,
+        transition: {
+          type: "spring",
+          stiffness: 100, // Reduced stiffness for smoother movement
+          damping: 20,    // Increased damping to reduce oscillation
+          delay: i * 0.02, // Staggered delay
+        },
+      };
+    },
+    reset: (i) => ({ // Changed to a function that accepts 'i'
+      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80, // Reduced stiffness for smoother reset
+        damping: 15,   // Increased damping for smoother reset
+        delay: characters.length * 0.02 - i * 0.02, // Staggered reset
+      },
+    })
   };
 
   return (
-    <div
+    <motion.h1
       ref={titleRef}
-      className="titleWrapper relative h-20 md:h-24 overflow-hidden w-full text-center flex items-center justify-center" // Adjusted height for text size
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="font-bold uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
+      style={{ perspective: 1000 }} // Apply perspective to the container
     >
-      {/* First line of text (main title) */}
-      <motion.h1
-        className="first absolute top-0 left-0 right-0 bottom-0 m-auto text-8xl md:text-9xl font-bold uppercase tracking-wide flex justify-center items-center"
-        style={{ lineHeight: '1em' }} // Ensure line height matches font size for vertical alignment
-        variants={containerVariants}
-        initial="initial"
-        animate={isHovered ? "hovered" : "visible"}
-      >
-        {mainCharacters.map((char, i) => (
-          <motion.span
-            key={`main-${i}`}
-            variants={letterVariants}
-            className="inline-block relative z-10 bg-white" // Background to hide the second line initially
-          >
-            {char === " " ? "\u00A0" : char} {/* Handle spaces */}
-          </motion.span>
-        ))}
-      </motion.h1>
-
-      {/* Second line of text (subtitle) */}
-      <motion.h1
-        className="second absolute top-0 left-0 right-0 bottom-0 m-auto text-8xl md:text-9xl font-bold uppercase tracking-wide flex justify-center items-center"
-        style={{ lineHeight: '1em' }} // Ensure line height matches font size for vertical alignment
-        variants={containerVariants}
-        initial="initial"
-        animate={isHovered ? "hovered" : "visible"}
-      >
-        {subCharacters.map((char, i) => (
-          <motion.span
-            key={`sub-${i}`}
-            variants={letterVariants}
-            className="inline-block relative z-0" // No background, will be revealed
-          >
-            {char === " " ? "\u00A0" : char} {/* Handle spaces */}
-          </motion.span>
-        ))}
-      </motion.h1>
-    </div>
+      {characters.map((char, i) => (
+        <motion.span
+          key={i}
+          variants={letterVariants}
+          initial="initial"
+          animate={mousePosition.x !== 0 || mousePosition.y !== 0 ? "hovered" : "reset"}
+          custom={i} // Pass index as custom prop for variants
+          className="inline-block" // Ensure each span is a block for transformations
+        >
+          {char === " " ? "\u00A0" : char} {/* Handle spaces */}
+        </motion.span>
+      ))}
+    </motion.h1>
   );
 };
 
