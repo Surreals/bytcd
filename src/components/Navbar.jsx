@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react'; // Icons for mobile menu
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // New state for visibility
+  const lastScrollY = useRef(0); // Ref to store the last scroll position
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -28,16 +30,42 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  // Effect for scroll-based visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Only update visibility if scrolling significantly
+      if (Math.abs(currentScrollY - lastScrollY.current) > 50) { // Threshold of 50px
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) { // Scrolling down and past initial offset
+          setIsVisible(false);
+        } else { // Scrolling up
+          setIsVisible(true);
+        }
+        lastScrollY.current = currentScrollY;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []); // Empty dependency array means this runs once on mount
+
   const navLinks = [
     { name: 'Home', path: '/', sectionId: 'hero' },
     { name: 'About', path: '/', sectionId: 'about' },
     { name: 'Services', path: '/', sectionId: 'services' },
-    // { name: 'Contact', path: '/', sectionId: 'contact' },
     { name: 'Contact Us', path: '/contact-us' },
   ];
 
   return (
-    <nav className="bg-black text-white p-4 md:p-8 sticky top-0 z-50 shadow-lg">
+    <nav
+      className={`bg-black text-white p-4 md:p-8 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
           BYTCD
