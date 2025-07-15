@@ -192,16 +192,6 @@ const FlappyBlockGame = () => {
       }
     }
 
-    ObstacleManager.prototype.detectCollisions = function(player) {
-      for (var i = 0; i < this.obstacles.length; i++) {
-        var collision = this.obstacles[i].detectCollision(player);
-        if (collision) {
-          return true;
-        }
-      }
-      return false; // Return false if no collision is detected
-    }
-
     // --- Score Class ---
     function Score() {
       this.score = 0;
