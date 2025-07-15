@@ -272,7 +272,7 @@ const FlappyBlockGame = () => {
         this.ctx.textAlign = "center";
         this.ctx.strokeText("Flappy Block", this.WIDTH / 2, this.HEIGHT / 2);
         this.ctx.font = "18px Arial"; // Changed font
-        this.ctx.fillText("Hit 'S' to flap!", this.WIDTH / 2, this.HEIGHT / 2 + 40);
+        this.ctx.fillText("Hit 'S' or tap to flap!", this.WIDTH / 2, this.HEIGHT / 2 + 40);
       }
 
       if (this.playing) {
@@ -307,7 +307,7 @@ const FlappyBlockGame = () => {
         this.ctx.font= "24px Arial"; // Changed font
         this.ctx.fillText("Final Score: " + this.score.score, this.WIDTH / 2, this.HEIGHT / 2 + 40);
         this.ctx.font = "18px Arial"; // Changed font
-        this.ctx.fillText("Hit 'S' to play again!", this.WIDTH / 2, this.HEIGHT / 2 + 80);
+        this.ctx.fillText("Hit 'S' or tap to play again!", this.WIDTH / 2, this.HEIGHT / 2 + 80);
       }
     };
   };
@@ -353,8 +353,6 @@ const FlappyBlockGame = () => {
       if (!game) return;
 
       const key = e.keyCode;
-      // console.log("Key Down:", key);
-
       // 'S' key (83) to flap
       if (key === 83) {
         if (game.gameOver) {
@@ -371,10 +369,31 @@ const FlappyBlockGame = () => {
       if (!game) return;
 
       const key = e.keyCode;
-      // console.log("Key Up:", key);
-
       // 'S' key (83) to release flap
       if (key === 83 && game.player.flapping) {
+        game.player.flapping = false;
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      e.preventDefault(); // Prevent scrolling/zooming on touch
+      const game = gameInstanceRef.current;
+      if (!game) return;
+
+      if (game.gameOver) {
+        game.startGame(); // Restart game if game over
+      } else if (game.playing && !game.player.flapping) {
+        game.player.flap();
+        game.player.flapping = true;
+      }
+    };
+
+    const handleTouchEnd = (e) => {
+      e.preventDefault(); // Prevent scrolling/zooming on touch
+      const game = gameInstanceRef.current;
+      if (!game) return;
+
+      if (game.player.flapping) {
         game.player.flapping = false;
       }
     };
@@ -382,6 +401,9 @@ const FlappyBlockGame = () => {
     window.addEventListener("resize", setCanvasDimensions);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+    canvas.addEventListener("touchstart", handleTouchStart);
+    canvas.addEventListener("touchend", handleTouchEnd);
+
 
     // Cleanup function
     return () => {
@@ -389,6 +411,8 @@ const FlappyBlockGame = () => {
       window.removeEventListener("resize", setCanvasDimensions);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, []); // Empty dependency array ensures this runs once on mount and cleans up on unmount
 
