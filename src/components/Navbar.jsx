@@ -78,7 +78,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex items-center text-2xl md:text-3xl font-bold hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
-          <img src={logo} alt="BYTCD Logo" className="h-6 md:h-7 mr-2 filter invert" /> {/* Adjusted height here */}
+          <img src={logo} alt="BYTCD Logo" className="h-7 md:h-8 mr-2 filter invert" /> {/* Adjusted height here */}
           BYTCD
         </Link>
 
