@@ -15,8 +15,7 @@ import BackToTopButton from "./BackToTopButton";
 import ProcessSection from "./ProcessSection";
 import ClientShowcaseSection from "./ClientShowcaseSection";
 import ClientCard3D from "./ClientCard3D";
-import FlappyBlockGame from "./FlappyBlockGame";
-import CustomCursor from "./CustomCursor"; // New import
+import FlappyBlockGame from "./FlappyBlockGame"; // New import
 
 export {
     Links,
@@ -36,6 +35,5 @@ export {
     ProcessSection,
     ClientShowcaseSection,
     ClientCard3D,
-    FlappyBlockGame,
-    CustomCursor, // New export
+    FlappyBlockGame, // New export
 }
