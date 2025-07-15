@@ -161,8 +161,8 @@ const FlappyBlockGame = () => {
     this.generateObstacles = function() {
       this.obstacles = [];
       for (var i = 0; i < this.maxNum; i++) {
-        // Adjusted xPos generation for better spacing with fewer obstacles
-        var xPos = this.canvasWidth / 2 + (i * (this.canvasWidth / this.maxNum) * 0.8) + Math.floor(Math.random() * 50);
+        // Adjusted xPos generation for better spacing
+        var xPos = ((i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * 50)) + this.canvasWidth / 4;
         this.obstacles.push(new Obstacle(xPos, this.canvasHeight));
       }
     };
@@ -269,7 +269,8 @@ const FlappyBlockGame = () => {
         // Check if player has passed an obstacle
         if (this.player.pos.x >= this.obstacleManager.obstacles[0].x + this.obstacleManager.obstacles[0].width / 2) {
           this.obstacleManager.obstacles.shift(); // Remove passed obstacle
-          this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 100, this.HEIGHT)); // Add new obstacle
+          // Add new obstacle further to the right
+          this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 100, this.HEIGHT));
           this.score.increment();
         }
       }
