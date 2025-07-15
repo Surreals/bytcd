@@ -69,8 +69,8 @@ const Navbar = () => {
   return (
     <nav
       className={`
-        ${isScrolledToTop ? 'bg-black' : 'bg-black/30'} 
-        backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-4 sticky top-0 z-50 shadow-lg 
+        ${isScrolledToTop ? 'bg-black' : 'bg-black/80'} 
+        backdrop-blur-md text-white px-6 py-2 md:px-12 md:py-3 sticky top-0 z-50 shadow-lg 
         transition-all duration-300 ease-in-out ${ // Changed to transition-all for smooth color change
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
