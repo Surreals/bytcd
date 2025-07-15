@@ -118,7 +118,7 @@ const Title = () => {
   return (
     <motion.h1
       ref={titleRef}
-      className="font-bold uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
+      className="font-bold cursor-default uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
       style={{ perspective: 1000 }} // Apply perspective to the container
     >
       {characters.map((char, i) => (
