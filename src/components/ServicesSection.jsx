@@ -18,16 +18,6 @@ const ServicesSection = ({ id }) => { // Accept id prop
 
   const services = [
     {
-      title: "Design",
-      iconName: "Palette", // Icon from Lucide React
-      items: [
-        "UI/UX Design",
-        "Brand Identity & Logo Design",
-        "Web & Mobile App Design",
-        "Graphic Design",
-      ],
-    },
-    {
       title: "Development",
       iconName: "Code", // Icon from Lucide React
       items: [
@@ -35,6 +25,16 @@ const ServicesSection = ({ id }) => { // Accept id prop
         "Backend Development",
         "Custom Web Applications",
         "E-commerce Solutions",
+      ],
+    },
+    {
+      title: "Design",
+      iconName: "Palette", // Icon from Lucide React
+      items: [
+        "UI/UX Design",
+        "Brand Identity & Logo Design",
+        "Web & Mobile App Design",
+        "Graphic Design",
       ],
     },
     {
