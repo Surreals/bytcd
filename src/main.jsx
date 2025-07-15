@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import ToastProvider from './components/ToastProvider.jsx'; // Import ToastProvider
+import ToastProvider from './components/ToastProvider.jsx';
+import CustomCursorProvider from './components/CustomCursorProvider.jsx'; // Import CustomCursorProvider
 import './index.css';
-import Curzr from 'curzr'; // Import Curzr
+import WebFont from 'webfontloader'; // Import WebFontLoader
+
+// Load Google Fonts
+WebFont.load({
+  google: {
+    families: ['Plus Jakarta Sans']
+  }
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ToastProvider /> {/* Add ToastProvider here */}
-    <App />
+    <ToastProvider />
+    <CustomCursorProvider> {/* Wrap App with CustomCursorProvider */}
+      <App />
+    </CustomCursorProvider>
   </React.StrictMode>,
-)
-
-// Initialize Curzr after the DOM is ready with explicit options
-new Curzr({
-  color: '#00FFFF', // Bright cyan
-  size: 16,
-});
+);

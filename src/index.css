@@ -9,3 +9,53 @@ html {
 body {
   cursor: none; /* Hide the default cursor */
 }
+
+/* Curzr Specific Styles (from provided snippet) */
+.curzr-arrow-pointer {
+  /* Styles are applied dynamically by JS, but base positioning is here */
+}
+
+.curzr-arrow-pointer .inner {
+  fill: #F2F5F8;
+}
+
+.curzr-arrow-pointer .outer {
+  fill: #111920;
+}
+
+.curzr-big-circle .circle {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-big-circle .dot {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-ring-dot {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-ring-dot .curzr-dot {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-circle-and-dot {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-glitch-effect {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-motion {
+  /* Styles applied dynamically by JS */
+}
+
+.curzr-motion .curzr-motion-blur {
+  /* Styles applied dynamically by JS */
+}
+
+/* General styles for elements that should trigger hover effects */
+a, button, .curzr-hover {
+  cursor: none; /* Ensure these elements don't show default cursor */
+}
