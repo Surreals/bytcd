@@ -89,8 +89,8 @@ const Title = () => {
         // 1 when distance is 0 (full red), 0 when distance is maxRepulsionDistance (black)
         const colorIntensity = 1 - (distance / maxRepulsionDistance);
 
-        // Interpolate RGB values from black (0,0,0) to dark red (150,0,0)
-        const r = Math.round(0 + colorIntensity * 150);
+        // Interpolate RGB values from black (0,0,0) to dark red (200,0,0)
+        const r = Math.round(0 + colorIntensity * 200);
         const g = Math.round(0 + colorIntensity * 0);
         const b = Math.round(0 + colorIntensity * 0);
         currentColor = `rgb(${r}, ${g}, ${b})`;
