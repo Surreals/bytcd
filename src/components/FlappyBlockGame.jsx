@@ -43,71 +43,47 @@ const FlappyBlockGame = () => {
 
     animate();
 
-    const handleKeyDown = (e) => {
-      const game = gameInstanceRef.current;
-      if (!game) return;
-
-      const key = e.keyCode;
-      // 'S' key (83) to flap
-      if (key === 83) {
-        if (game.gameOver) {
-          game.startGame(); // Restart game if game over
-        } else if (game.playing && !game.player.flapping) {
-          game.player.flap();
-          game.player.flapping = true;
-        }
-      }
-    };
-
-    const handleKeyUp = (e) => {
-      const game = gameInstanceRef.current;
-      if (!game) return;
-
-      const key = e.keyCode;
-      // 'S' key (83) to release flap
-      if (key === 83 && game.player.flapping) {
-        game.player.flapping = false;
-      }
-    };
-
-    const handleTouchStart = (e) => {
-      e.preventDefault(); // Prevent scrolling/zooming on touch
+    const handleAction = () => {
       const game = gameInstanceRef.current;
       if (!game) return;
 
       if (game.gameOver) {
         game.startGame(); // Restart game if game over
-      } else if (game.playing && !game.player.flapping) {
+      } else if (game.playing) {
         game.player.flap();
-        game.player.flapping = true;
       }
     };
 
-    const handleTouchEnd = (e) => {
-      e.preventDefault(); // Prevent scrolling/zooming on touch
-      const game = gameInstanceRef.current;
-      if (!game) return;
-
-      if (game.player.flapping) {
-        game.player.flapping = false;
+    const handleKeyDown = (e) => {
+      const key = e.keyCode;
+      // 'S' key (83) to flap
+      if (key === 83) {
+        handleAction();
       }
+    };
+
+    const handleTouchStart = (e) => {
+      e.preventDefault(); // Prevent scrolling/zooming on touch
+      handleAction();
+    };
+
+    const handleClick = (e) => {
+      e.preventDefault(); // Prevent default click behavior
+      handleAction();
     };
 
     window.addEventListener("resize", setCanvasDimensions);
     document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
     canvas.addEventListener("touchstart", handleTouchStart);
-    canvas.addEventListener("touchend", handleTouchEnd);
-
+    canvas.addEventListener("click", handleClick); // Add click listener
 
     // Cleanup function
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", setCanvasDimensions);
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keyup", handleKeyUp);
       canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchend", handleTouchEnd);
+      canvas.removeEventListener("click", handleClick); // Remove click listener
     };
   }, []); // Empty dependency array ensures this runs once on mount and cleans up on unmount
 

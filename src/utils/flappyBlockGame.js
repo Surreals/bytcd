@@ -38,19 +38,37 @@ export function Bird(posVec, velVec, accVec, size, maxSpeed, flapStrength, canva
   this.size = size;
   this.maxSpeed = maxSpeed;
   this.flapStrength = flapStrength;
-  this.flapping = false;
+  this.flapping = false; // Initialize flapping state
+  this.flapTimeout = null; // To store the timeout ID for animation
   this.canvasWidth = canvasWidth;
   this.canvasHeight = canvasHeight;
 }
 
 Bird.prototype.flap = function() {
   this.vel = new JVector(this.vel.x, -this.flapStrength);
+  this.flapping = true; // Set flapping to true for animation
+
+  // Clear any existing timeout to prevent multiple animations overlapping
+  if (this.flapTimeout) {
+    clearTimeout(this.flapTimeout);
+  }
+
+  // Set a timeout to reset flapping state after a short duration
+  this.flapTimeout = setTimeout(() => {
+    this.flapping = false;
+    this.flapTimeout = null;
+  }, 150); // Adjust duration as needed for the animation
 };
 
 Bird.prototype.reset = function() {
   // Player's X position is now fixed
   this.pos = new JVector(this.canvasWidth / 4, this.canvasHeight / 2);
   this.vel = new JVector(0, 0);
+  this.flapping = false; // Reset flapping state on game reset
+  if (this.flapTimeout) {
+    clearTimeout(this.flapTimeout);
+    this.flapTimeout = null;
+  }
 };
 
 Bird.prototype.update = function() {
