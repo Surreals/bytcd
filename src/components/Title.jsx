@@ -86,13 +86,13 @@ const Title = () => {
         repulsionTranslateY = Math.sin(angle) * forceMagnitude;
 
         // Calculate color intensity based on distance
-        // 1 when distance is 0 (full red), 0 when distance is maxRepulsionDistance (black)
+        // 1 when distance is 0 (full blue), 0 when distance is maxRepulsionDistance (black)
         const colorIntensity = 1 - (distance / maxRepulsionDistance);
 
-        // Interpolate RGB values from black (0,0,0) to dark red (150,0,0)
-        const r = Math.round(0 + colorIntensity * 150);
-        const g = Math.round(0 + colorIntensity * 0);
-        const b = Math.round(0 + colorIntensity * 0);
+        // Interpolate RGB values from black (0,0,0) to blue (37,99,235)
+        const r = Math.round(0 + colorIntensity * 37);
+        const g = Math.round(0 + colorIntensity * 99);
+        const b = Math.round(0 + colorIntensity * 235);
         currentColor = `rgb(${r}, ${g}, ${b})`;
       }
 
