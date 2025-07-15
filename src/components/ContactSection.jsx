@@ -1,7 +1,10 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import { Mail } from 'lucide-react'; // Import Mail icon
+import { Link } from 'react-router-dom'; // Import Link component
 
 const ContactSection = ({ id }) => { // Accept id prop
   const { ref, inView } = useAnimatedSection();
@@ -20,13 +23,13 @@ const ContactSection = ({ id }) => { // Accept id prop
         <p className="text-lg md:text-2xl mb-12 font-light">
           Ready to start your next project? Let's create something amazing together.
         </p>
-        <a
-          href="mailto:bytcdco@gmail.com"
+        <Link
+          to="/contact-us"
           className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         >
           <Mail size={24} />
           Contact Us
-        </a>
+        </Link>
       </div>
     </motion.section>
   );
