@@ -48,7 +48,7 @@ const Title = () => {
   }, []);
 
   const letterVariants = {
-    initial: { rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0 },
+    initial: { rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0, color: '#000000' }, // Default black color
     hovered: (i) => {
       if (!titleRef.current) return {};
 
@@ -96,6 +96,7 @@ const Title = () => {
         translateZ: depthZ,
         x: repulsionTranslateX, // Apply repulsion translation
         y: repulsionTranslateY, // Apply repulsion translation
+        color: '#2563eb', // Blue color when hovered (Tailwind blue-600)
         transition: {
           type: "spring",
           stiffness: 90, // Further reduced stiffness for smoother movement
@@ -105,7 +106,7 @@ const Title = () => {
       };
     },
     reset: (i) => ({ // Changed to a function that accepts 'i'
-      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0, // Reset x and y too
+      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0, color: '#000000', // Reset x, y, and color to black
       transition: {
         type: "spring",
         stiffness: 40, // Further reduced stiffness for smoother reset
