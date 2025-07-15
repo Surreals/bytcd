@@ -74,7 +74,7 @@ const ContactForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
           disabled={isSubmitting}
         />
@@ -89,7 +89,7 @@ const ContactForm = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
           disabled={isSubmitting}
         />
@@ -104,14 +104,14 @@ const ContactForm = () => {
           rows="5"
           value={formData.message}
           onChange={handleChange}
-          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
+          className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-lg text-black"
           required
           disabled={isSubmitting}
         ></textarea>
       </div>
       <button
         type="submit"
-        className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-lg font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isSubmitting}
       >
         {isSubmitting ? (

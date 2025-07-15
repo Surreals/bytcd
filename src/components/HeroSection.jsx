@@ -19,7 +19,7 @@ const HeroSection = ({ id }) => {
       <AnimatedBackground />
       <div className="relative z-10 flex flex-col items-center justify-center">
         <Title />
-        <p className="mt-8 text-xl md:text-2xl text-center max-w-2xl">
+        <p className="mt-8 text-xl md:text-3xl font-light text-center max-w-3xl leading-relaxed">
           Crafting unique and convenient design and development solutions for your digital presence.
         </p>
       </div>

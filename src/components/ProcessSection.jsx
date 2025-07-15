@@ -67,10 +67,10 @@ const ProcessSection = ({ id }) => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
-      className="bg-white text-black p-8 md:p-16 py-20 relative overflow-hidden"
+      className="bg-white text-black p-8 md:p-16 py-24 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16">Our Process</h2>
+        <h2 className="text-4xl md:text-6xl font-bold mb-16">Our Process</h2>
 
         <div ref={timelineRef} className="relative flex flex-col items-center">
           {/* Vertical Line */}
@@ -93,13 +93,13 @@ const ProcessSection = ({ id }) => {
                 }`}></div>
 
                 <div
-                  className={`flex flex-col p-6 rounded-lg shadow-lg bg-gray-100 w-full ${
+                  className={`flex flex-col p-6 rounded-xl shadow-md bg-gray-50 w-full ${
                     isEven ? 'md:text-right md:items-end' : 'md:text-left md:items-start'
                   }`}
                 >
                   {Icon && <Icon size={40} className="text-blue-600 mb-4" />}
                   <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
-                  <p className="text-lg">{step.description}</p>
+                  <p className="text-lg text-gray-700">{step.description}</p>
                 </div>
               </div>
             );

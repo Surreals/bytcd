@@ -20,10 +20,10 @@ const ClientShowcaseSection = ({ id }) => {
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
-      className="bg-black text-white p-8 md:p-16 py-20 flex flex-col items-center justify-center relative overflow-hidden"
+      className="bg-black text-white p-8 md:p-16 py-24 flex flex-col items-center justify-center relative overflow-hidden"
     >
-      <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center z-10">Our Work</h2>
-      <p className="text-lg md:text-xl mb-16 text-center max-w-3xl z-10">
+      <h2 className="text-4xl md:text-6xl font-bold mb-12 text-center z-10">Our Work</h2>
+      <p className="text-lg md:text-2xl mb-16 text-center max-w-3xl font-light z-10">
         Explore some of our recent projects that blend innovative design with robust development.
       </p>
 
@@ -31,7 +31,7 @@ const ClientShowcaseSection = ({ id }) => {
         {clientProjects.map((project) => (
           <div
             key={project.id}
-            className="w-full aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-lg"
+            className="w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-lg"
           >
             <ClientCard3D project={project} /> {/* Removed onClick prop */}
           </div>

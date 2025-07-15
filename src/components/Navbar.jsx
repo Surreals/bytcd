@@ -62,23 +62,23 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-black text-white p-4 md:p-8 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
+      className={`bg-black/80 backdrop-blur-md text-white px-6 py-4 md:px-12 md:py-5 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
+        <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
           BYTCD
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8 text-lg">
+        <div className="hidden md:flex space-x-10 text-lg font-medium">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
               onClick={(e) => link.sectionId ? handleNavLinkClick(e, link.sectionId) : setIsOpen(false)}
-              className="hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
+              className="hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
             >
               {link.name}
             </Link>
@@ -95,14 +95,14 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden bg-black mt-4 pb-4">
+        <div className="md:hidden bg-black/90 mt-4 pb-4 rounded-b-lg">
           <div className="flex flex-col items-center space-y-4 text-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={(e) => link.sectionId ? handleNavLinkClick(e, link.sectionId) : setIsOpen(false)}
-                className="block w-full text-center py-2 hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
+                className="block w-full text-center py-3 hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md"
               >
                 {link.name}
               </Link>

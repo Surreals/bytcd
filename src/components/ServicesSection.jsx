@@ -66,10 +66,10 @@ const ServicesSection = ({ id }) => { // Accept id prop
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
-      className="bg-white text-black p-8 md:p-16 py-20"
+      className="bg-white text-black p-8 md:p-16 py-24"
     >
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-12">Our Services</h2>
+        <h2 className="text-4xl md:text-6xl font-bold mb-16">Our Services</h2>
         <motion.div
           variants={containerVariants}
           initial="hidden"

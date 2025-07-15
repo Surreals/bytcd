@@ -3,7 +3,7 @@ import { mainLinks, sideLinks } from "../utils/constants";
 const Links = () => {
   const buildLink = ({ name, url }) => {
     return (
-      <a target="_blank" key={name} href={url} className="w-auto hover:text-blue-500 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
+      <a target="_blank" key={name} href={url} className="w-auto hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
         {name}
       </a>
     );
@@ -16,7 +16,7 @@ const Links = () => {
       <div className="flex flex-col text-right mb-4 md:mb-0">
         {sideLinks.map((lnk) => buildLink(lnk))}
       </div>
-      <div className="text-center md:text-right text-sm md:text-base mt-4 md:mt-0">
+      <div className="text-center md:text-right text-sm md:text-base mt-4 md:mt-0 text-gray-400">
         <p>&copy; {new Date().getFullYear()} BYTCD. All rights reserved.</p>
       </div>
     </div>
