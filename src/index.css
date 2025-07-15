@@ -6,8 +6,8 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  cursor: none; /* Hide default cursor */
+* {
+  cursor: none !important; /* Hide default cursor for all elements, overriding other styles */
 }
 
 .custom-cursor {
