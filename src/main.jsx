@@ -12,5 +12,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-// Initialize Curzr after the DOM is ready
-new Curzr();
+// Initialize Curzr after the DOM is ready with explicit options
+new Curzr({
+  color: '#00FFFF', // Bright cyan
+  size: 16,
+});
