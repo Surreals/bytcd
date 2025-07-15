@@ -16,7 +16,7 @@ const ServiceCard = ({ title, items, iconName }) => {
       className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center border border-gray-100"
     >
       {Icon && <Icon size={48} className="text-blue-600 mb-4" />}
-      <h3 className="text-2xl font-semibold mb-4">{title}</h3>
+      <h3 className="text-xl font-semibold mb-4">{title}</h3>
       <ul className="list-none space-y-2 text-sm text-gray-700">
         {items.map((item, index) => (
           <li key={index}>{item}</li>
