@@ -6,7 +6,8 @@ import { Menu, X } from 'lucide-react'; // Icons for mobile menu
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); // New state for visibility
+  const [isVisible, setIsVisible] = useState(true); // State for hiding/showing on scroll
+  const [isAtTop, setIsAtTop] = useState(true); // New state for background opacity
   const lastScrollY = useRef(0); // Ref to store the last scroll position
   const location = useLocation();
 
@@ -30,12 +31,12 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Effect for scroll-based visibility
+  // Effect for scroll-based visibility and background opacity
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Only update visibility if scrolling significantly
+      // Logic for isVisible (hiding/showing navbar)
       if (Math.abs(currentScrollY - lastScrollY.current) > 50) { // Threshold of 50px
         if (currentScrollY > lastScrollY.current && currentScrollY > 100) { // Scrolling down and past initial offset
           setIsVisible(false);
@@ -43,6 +44,13 @@ const Navbar = () => {
           setIsVisible(true);
         }
         lastScrollY.current = currentScrollY;
+      }
+
+      // Logic for isAtTop (background opacity)
+      if (currentScrollY === 0) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
       }
     };
 
@@ -62,9 +70,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-black/50 backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-2 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      }`}
+      className={`
+        text-white px-6 py-3 md:px-12 md:py-2 sticky top-0 z-50
+        transition-all duration-300 ease-in-out
+        ${isVisible ? 'translate-y-0' : '-translate-y-full'}
+        ${isAtTop ? 'bg-transparent shadow-none' : 'bg-black/50 backdrop-blur-md shadow-lg'}
+      `}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl md:text-3xl font-bold hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-md">
