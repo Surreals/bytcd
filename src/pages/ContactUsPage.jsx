@@ -24,7 +24,7 @@ const ContactUsPage = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-8">Contact Us</h1>
           <p className="text-lg md:text-2xl mb-12 leading-relaxed font-light">
-            We'd love to hear from you! Whether you have a <strong>project in mind</strong>, a question, or just want to say hello, feel free to <strong>reach out</strong>.
+            We'd love to hear from you! Whether you have a project in mind, a question, or just want to say hello, feel free to reach out.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

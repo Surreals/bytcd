@@ -24,7 +24,7 @@ const ClientShowcaseSection = ({ id }) => {
     >
       <h2 className="text-4xl md:text-6xl font-bold mb-12 text-center z-10">Our Work</h2>
       <p className="text-lg md:text-2xl mb-16 text-center max-w-3xl font-light z-10">
-        Explore some of our <strong>recent projects</strong> that blend <strong>innovative design</strong> with <strong>robust development</strong>.
+        Explore some of our recent projects that blend innovative design with robust development.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 w-full max-w-6xl z-0">
