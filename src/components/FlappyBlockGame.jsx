@@ -244,7 +244,7 @@ const FlappyBlockGame = () => {
     this.obstacleSpeed = 2; // Speed at which obstacles move left
     this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
 
-    this.gravity = new JVector(0, .1);
+    this.gravity = new JVector(0, .2);
 
     this.startGame = function() {
       this.startScreen = false;
