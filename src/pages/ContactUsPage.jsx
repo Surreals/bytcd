@@ -46,7 +46,7 @@ const ContactUsPage = () => {
           </div>
 
           <p className="text-lg md:text-xl font-light">
-            Alternatively, you can fill out the form below, and we'll get back to you <strong>as soon as possible</strong>.
+            Alternatively, you can fill out the form below, and we'll get back to you as soon as possible.
           </p>
           <ContactForm />
         </div>
