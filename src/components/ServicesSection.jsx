@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
@@ -66,7 +68,17 @@ const ServicesSection = ({ id }) => { // Accept id prop
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionVariants}
-      className="bg-white text-black p-8 md:p-16 py-24"
+      className="text-black p-8 md:p-16 py-24 relative overflow-hidden"
+      style={{
+        backgroundColor: '#ffffff',
+        backgroundImage: `
+          linear-gradient(#eef1f4 1px, transparent 1px),
+          linear-gradient(to right, #eef1f4 1px, #ffffff 1px)
+        `,
+        backgroundSize: '40px 80px',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
     >
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-bold mb-16">Our Services</h2>
