@@ -98,8 +98,8 @@ const Title = () => {
         y: repulsionTranslateY, // Apply repulsion translation
         transition: {
           type: "spring",
-          stiffness: 100, // Reduced stiffness for smoother movement
-          damping: 20,    // Increased damping to reduce oscillation
+          stiffness: 50, // Further reduced stiffness for smoother movement
+          damping: 25,    // Further increased damping to reduce oscillation
           delay: i * 0.02, // Staggered delay
         },
       };
@@ -108,8 +108,8 @@ const Title = () => {
       rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0, // Reset x and y too
       transition: {
         type: "spring",
-        stiffness: 80, // Reduced stiffness for smoother reset
-        damping: 15,   // Increased damping for smoother reset
+        stiffness: 40, // Further reduced stiffness for smoother reset
+        damping: 20,   // Further increased damping for smoother reset
         delay: characters.length * 0.02 - i * 0.02, // Staggered reset
       },
     })
