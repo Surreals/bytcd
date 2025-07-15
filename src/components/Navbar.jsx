@@ -37,7 +37,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
 
       // Update isScrolledToTop based on scroll position
-      setIsScrolledToTop(currentScrollY < 20);
+      setIsScrolledToTop(currentScrollY < 80);
 
       // Existing logic for isVisible (hide/show navbar on scroll)
       if (Math.abs(currentScrollY - lastScrollY.current) > 50) { // Threshold of 50px
