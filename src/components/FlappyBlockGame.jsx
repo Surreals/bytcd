@@ -161,7 +161,8 @@ const FlappyBlockGame = () => {
     this.generateObstacles = function() {
       this.obstacles = [];
       for (var i = 0; i < this.maxNum; i++) {
-        var xPos = ((i * this.canvasWidth / this.maxNum) + Math.floor(Math.random() * 50)) + this.canvasWidth / 4;
+        // Adjusted xPos generation for better spacing with fewer obstacles
+        var xPos = this.canvasWidth / 2 + (i * (this.canvasWidth / this.maxNum) * 0.8) + Math.floor(Math.random() * 50);
         this.obstacles.push(new Obstacle(xPos, this.canvasHeight));
       }
     };
@@ -217,13 +218,13 @@ const FlappyBlockGame = () => {
 
     this.locVec = new JVector(0, this.HEIGHT / 2);
     this.velVec = new JVector(0, 0);
-    this.accVec = new JVector(0.1, 0.4); // Horizontal acceleration for player movement
+    this.accVec = new JVector(0.05, 0.4); // Reduced horizontal acceleration for slower game
 
     this.score = new Score();
 
-    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 12, 10, this.WIDTH, this.HEIGHT);
+    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 8, 10, this.WIDTH, this.HEIGHT); // Reduced maxSpeed
 
-    this.obstacleManager = new ObstacleManager(5, this.WIDTH, this.HEIGHT);
+    this.obstacleManager = new ObstacleManager(3, this.WIDTH, this.HEIGHT); // Reduced maxNum of obstacles
 
     this.gravity = new JVector(0, .1);
 
