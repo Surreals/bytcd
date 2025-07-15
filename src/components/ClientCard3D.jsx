@@ -10,7 +10,7 @@ const ClientCard3D = ({ project }) => { // Removed onClick prop
       <img
         src={project.logo}
         alt={`${project.title} Logo`}
-        className="absolute inset-0 w-full h-full object-contain p-8 bg-gray-900 transition-opacity duration-300 group-hover:opacity-0"
+        className="absolute inset-0 w-full h-full object-contain p-8 bg-gray-300 transition-opacity duration-300 group-hover:opacity-0"
       />
 
       {/* Hover state: Project Image, Title, Description, and Link */}
