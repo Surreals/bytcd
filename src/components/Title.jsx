@@ -99,7 +99,7 @@ const Title = () => {
         transition: {
           type: "spring",
           stiffness: 50, // Further reduced stiffness for smoother movement
-          damping: 25,    // Further increased damping to reduce oscillation
+          damping: 50,    // Further increased damping to reduce oscillation
           delay: i * 0.01, // Staggered delay
         },
       };
