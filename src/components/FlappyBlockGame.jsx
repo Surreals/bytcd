@@ -59,12 +59,14 @@ const FlappyBlockGame = () => {
   };
 
   Bird.prototype.reset = function() {
-    this.pos = new JVector(0, this.canvasHeight / 2);
+    // Player's X position is now fixed
+    this.pos = new JVector(this.canvasWidth / 4, this.canvasHeight / 2);
     this.vel = new JVector(0, 0);
   };
 
   Bird.prototype.update = function() {
-    this.vel.add(this.acc);
+    // Only apply vertical acceleration (gravity)
+    this.vel.y += this.acc.y;
     this.pos.add(this.vel);
     if (this.vel.mag() >= this.maxSpeed) {
       this.vel.normalize();
@@ -94,15 +96,15 @@ const FlappyBlockGame = () => {
   Bird.prototype.checkWorld = function() {
     var x = this.pos.x;
     var y = this.pos.y;
-    if (x <= 0) {
-      this.pos.x = this.canvasWidth;
-    } else if (x > this.canvasWidth) {
-      this.pos.x = 0;
-    }
+    // Player's X position is fixed, so no need to wrap horizontally
+    // Check vertical boundaries
     if (y <= 0) {
       this.pos.y = 0 + this.size;
+      this.vel.y = 0; // Stop upward movement if hitting top
     } else if (y > this.canvasHeight) {
       this.pos.y = this.canvasHeight;
+      // If player hits bottom, it's game over
+      // This will be handled by collision detection in Game class
     }
   };
 
@@ -113,19 +115,33 @@ const FlappyBlockGame = () => {
   };
 
   // Obstacle Class
-  function Obstacle(x, canvasHeight) {
+  function Obstacle(x, canvasHeight, speed) {
     this.x = x;
-    this.height = (Math.random() * 0.6 + 0.2) * canvasHeight; // Height between 20% and 80% of canvas height
     this.width = Math.random() * 50 + 20;
     this.canvasHeight = canvasHeight;
+    this.speed = speed; // Obstacle speed
+
+    const gap = 150; // Fixed gap size
+    const playerSize = 20; // Assuming player size is 20 from Bird constructor
+
+    // Ensure there's enough space for the player to pass
+    const minTopPipeHeight = playerSize * 2; // Minimum height for top pipe
+    const maxTopPipeHeight = this.canvasHeight - gap - (playerSize * 2); // Max height for top pipe, leaving space for bottom pipe and margin
+
+    // Randomly determine the height of the top pipe
+    this.height = minTopPipeHeight + Math.random() * (maxTopPipeHeight - minTopPipeHeight);
   }
 
   Obstacle.prototype.display = function(ctx) {
+    // Move obstacle to the left
+    this.x -= this.speed;
+
     ctx.fillStyle = "#fff";
+    const gap = 150; // Fixed gap size
+
     // Draw top obstacle
     ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
-    // Draw bottom obstacle (fixed gap)
-    const gap = 150; // Fixed gap size
+    // Draw bottom obstacle
     ctx.fillRect(this.x - this.width / 2, this.height + gap, this.width, this.canvasHeight - (this.height + gap));
   };
 
@@ -133,6 +149,7 @@ const FlappyBlockGame = () => {
     var playerX = player.pos.x;
     var playerY = player.pos.y;
     var playerSize = player.size;
+    const gap = 150;
 
     // Check collision with top obstacle
     if (playerX + playerSize >= this.x - this.width / 2 &&
@@ -142,7 +159,6 @@ const FlappyBlockGame = () => {
     }
 
     // Check collision with bottom obstacle
-    const gap = 150;
     if (playerX + playerSize >= this.x - this.width / 2 &&
         playerX - playerSize <= this.x + this.width / 2 &&
         playerY + playerSize >= this.height + gap) {
@@ -152,18 +168,20 @@ const FlappyBlockGame = () => {
   };
 
   // ObstacleManager Class
-  function ObstacleManager(maxNum, canvasWidth, canvasHeight) {
+  function ObstacleManager(maxNum, canvasWidth, canvasHeight, obstacleSpeed) {
     this.maxNum = maxNum;
     this.obstacles = [];
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
+    this.obstacleSpeed = obstacleSpeed;
 
     this.generateObstacles = function() {
       this.obstacles = [];
+      // Initial obstacles are spaced out
       for (var i = 0; i < this.maxNum; i++) {
-        // Adjusted xPos generation for better spacing
-        var xPos = ((i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * 50)) + this.canvasWidth / 4;
-        this.obstacles.push(new Obstacle(xPos, this.canvasHeight));
+        // Spacing obstacles further apart initially
+        var xPos = this.canvasWidth + (i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * 100);
+        this.obstacles.push(new Obstacle(xPos, this.canvasHeight, this.obstacleSpeed));
       }
     };
 
@@ -218,13 +236,14 @@ const FlappyBlockGame = () => {
 
     this.locVec = new JVector(0, this.HEIGHT / 2);
     this.velVec = new JVector(0, 0);
-    this.accVec = new JVector(0.08, 0.4); // Increased horizontal acceleration for faster game
+    this.accVec = new JVector(0, 0.4); // Player only has vertical acceleration (gravity)
 
     this.score = new Score();
 
-    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 10, this.WIDTH, this.HEIGHT); // Increased maxSpeed
+    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 10, this.WIDTH, this.HEIGHT); // Player maxSpeed and flapStrength
 
-    this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT); // Increased maxNum of obstacles
+    this.obstacleSpeed = 2; // Speed at which obstacles move left
+    this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
 
     this.gravity = new JVector(0, .1);
 
@@ -259,18 +278,26 @@ const FlappyBlockGame = () => {
 
       if (this.playing) {
         this.score.display(this.ctx);
-        this.player.vel.add(this.gravity);
-        this.obstacleManager.renderObstacles(this.ctx);
+        this.player.vel.add(this.gravity); // Apply gravity to player
+        this.obstacleManager.renderObstacles(this.ctx); // Render and move obstacles
+
+        // Check for collision with obstacles
         var collision = this.obstacleManager.detectCollisions(this.player);
+        // Check for collision with bottom of canvas
+        if (this.player.pos.y + this.player.size >= this.HEIGHT) {
+            collision = true;
+        }
+
         if (collision) {
           this.killPlayer();
         }
         this.player.frame(this.ctx);
-        // Check if player has passed an obstacle
-        if (this.player.pos.x >= this.obstacleManager.obstacles[0].x + this.obstacleManager.obstacles[0].width / 2) {
+
+        // Check if the first obstacle has moved off-screen to the left
+        if (this.obstacleManager.obstacles.length > 0 && this.obstacleManager.obstacles[0].x + this.obstacleManager.obstacles[0].width / 2 < 0) {
           this.obstacleManager.obstacles.shift(); // Remove passed obstacle
-          // Add new obstacle further to the right
-          this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 100, this.HEIGHT));
+          // Add new obstacle further to the right, ensuring good spacing
+          this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 150, this.HEIGHT, this.obstacleSpeed));
           this.score.increment();
         }
       }
