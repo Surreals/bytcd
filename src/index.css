@@ -5,3 +5,39 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Global cursor hide */
+body {
+  cursor: none;
+}
+
+/* Styles for the custom cursor elements */
+.curzr-arrow-pointer,
+.curzr-big-circle,
+.curzr-ring-dot,
+.curzr-circle-and-dot,
+.curzr-glitch-effect,
+.curzr-motion {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 2147483647; /* Max z-index */
+  user-select: none;
+  pointer-events: none;
+  opacity: 0; /* Start hidden */
+  transition: opacity 500ms; /* Fade in/out */
+}
+
+/* Specific styles for arrow-pointer SVG */
+.curzr-arrow-pointer svg {
+  width: 100%;
+  height: 100%;
+  display: block; /* Ensure it takes full space */
+}
+
+.curzr-arrow-pointer .inner {
+  fill: #F2F5F8; /* Light color for inner part */
+}
+
+.curzr-arrow-pointer .outer {
+  fill: #111920; /* Dark color for outer part */
+}

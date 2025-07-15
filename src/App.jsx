@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ContactUsPage from "./pages/ContactUsPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import { BackToTopButton } from "./components"; // Import BackToTopButton
+import { BackToTopButton, CustomCursor } from "./components"; // Import BackToTopButton and CustomCursor
 
 const App = () => {
   return (
@@ -17,6 +17,7 @@ const App = () => {
       <Analytics />
       <SpeedInsights />
       <BackToTopButton /> {/* Render BackToTopButton here globally */}
+      <CustomCursor /> {/* Render CustomCursor here globally */}
     </Router>
   );
 };
