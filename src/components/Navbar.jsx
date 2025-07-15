@@ -38,7 +38,7 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
 
       // Update isScrolledToTop based on scroll position
-      setIsScrolledToTop(currentScrollY === 0);
+      setIsScrolledToTop(currentScrollY < 120); // Changed from === 0 to < 120
 
       // Existing logic for isVisible (hide/show navbar on scroll)
       if (Math.abs(currentScrollY - lastScrollY.current) > 50) { // Threshold of 50px
@@ -70,7 +70,7 @@ const Navbar = () => {
   return (
     <nav
       className={`
-        ${isScrolledToTop ? 'bg-black' : 'bg-black/80'} 
+        ${isScrolledToTop ? 'bg-black' : 'bg-black/40'} 
         backdrop-blur-md text-white px-6 py-2 md:px-12 md:py-3 sticky top-0 z-50 shadow-lg 
         transition-all duration-300 ease-in-out ${ // Changed to transition-all for smooth color change
         isVisible ? 'translate-y-0' : '-translate-y-full'
