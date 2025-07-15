@@ -64,7 +64,7 @@ export const clientProjects = [
     title: 'Brand Identity & Website',
     description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
     image: 'https://images.unsplash.com/photo-1522199755839-fd245a284972?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    logo: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Brand+Logo', // Placeholder logo
+    logo: '/icon.svg', // Using the BYTCD icon as the logo
     link: '#',
   },
   // {
