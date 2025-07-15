@@ -1,9 +1,9 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import ThreeDShowcase from './ThreeDShowcase';
 
-const ThreeDShowcaseSection = ({ onCreativeClick }) => { // Accept onCreativeClick prop
+const ThreeDShowcaseSection = ({ onCreativeClick }) => {
   const { ref, inView } = useAnimatedSection();
   const [creativeClickCount, setCreativeClickCount] = useState(0);
 
@@ -26,11 +26,14 @@ const ThreeDShowcaseSection = ({ onCreativeClick }) => { // Accept onCreativeCli
       variants={sectionVariants}
       className="bg-black text-white p-8 md:p-16 py-20 flex flex-col items-center justify-center"
     >
-      <h2
-        className="text-4xl md:text-5xl font-bold mb-8 text-center cursor-pointer" // Add cursor-pointer
-        onClick={handleCreativeClick} // Add click handler
-      >
-        Our Creative Vision
+      <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
+        Our{' '}
+        <span
+          className="text-blue-400 hover:underline cursor-pointer transition-colors duration-200" // Highlight and make clickable
+          onClick={handleCreativeClick}
+        >
+          Creative Vision
+        </span>
       </h2>
       <p className="text-lg md:text-xl mb-12 text-center max-w-3xl">
         Explore a glimpse of our innovative design approach through interactive 3D experiences.
