@@ -31,8 +31,8 @@ const ServicesSection = ({ id }) => { // Accept id prop
       title: "Development",
       iconName: "Code", // Icon from Lucide React
       items: [
-        "Frontend Development (React, Vue)",
-        "Backend Development (Node.js, Firebase)",
+        "Frontend Development",
+        "Backend Development",
         "Custom Web Applications",
         "E-commerce Solutions",
       ],
