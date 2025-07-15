@@ -5,3 +5,21 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  cursor: none; /* Hide default cursor */
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px; /* Size of the cursor */
+  height: 20px;
+  background-color: #007bff; /* Blue color, matching existing theme */
+  border-radius: 50%; /* Make it a circle */
+  pointer-events: none; /* Ensure it doesn't block clicks */
+  z-index: 9999; /* High z-index to be on top */
+  transition: transform 0.1s ease-out; /* Smooth movement */
+  mix-blend-mode: difference; /* Optional: for interesting visual effect over different backgrounds */
+}
