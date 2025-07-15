@@ -101,10 +101,9 @@ const FlappyBlockGame = () => {
     if (y <= 0) {
       this.pos.y = 0 + this.size;
       this.vel.y = 0; // Stop upward movement if hitting top
-    } else if (y > this.canvasHeight) {
-      this.pos.y = this.canvasHeight;
-      // If player hits bottom, it's game over
-      // This will be handled by collision detection in Game class
+    } else if (y + this.size >= this.canvasHeight) { // Check if bottom of player hits bottom of canvas
+      this.pos.y = this.canvasHeight - this.size; // Clamp player to the bottom
+      this.vel.y = 0; // Stop vertical movement
     }
   };
 
@@ -283,10 +282,8 @@ const FlappyBlockGame = () => {
 
         // Check for collision with obstacles
         var collision = this.obstacleManager.detectCollisions(this.player);
-        // Check for collision with bottom of canvas
-        if (this.player.pos.y + this.player.size >= this.HEIGHT) {
-            collision = true;
-        }
+        // Removed the check for collision with bottom of canvas here
+        // The Bird.checkWorld() method now handles clamping to the bottom
 
         if (collision) {
           this.killPlayer();
