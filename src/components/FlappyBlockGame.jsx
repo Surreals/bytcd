@@ -120,7 +120,7 @@ const FlappyBlockGame = () => {
     this.canvasHeight = canvasHeight;
     this.speed = speed; // Obstacle speed
 
-    const gap = 150; // Fixed gap size
+    const gap = 180; // Increased gap size
     const playerSize = 20; // Assuming player size is 20 from Bird constructor
 
     // Ensure there's enough space for the player to pass
@@ -136,7 +136,7 @@ const FlappyBlockGame = () => {
     this.x -= this.speed;
 
     ctx.fillStyle = "#fff";
-    const gap = 150; // Fixed gap size
+    const gap = 180; // Increased gap size
 
     // Draw top obstacle
     ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
@@ -148,7 +148,7 @@ const FlappyBlockGame = () => {
     var playerX = player.pos.x;
     var playerY = player.pos.y;
     var playerSize = player.size;
-    const gap = 150;
+    const gap = 180; // Increased gap size
 
     // Check collision with top obstacle
     if (playerX + playerSize >= this.x - this.width / 2 &&
