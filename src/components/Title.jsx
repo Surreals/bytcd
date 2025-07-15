@@ -77,23 +77,12 @@ const Title = () => {
 
       let repulsionTranslateX = 0;
       let repulsionTranslateY = 0;
-      let currentColor = '#000000'; // Default to black
 
-      if (distance < maxRepulsionDistance) {
+      if (distance < maxRepulsionDistance && distance > 0) { // Apply repulsion if within range and not exactly on top
         const forceMagnitude = (1 - (distance / maxRepulsionDistance)) * repulsionStrength;
-        const angle = Math.atan2(dy, dx);
+        const angle = Math.atan2(dy, dx); // Angle from mouse to letter
         repulsionTranslateX = Math.cos(angle) * forceMagnitude;
         repulsionTranslateY = Math.sin(angle) * forceMagnitude;
-
-        // Calculate color intensity based on distance
-        // 1 when distance is 0 (full blue), 0 when distance is maxRepulsionDistance (black)
-        const colorIntensity = 1 - (distance / maxRepulsionDistance);
-
-        // Interpolate RGB values from black (0,0,0) to blue (37,99,235)
-        const r = Math.round(0 + colorIntensity * 37);
-        const g = Math.round(0 + colorIntensity * 99);
-        const b = Math.round(0 + colorIntensity * 235);
-        currentColor = `rgb(${r}, ${g}, ${b})`;
       }
 
       // Original rotation and depth based on normalized mouse position
@@ -107,7 +96,7 @@ const Title = () => {
         translateZ: depthZ,
         x: repulsionTranslateX, // Apply repulsion translation
         y: repulsionTranslateY, // Apply repulsion translation
-        color: currentColor, // Use the dynamically calculated color
+        color: '#2563eb', // Blue color when hovered (Tailwind blue-600)
         transition: {
           type: "spring",
           stiffness: 90, // Further reduced stiffness for smoother movement
