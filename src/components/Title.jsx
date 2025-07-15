@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Title = () => {
   const titleRef = useRef(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ pixelX: 0, pixelY: 0, normalizedX: 0, normalizedY: 0 });
   const text = "BYTCD";
   const characters = text.split("");
 
@@ -12,21 +12,25 @@ const Title = () => {
       if (!titleRef.current) return;
 
       const { left, top, width, height } = titleRef.current.getBoundingClientRect();
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
+      const mouseX_pixel = e.clientX - left; // Mouse X relative to title element's top-left
+      const mouseY_pixel = e.clientY - top; // Mouse Y relative to title element's top-left
 
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
+      // Normalized offsets from center (for rotation/depth)
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const offsetX_normalized = (mouseX_pixel - centerX) / centerX; // -1 to 1
+      const offsetY_normalized = (mouseY_pixel - centerY) / centerY; // -1 to 1
 
-      // Calculate offset from center, normalized to -1 to 1
-      const offsetX = (mouseX - centerX) / (width / 2);
-      const offsetY = (mouseY - centerY) / (height / 2);
-
-      setMousePosition({ x: offsetX, y: offsetY });
+      setMousePosition({
+        pixelX: mouseX_pixel,
+        pixelY: mouseY_pixel,
+        normalizedX: offsetX_normalized,
+        normalizedY: offsetY_normalized,
+      });
     };
 
     const handleMouseLeave = () => {
-      setMousePosition({ x: 0, y: 0 }); // Reset position on mouse leave
+      setMousePosition({ pixelX: 0, pixelY: 0, normalizedX: 0, normalizedY: 0 }); // Reset position on mouse leave
     };
 
     const currentTitleRef = titleRef.current;
@@ -46,27 +50,52 @@ const Title = () => {
   const letterVariants = {
     initial: { rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0 },
     hovered: (i) => {
-      const totalLetters = characters.length;
-      const midIndex = totalLetters / 2 - 0.5; // Center index for odd/even
-      const distanceFactor = Math.abs(i - midIndex) / midIndex; // 0 at center, 1 at edges
+      if (!titleRef.current) return {};
 
-      // Base rotation from mouse position (reduced intensity)
-      const baseRotateY = mousePosition.x * 8;
-      const baseRotateX = -mousePosition.y * 8;
+      const { width: titleWidth, height: titleHeight } = titleRef.current.getBoundingClientRect();
+      const avgLetterWidth = titleWidth / characters.length; // Average width of each letter
 
-      // Parallax translation (reduced intensity)
-      const parallaxX = mousePosition.x * 5 * (i - midIndex);
-      const parallaxY = mousePosition.y * 5 * (i - midIndex);
+      // Calculate the starting X position of the first letter to account for justify-center
+      const contentWidth = characters.length * avgLetterWidth;
+      const startX = (titleWidth - contentWidth) / 2;
 
-      // Depth effect: letters pop out more when mouse is further from center (reduced intensity)
-      const depthZ = (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 5;
+      // Approximate center position of the current letter within the h1
+      const letterCenterX = startX + (i * avgLetterWidth) + (avgLetterWidth / 2);
+      const letterCenterY = titleHeight / 2; // Assuming letters are vertically centered
+
+      // Mouse position in pixels relative to the h1's top-left
+      const mouseX_pixel = mousePosition.pixelX;
+      const mouseY_pixel = mousePosition.pixelY;
+
+      // Vector from mouse to letter center
+      const dx = letterCenterX - mouseX_pixel;
+      const dy = letterCenterY - mouseY_pixel;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      const maxRepulsionDistance = 100; // Max distance (in pixels) for the repulsion effect
+      const repulsionStrength = 30; // Max pixel movement for repulsion
+
+      let repulsionTranslateX = 0;
+      let repulsionTranslateY = 0;
+
+      if (distance < maxRepulsionDistance && distance > 0) { // Apply repulsion if within range and not exactly on top
+        const forceMagnitude = (1 - (distance / maxRepulsionDistance)) * repulsionStrength;
+        const angle = Math.atan2(dy, dx); // Angle from mouse to letter
+        repulsionTranslateX = Math.cos(angle) * forceMagnitude;
+        repulsionTranslateY = Math.sin(angle) * forceMagnitude;
+      }
+
+      // Original rotation and depth based on normalized mouse position
+      const baseRotateY = mousePosition.normalizedX * 8;
+      const baseRotateX = -mousePosition.normalizedY * 8;
+      const depthZ = (Math.abs(mousePosition.normalizedX) + Math.abs(mousePosition.normalizedY)) * 5;
 
       return {
-        rotateX: baseRotateX + (mousePosition.y * 3 * distanceFactor), // Add slight variation based on letter position
-        rotateY: baseRotateY + (mousePosition.x * 3 * distanceFactor),
+        rotateX: baseRotateX,
+        rotateY: baseRotateY,
         translateZ: depthZ,
-        x: parallaxX,
-        y: parallaxY,
+        x: repulsionTranslateX, // Apply repulsion translation
+        y: repulsionTranslateY, // Apply repulsion translation
         transition: {
           type: "spring",
           stiffness: 100, // Reduced stiffness for smoother movement
@@ -76,7 +105,7 @@ const Title = () => {
       };
     },
     reset: (i) => ({ // Changed to a function that accepts 'i'
-      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0,
+      rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0, // Reset x and y too
       transition: {
         type: "spring",
         stiffness: 80, // Reduced stiffness for smoother reset
@@ -97,7 +126,7 @@ const Title = () => {
           key={i}
           variants={letterVariants}
           initial="initial"
-          animate={mousePosition.x !== 0 || mousePosition.y !== 0 ? "hovered" : "reset"}
+          animate={mousePosition.normalizedX !== 0 || mousePosition.normalizedY !== 0 ? "hovered" : "reset"}
           custom={i} // Pass index as custom prop for variants
           className="inline-block" // Ensure each span is a block for transformations
         >
