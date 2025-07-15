@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { Navbar, Links, ContactForm } from '../components'; // Removed BackToTopButton
+import { Navbar, Links, ContactForm } from '../components';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 
 const ContactUsPage = () => {

@@ -1,17 +1,13 @@
 "use client";
 
-import React from 'react'; // Removed useState
+import React from 'react';
 import { motion } from 'framer-motion';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
 import ClientCard3D from './ClientCard3D';
-// Removed ProjectModal import
 import { clientProjects } from '../utils/constants';
 
 const ClientShowcaseSection = ({ id }) => {
   const { ref, inView } = useAnimatedSection();
-  // Removed selectedProject and isModalOpen state
-
-  // Removed handleCardClick and handleCloseModal functions
 
   return (
     <motion.section
@@ -33,12 +29,10 @@ const ClientShowcaseSection = ({ id }) => {
             key={project.id}
             className="w-full aspect-video bg-gray-300 rounded-xl overflow-hidden shadow-lg"
           >
-            <ClientCard3D project={project} /> {/* Removed onClick prop */}
+            <ClientCard3D project={project} />
           </div>
         ))}
       </div>
-
-      {/* Removed ProjectModal rendering */}
     </motion.section>
   );
 };
