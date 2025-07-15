@@ -1,13 +1,24 @@
-import React from 'react';
-import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection, ClientShowcaseSection } from "../components"; // Added ProcessSection and ClientShowcaseSection
+import React, { useState } from 'react'; // Import useState
+import { Navbar, HeroSection, ThreeDShowcaseSection, AboutSection, ServicesSection, ContactSection, Links, ProcessSection, ClientShowcaseSection, FlappyBlockGame } from "../components"; // Added FlappyBlockGame
 
 const LandingPage = () => {
+  const [showFlappyGame, setShowFlappyGame] = useState(false);
+
+  const handleCreativeClick = () => {
+    setShowFlappyGame(true);
+  };
+
   return (
     <div className="min-h-screen bg-white text-black">
       <Navbar />
 
       <HeroSection id="hero" />
-      <ThreeDShowcaseSection />
+      <ThreeDShowcaseSection onCreativeClick={handleCreativeClick} /> {/* Pass the callback */}
+      {showFlappyGame && (
+        <section className="w-full h-screen bg-black flex items-center justify-center">
+          <FlappyBlockGame />
+        </section>
+      )}
       <AboutSection id="about" />
       <ProcessSection id="process" />
       <ClientShowcaseSection id="work" /> {/* New Client Showcase Section */}
