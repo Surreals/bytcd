@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'; // Icons for mobile menu
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true); // New state for visibility
+  const [isScrolledToTop, setIsScrolledToTop] = useState(true); // New state for scroll position
   const lastScrollY = useRef(0); // Ref to store the last scroll position
   const location = useLocation();
 
@@ -30,12 +31,15 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Effect for scroll-based visibility
+  // Effect for scroll-based visibility and opacity
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Only update visibility if scrolling significantly
+      // Update isScrolledToTop based on scroll position
+      setIsScrolledToTop(currentScrollY === 0);
+
+      // Existing logic for isVisible (hide/show navbar on scroll)
       if (Math.abs(currentScrollY - lastScrollY.current) > 50) { // Threshold of 50px
         if (currentScrollY > lastScrollY.current && currentScrollY > 100) { // Scrolling down and past initial offset
           setIsVisible(false);
@@ -47,6 +51,8 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Call once on mount to set initial state correctly
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -62,7 +68,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-black/80 backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-4 sticky top-0 z-50 shadow-lg transition-transform duration-300 ease-in-out ${
+      className={`
+        ${isScrolledToTop ? 'bg-black' : 'bg-black/80'} 
+        backdrop-blur-md text-white px-6 py-3 md:px-12 md:py-4 sticky top-0 z-50 shadow-lg 
+        transition-all duration-300 ease-in-out ${ // Changed to transition-all for smooth color change
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
