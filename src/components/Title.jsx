@@ -73,7 +73,7 @@ const Title = () => {
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       const maxRepulsionDistance = 200; // Increased max distance (in pixels) for the repulsion effect
-      const repulsionStrength = 40; // Increased max pixel movement for repulsion
+      const repulsionStrength = 80; // Increased max pixel movement for repulsion
 
       let repulsionTranslateX = 0;
       let repulsionTranslateY = 0;
