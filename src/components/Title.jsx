@@ -77,23 +77,38 @@ const Title = () => {
 
       let repulsionTranslateX = 0;
       let repulsionTranslateY = 0;
-      let currentColor = '#000000'; // Default to black
+      let currentColor = '#000000'; // Default to black if mouse is not over the title
 
-      if (distance < maxRepulsionDistance) {
-        const forceMagnitude = (1 - (distance / maxRepulsionDistance)) * repulsionStrength;
-        const angle = Math.atan2(dy, dx);
-        repulsionTranslateX = Math.cos(angle) * forceMagnitude;
-        repulsionTranslateY = Math.sin(angle) * forceMagnitude;
+      // Check if the mouse is over the title area at all
+      if (mousePosition.normalizedX !== 0 || mousePosition.normalizedY !== 0) {
+        // Base blue color for all letters when mouse is over the title
+        const baseBlueR = 150; // Lighter blue
+        const baseBlueG = 200;
+        const baseBlueB = 255;
 
-        // Calculate color intensity based on distance
-        // 1 when distance is 0 (full red), 0 when distance is maxRepulsionDistance (black)
-        const colorIntensity = 1 - (distance / maxRepulsionDistance);
+        // Target blue color for strongly affected letters (Tailwind blue-600)
+        const targetBlueR = 37;
+        const targetBlueG = 99;
+        const targetBlueB = 235;
 
-        // Interpolate RGB values from black (0,0,0) to dark red (200,0,0)
-        const r = Math.round(0 + colorIntensity * 200);
-        const g = Math.round(0 + colorIntensity * 0);
-        const b = Math.round(0 + colorIntensity * 0);
-        currentColor = `rgb(${r}, ${g}, ${b})`;
+        if (distance < maxRepulsionDistance) {
+          const forceMagnitude = (1 - (distance / maxRepulsionDistance)) * repulsionStrength;
+          const angle = Math.atan2(dy, dx);
+          repulsionTranslateX = Math.cos(angle) * forceMagnitude;
+          repulsionTranslateY = Math.sin(angle) * forceMagnitude;
+
+          // Calculate color intensity based on distance (1 when distance is 0, 0 when distance is maxRepulsionDistance)
+          const colorIntensity = 1 - (distance / maxRepulsionDistance);
+
+          // Interpolate RGB values from baseBlue to targetBlue
+          const r = Math.round(baseBlueR + colorIntensity * (targetBlueR - baseBlueR));
+          const g = Math.round(baseBlueG + colorIntensity * (targetBlueG - baseBlueG));
+          const b = Math.round(baseBlueB + colorIntensity * (targetBlueB - baseBlueB));
+          currentColor = `rgb(${r}, ${g}, ${b})`;
+        } else {
+          // Letter is under the mouse but outside the strong repulsion zone, use base blue
+          currentColor = `rgb(${baseBlueR}, ${baseBlueG}, ${baseBlueB})`;
+        }
       }
 
       // Original rotation and depth based on normalized mouse position
