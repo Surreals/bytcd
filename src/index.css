@@ -5,7 +5,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-body {
-  cursor: none; /* Hide the default cursor */
-}

@@ -16,7 +16,6 @@
     "@capacitor/ios": "^7.4.2",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "curzr": "^1.0.15",
     "firebase": "^10.9.0",
     "firebase-tools": "^13.5.2",
     "framer-motion": "^12.23.5",

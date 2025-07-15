@@ -72,8 +72,8 @@ const Title = () => {
       const dy = letterCenterY - mouseY_pixel;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
-      const maxRepulsionDistance = 50; // Increased max distance (in pixels) for the repulsion effect
-      const repulsionStrength = 80; // Increased max pixel movement for repulsion
+      const maxRepulsionDistance = 200; // Increased max distance (in pixels) for the repulsion effect
+      const repulsionStrength = 40; // Increased max pixel movement for repulsion
 
       let repulsionTranslateX = 0;
       let repulsionTranslateY = 0;
@@ -100,7 +100,7 @@ const Title = () => {
           type: "spring",
           stiffness: 50, // Further reduced stiffness for smoother movement
           damping: 25,    // Further increased damping to reduce oscillation
-          delay: i * 0.01, // Staggered delay
+          delay: i * 0.02, // Staggered delay
         },
       };
     },
@@ -118,7 +118,7 @@ const Title = () => {
   return (
     <motion.h1
       ref={titleRef}
-      className="font-bold cursor-default uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
+      className="font-bold uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Use flex to center spans
       style={{ perspective: 1000 }} // Apply perspective to the container
     >
       {characters.map((char, i) => (
