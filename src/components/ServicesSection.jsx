@@ -51,7 +51,7 @@ const ServicesSection = ({ id }) => { // Accept id prop
       title: "Maintenance",
       iconName: "Wrench", // Icon from Lucide React
       items: [
-        "Ongoing Website Maintenance",
+        "Ongoing Maintenance",
         "Technical Support",
         "Security Updates",
         "Content Management",
