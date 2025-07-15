@@ -99,7 +99,7 @@ const ProcessSection = ({ id }) => {
                 >
                   {Icon && <Icon size={40} className="text-blue-600 mb-4" />}
                   <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
-                  <p className="text-lg text-gray-700">{step.description}</p>
+                  <p className="text-lg text-gray-700" dangerouslySetInnerHTML={{ __html: step.description }}></p>
                 </div>
               </div>
             );

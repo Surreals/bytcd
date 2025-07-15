@@ -24,7 +24,7 @@ const ClientCard3D = ({ project }) => { // Removed onClick prop
         }}
       >
         <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">{project.title}</h3>
-        <p className="text-gray-300 text-base md:text-lg mb-4 font-light">{project.description}</p>
+        <p className="text-gray-300 text-base md:text-lg mb-4 font-light" dangerouslySetInnerHTML={{ __html: project.description }}></p>
         {project.link && project.link !== '#' && (
           <a
             href={project.link}

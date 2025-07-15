@@ -12,32 +12,32 @@ export const sideLinks = [
 export const processSteps = [
   {
     title: "Discovery & Strategy",
-    description: "We begin by understanding your vision, goals, and target audience. This phase involves in-depth research, brainstorming, and strategic planning to lay a solid foundation for your project.",
+    description: "We begin by understanding your <strong>vision</strong>, <strong>goals</strong>, and <strong>target audience</strong>. This phase involves <strong>in-depth research</strong>, brainstorming, and <strong>strategic planning</strong> to lay a <strong>solid foundation</strong> for your project.",
     iconName: "Search",
   },
   {
     title: "Design & Prototyping",
-    description: "Our creative team crafts intuitive and visually stunning UI/UX designs. We develop wireframes, mockups, and interactive prototypes to ensure the user experience is seamless and engaging.",
+    description: "Our creative team crafts <strong>intuitive</strong> and <strong>visually stunning</strong> UI/UX designs. We develop <strong>wireframes</strong>, <strong>mockups</strong>, and <strong>interactive prototypes</strong> to ensure the user experience is <strong>seamless</strong> and <strong>engaging</strong>.",
     iconName: "Palette",
   },
   {
     title: "Development & Implementation",
-    description: "Bringing designs to life, our developers build robust and scalable solutions using cutting-edge technologies. We focus on clean code, performance, and cross-platform compatibility.",
+    description: "Bringing designs to life, our developers build <strong>robust</strong> and <strong>scalable solutions</strong> using <strong>cutting-edge technologies</strong>. We focus on <strong>clean code</strong>, <strong>performance</strong>, and <strong>cross-platform compatibility</strong>.",
     iconName: "Code",
   },
   {
     title: "Testing & Quality Assurance",
-    description: "Rigorous testing is conducted to identify and resolve any bugs or issues. We ensure your application is fully functional, secure, and performs flawlessly across all devices and browsers.",
+    description: "<strong>Rigorous testing</strong> is conducted to identify and resolve any bugs or issues. We ensure your application is <strong>fully functional</strong>, <strong>secure</strong>, and performs <strong>flawlessly</strong> across all devices and browsers.",
     iconName: "CheckCircle",
   },
   {
     title: "Deployment & Launch",
-    description: "Once perfected, we assist with the smooth deployment of your project. Our team ensures a successful launch, making your digital product accessible to your audience.",
+    description: "Once perfected, we assist with the <strong>smooth deployment</strong> of your project. Our team ensures a <strong>successful launch</strong>, making your digital product <strong>accessible</strong> to your audience.",
     iconName: "Rocket",
   },
   {
     title: "Maintenance & Support",
-    description: "Our commitment extends beyond launch. We provide ongoing maintenance, updates, and support to ensure your application remains secure, efficient, and up-to-date with evolving technologies.",
+    description: "Our commitment extends beyond launch. We provide <strong>ongoing maintenance</strong>, <strong>updates</strong>, and <strong>support</strong> to ensure your application remains <strong>secure</strong>, <strong>efficient</strong>, and <strong>up-to-date</strong> with evolving technologies.",
     iconName: "Wrench",
   },
 ];
@@ -46,7 +46,7 @@ export const clientProjects = [
   {
     id: 'carbook',
     title: 'Carbook.pro',
-    description: 'A modern Service Station CRM platform with enhanced user experience and conversion optimization.',
+    description: 'A modern Service Station CRM platform with <strong>enhanced user experience</strong> and <strong>conversion optimization</strong>.',
     image: carbookImage, // Full project screenshot
     logo: 'https://shelfy.com.ua/wp-content/uploads/2024/05/carbook.png', // Placeholder logo
     link: 'https://carbook.mobi/',
@@ -62,7 +62,7 @@ export const clientProjects = [
   {
     id: 'project-3',
     title: 'Brand Identity & Website',
-    description: 'Complete brand overhaul and a new corporate website reflecting modern aesthetics and values.',
+    description: 'Complete <strong>brand overhaul</strong> and a new corporate website reflecting <strong>modern aesthetics</strong> and <strong>values</strong>.',
     image: 'https://images.unsplash.com/photo-1522199755839-fd245a284972?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     logo: '/icon.svg', // Using the BYTCD icon as the logo
     link: '#',

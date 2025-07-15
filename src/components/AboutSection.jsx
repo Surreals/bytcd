@@ -27,7 +27,7 @@ const AboutSection = ({ id }) => { // Accept id prop
           animate={inView ? "visible" : "hidden"}
           className="text-lg md:text-2xl leading-relaxed font-light"
         >
-          BYTCD is a creative studio specializing in bespoke design and robust development. We transform ideas into stunning digital experiences, focusing on user-centric design and cutting-edge technology to deliver solutions that stand out.
+          BYTCD is a creative studio specializing in <strong>bespoke design</strong> and <strong>robust development</strong>. We transform ideas into <strong>stunning digital experiences</strong>, focusing on <strong>user-centric design</strong> and <strong>cutting-edge technology</strong> to deliver solutions that <strong>stand out</strong>.
         </motion.p>
       </div>
     </motion.section>

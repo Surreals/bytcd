@@ -18,7 +18,7 @@ const ContactSection = ({ id }) => { // Accept id prop
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-bold mb-8">Get in Touch</h2>
         <p className="text-lg md:text-2xl mb-12 font-light">
-          Ready to start your next project? Let's create something amazing together.
+          Ready to start your <strong>next project</strong>? Let's create something <strong>amazing</strong> together.
         </p>
         <a
           href="mailto:bytcdco@gmail.com"
