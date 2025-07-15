@@ -50,27 +50,27 @@ const Title = () => {
       const midIndex = totalLetters / 2 - 0.5; // Center index for odd/even
       const distanceFactor = Math.abs(i - midIndex) / midIndex; // 0 at center, 1 at edges
 
-      // Base rotation from mouse position
-      const baseRotateY = mousePosition.x * 15; // Increased sensitivity
-      const baseRotateX = -mousePosition.y * 15; // Increased sensitivity
+      // Base rotation from mouse position (reduced intensity)
+      const baseRotateY = mousePosition.x * 8;
+      const baseRotateX = -mousePosition.y * 8;
 
-      // Parallax translation
-      const parallaxX = mousePosition.x * 10 * (i - midIndex); // Letters move more based on distance from center
-      const parallaxY = mousePosition.y * 10 * (i - midIndex);
+      // Parallax translation (reduced intensity)
+      const parallaxX = mousePosition.x * 5 * (i - midIndex);
+      const parallaxY = mousePosition.y * 5 * (i - midIndex);
 
-      // Depth effect: letters pop out more when mouse is further from center
-      const depthZ = (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 10; // Max 20px pop out
+      // Depth effect: letters pop out more when mouse is further from center (reduced intensity)
+      const depthZ = (Math.abs(mousePosition.x) + Math.abs(mousePosition.y)) * 5;
 
       return {
-        rotateX: baseRotateX + (mousePosition.y * 5 * distanceFactor), // Add slight variation based on letter position
-        rotateY: baseRotateY + (mousePosition.x * 5 * distanceFactor),
+        rotateX: baseRotateX + (mousePosition.y * 3 * distanceFactor), // Add slight variation based on letter position
+        rotateY: baseRotateY + (mousePosition.x * 3 * distanceFactor),
         translateZ: depthZ,
         x: parallaxX,
         y: parallaxY,
         transition: {
           type: "spring",
-          stiffness: 150, // Make it a bit snappier
-          damping: 15,
+          stiffness: 100, // Reduced stiffness for smoother movement
+          damping: 20,    // Increased damping to reduce oscillation
           delay: i * 0.02, // Staggered delay
         },
       };
@@ -79,8 +79,8 @@ const Title = () => {
       rotateX: 0, rotateY: 0, translateZ: 0, x: 0, y: 0,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 10,
+        stiffness: 80, // Reduced stiffness for smoother reset
+        damping: 15,   // Increased damping for smoother reset
         delay: characters.length * 0.02 - i * 0.02, // Staggered reset
       },
     })
