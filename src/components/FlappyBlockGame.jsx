@@ -218,13 +218,13 @@ const FlappyBlockGame = () => {
 
     this.locVec = new JVector(0, this.HEIGHT / 2);
     this.velVec = new JVector(0, 0);
-    this.accVec = new JVector(0.05, 0.4); // Reduced horizontal acceleration for slower game
+    this.accVec = new JVector(0.08, 0.4); // Increased horizontal acceleration for faster game
 
     this.score = new Score();
 
-    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 8, 10, this.WIDTH, this.HEIGHT); // Reduced maxSpeed
+    this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 10, this.WIDTH, this.HEIGHT); // Increased maxSpeed
 
-    this.obstacleManager = new ObstacleManager(3, this.WIDTH, this.HEIGHT); // Reduced maxNum of obstacles
+    this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT); // Increased maxNum of obstacles
 
     this.gravity = new JVector(0, .1);
 
