@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import ToastProvider from './components/ToastProvider.jsx'; // Import ToastProvider
 import './index.css';
+import Curzr from 'curzr'; // Import Curzr
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -10,3 +11,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
+
+// Initialize Curzr after the DOM is ready
+new Curzr();
