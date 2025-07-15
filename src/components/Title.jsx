@@ -98,7 +98,7 @@ const Title = () => {
         y: repulsionTranslateY, // Apply repulsion translation
         transition: {
           type: "spring",
-          stiffness: 50, // Further reduced stiffness for smoother movement
+          stiffness: 20, // Further reduced stiffness for smoother movement
           damping: 50,    // Further increased damping to reduce oscillation
           delay: i * 0.01, // Staggered delay
         },
