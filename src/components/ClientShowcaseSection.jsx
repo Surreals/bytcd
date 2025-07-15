@@ -31,7 +31,7 @@ const ClientShowcaseSection = ({ id }) => {
         {clientProjects.map((project) => (
           <div
             key={project.id}
-            className="w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-lg"
+            className="w-full aspect-video bg-gray-300 rounded-xl overflow-hidden shadow-lg"
           >
             <ClientCard3D project={project} /> {/* Removed onClick prop */}
           </div>
