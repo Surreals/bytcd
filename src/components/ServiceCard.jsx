@@ -17,7 +17,7 @@ const ServiceCard = ({ title, items, iconName }) => {
     >
       {Icon && <Icon size={48} className="text-blue-600 mb-4" />}
       <h3 className="text-2xl font-semibold mb-4">{title}</h3>
-      <ul className="list space-y-1 text-md text-gray-700">
+      <ul className="list-none space-y-1 text-md text-gray-700">
         {items.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
