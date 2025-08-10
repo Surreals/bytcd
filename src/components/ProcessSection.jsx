@@ -27,14 +27,14 @@ const ProcessSection = ({ id }) => {
         { scaleY: 0 },
         {
           scaleY: 1,
-          duration: 1.5,
+          duration: 1.5, // Note: duration is effectively ignored when scrub is true
           ease: "power2.out",
           transformOrigin: "top",
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: "top 75%",
-            end: "bottom 25%",
-            scrub: 0.5, // Reverted from true to 0.5
+            start: "top bottom", // Start when the top of the trigger hits the bottom of the viewport
+            end: "bottom top",   // End when the bottom of the trigger hits the top of the viewport
+            scrub: true, // Sync animation directly with scroll
           },
         }
       );
