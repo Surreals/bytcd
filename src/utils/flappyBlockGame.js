@@ -263,7 +263,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
 
   // Gravity proportional to canvas height
-  this.gravity = new JVector(0, this.HEIGHT * 0.0001); // Further reduced gravity
+  this.gravity = new JVector(0, this.HEIGHT * 0.00005); // Reduced gravity by half
 
   this.startGame = function() {
     this.startScreen = false;
