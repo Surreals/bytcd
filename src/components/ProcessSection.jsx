@@ -27,7 +27,7 @@ const ProcessSection = ({ id }) => {
         { scaleY: 0 },
         {
           scaleY: 1,
-          duration: 5,
+          duration: 1.5,
           ease: "power1.inOut",
           transformOrigin: "top",
           scrollTrigger: {
