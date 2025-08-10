@@ -128,7 +128,7 @@ Bird.prototype.frame = function(ctx) {
 };
 
 // Obstacle Class
-export function Obstacle(x, canvasWidth, canvasHeight, speed) {
+export function Obstacle(x, canvasWidth, canvasHeight, speed, isMobile) { // Added isMobile
   this.x = x;
   this.canvasWidth = canvasWidth; // Store canvasWidth
   this.canvasHeight = canvasHeight;
@@ -136,12 +136,16 @@ export function Obstacle(x, canvasWidth, canvasHeight, speed) {
 
   // Make obstacle properties proportional to canvas dimensions
   this.width = this.canvasWidth * (Math.random() * 0.05 + 0.03); // 3% to 8% of canvas width
-  const gap = this.canvasHeight * 0.45; // Increased gap to 45% of canvas height
+  let gap = this.canvasHeight * 0.45; // Base gap
+  if (isMobile) {
+    gap *= 1.15; // Increase gap by 15% for mobile
+  }
+  this.gap = gap; // Store the calculated gap
   const playerSize = this.canvasHeight * 0.05; // Use the same player size ratio as in Bird
 
   // Ensure there's enough space for the player to pass
   const minTopPipeHeight = playerSize * 2; // Minimum height for top pipe
-  let maxTopPipeHeight = this.canvasHeight - gap - (playerSize * 2); // Max height for top pipe, leaving space for bottom pipe and margin
+  let maxTopPipeHeight = this.canvasHeight - this.gap - (playerSize * 2); // Use this.gap here
 
   // Ensure maxTopPipeHeight is not negative or too small
   if (maxTopPipeHeight < minTopPipeHeight) {
@@ -155,19 +159,16 @@ Obstacle.prototype.display = function(ctx) {
   this.x -= this.speed;
 
   ctx.fillStyle = "#fff";
-  const gap = this.canvasHeight * 0.45; // Use dynamic gap (must match constructor)
-
   // Draw top obstacle
   ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
   // Draw bottom obstacle
-  ctx.fillRect(this.x - this.width / 2, this.height + gap, this.width, this.canvasHeight - (this.height + gap));
+  ctx.fillRect(this.x - this.width / 2, this.height + this.gap, this.width, this.canvasHeight - (this.height + this.gap)); // Use this.gap here
 };
 
 Obstacle.prototype.detectCollision = function(player) {
   var playerX = player.pos.x;
   var playerY = player.pos.y;
   var playerSize = player.size; // This will now be dynamic
-  const gap = this.canvasHeight * 0.45; // Use dynamic gap (must match constructor)
 
   // Check collision with top obstacle
   if (playerX + playerSize >= this.x - this.width / 2 &&
@@ -179,19 +180,20 @@ Obstacle.prototype.detectCollision = function(player) {
   // Check collision with bottom obstacle
   if (playerX + playerSize >= this.x - this.width / 2 &&
       playerX - playerSize <= this.x + this.width / 2 &&
-      playerY + playerSize >= this.height + gap) {
+      playerY + playerSize >= this.height + this.gap) { // Use this.gap here
     return true;
   }
   return false;
 };
 
 // ObstacleManager Class
-export function ObstacleManager(maxNum, canvasWidth, canvasHeight, obstacleSpeed) {
+export function ObstacleManager(maxNum, canvasWidth, canvasHeight, obstacleSpeed, isMobile) { // Added isMobile
   this.maxNum = maxNum;
   this.obstacles = [];
   this.canvasWidth = canvasWidth;
   this.canvasHeight = canvasHeight;
   this.obstacleSpeed = obstacleSpeed;
+  this.isMobile = isMobile; // Store isMobile
 
   this.generateObstacles = function() {
     this.obstacles = [];
@@ -199,7 +201,7 @@ export function ObstacleManager(maxNum, canvasWidth, canvasHeight, obstacleSpeed
     for (var i = 0; i < this.maxNum; i++) {
       // Spacing obstacles further apart initially, with random offset relative to width
       var xPos = this.canvasWidth + (i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * (this.canvasWidth * 0.1));
-      this.obstacles.push(new Obstacle(xPos, this.canvasWidth, this.canvasHeight, this.obstacleSpeed)); // Pass canvasWidth and canvasHeight
+      this.obstacles.push(new Obstacle(xPos, this.canvasWidth, this.canvasHeight, this.obstacleSpeed, this.isMobile)); // Pass isMobile
     }
   };
 
@@ -263,8 +265,8 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT, isMobile) {
   this.player = new Bird(this.locVec, this.velVec, this.accVec, this.HEIGHT, this.WIDTH, this.isMobile);
 
   this.obstacleSpeed = this.WIDTH * 0.002; // Made obstacle speed proportional to canvas width
-  // Pass canvas dimensions to ObstacleManager constructor
-  this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
+  // Pass canvas dimensions and isMobile to ObstacleManager constructor
+  this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed, this.isMobile);
 
   // Gravity proportional to canvas height, adjusted for mobile
   this.gravity = this.isMobile 
@@ -318,7 +320,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT, isMobile) {
       if (this.obstacleManager.obstacles.length > 0 && this.obstacleManager.obstacles[0].x + this.obstacleManager.obstacles[0].width / 2 < 0) {
         this.obstacleManager.obstacles.shift(); // Remove passed obstacle
         // Add new obstacle further to the right, ensuring good spacing
-        this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 150, this.WIDTH, this.HEIGHT, this.obstacleSpeed)); // Pass canvasWidth and canvasHeight
+        this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 150, this.WIDTH, this.HEIGHT, this.obstacleSpeed, this.isMobile)); // Pass isMobile
         this.score.increment();
       }
     }
