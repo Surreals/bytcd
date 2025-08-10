@@ -123,11 +123,11 @@ Bird.prototype.frame = function(ctx) {
 // Obstacle Class
 export function Obstacle(x, canvasHeight, speed) {
   this.x = x;
-  this.width = Math.random() * 50 + 20;
+  this.width = Math.random() * 30 + 20; // Reduced max width (20 to 50)
   this.canvasHeight = canvasHeight;
   this.speed = speed; // Obstacle speed
 
-  const gap = 180; // Increased gap size
+  const gap = 220; // Increased gap size for easier passage
   const playerSize = 20; // Assuming player size is 20 from Bird constructor
 
   // Ensure there's enough space for the player to pass
@@ -143,7 +143,7 @@ Obstacle.prototype.display = function(ctx) {
   this.x -= this.speed;
 
   ctx.fillStyle = "#fff";
-  const gap = 180; // Increased gap size
+  const gap = 220; // Increased gap size
 
   // Draw top obstacle
   ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
@@ -155,7 +155,7 @@ Obstacle.prototype.detectCollision = function(player) {
   var playerX = player.pos.x;
   var playerY = player.pos.y;
   var playerSize = player.size;
-  const gap = 180; // Increased gap size
+  const gap = 220; // Increased gap size
 
   // Check collision with top obstacle
   if (playerX + playerSize >= this.x - this.width / 2 &&
