@@ -32,8 +32,8 @@ const ProcessSection = ({ id }) => {
           transformOrigin: "top",
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: "top 70%", // Adjusted to start later
-            end: "bottom 40%",
+            start: "top 40%", // Adjusted to start later
+            end: "bottom 25%",
             scrub: 0.5,
           },
         }
