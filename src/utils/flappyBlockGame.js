@@ -31,17 +31,20 @@ JVector.prototype.normalize = function() {
 };
 
 // Bird Class
-export function Bird(posVec, velVec, accVec, size, maxSpeed, flapStrength, canvasWidth, canvasHeight) {
+export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth) {
   this.pos = posVec;
   this.vel = velVec;
   this.acc = accVec;
-  this.size = size;
-  this.maxSpeed = maxSpeed;
-  this.flapStrength = flapStrength;
-  this.flapping = false; // Initialize flapping state
-  this.flapTimeout = null; // To store the timeout ID for animation
   this.canvasWidth = canvasWidth;
   this.canvasHeight = canvasHeight;
+
+  // Make bird properties proportional to canvas dimensions
+  this.size = this.canvasHeight * 0.05; // 5% of canvas height
+  this.maxSpeed = this.canvasHeight * 0.05; // 5% of canvas height
+  this.flapStrength = this.canvasHeight * 0.04; // 4% of canvas height
+
+  this.flapping = false; // Initialize flapping state
+  this.flapTimeout = null; // To store the timeout ID for animation
 }
 
 Bird.prototype.flap = function() {
@@ -103,13 +106,14 @@ Bird.prototype.display = function(ctx) {
 Bird.prototype.checkWorld = function() {
   var x = this.pos.x;
   var y = this.pos.y;
+  var size = this.size; // Use dynamic size
   // Player's X position is fixed, so no need to wrap horizontally
   // Check vertical boundaries
   if (y <= 0) {
-    this.pos.y = 0 + this.size;
+    this.pos.y = 0 + size;
     this.vel.y = 0; // Stop upward movement if hitting top
-  } else if (y + this.size >= this.canvasHeight) { // Check if bottom of player hits bottom of canvas
-    this.pos.y = this.canvasHeight - this.size; // Clamp player to the bottom
+  } else if (y + size >= this.canvasHeight) { // Check if bottom of player hits bottom of canvas
+    this.pos.y = this.canvasHeight - size; // Clamp player to the bottom
     this.vel.y = 0; // Stop vertical movement
   }
 };
@@ -121,20 +125,25 @@ Bird.prototype.frame = function(ctx) {
 };
 
 // Obstacle Class
-export function Obstacle(x, canvasHeight, speed) {
+export function Obstacle(x, canvasWidth, canvasHeight, speed) {
   this.x = x;
-  this.width = Math.random() * 30 + 20; // Reduced max width (20 to 50)
+  this.canvasWidth = canvasWidth; // Store canvasWidth
   this.canvasHeight = canvasHeight;
-  this.speed = speed; // Obstacle speed
+  this.speed = speed;
 
-  const gap = 220; // Increased gap size for easier passage
-  const playerSize = 20; // Assuming player size is 20 from Bird constructor
+  // Make obstacle properties proportional to canvas dimensions
+  this.width = this.canvasWidth * (Math.random() * 0.05 + 0.03); // 3% to 8% of canvas width
+  const gap = this.canvasHeight * 0.35; // 35% of canvas height
+  const playerSize = this.canvasHeight * 0.05; // Use the same player size ratio as in Bird
 
   // Ensure there's enough space for the player to pass
   const minTopPipeHeight = playerSize * 2; // Minimum height for top pipe
-  const maxTopPipeHeight = this.canvasHeight - gap - (playerSize * 2); // Max height for top pipe, leaving space for bottom pipe and margin
+  let maxTopPipeHeight = this.canvasHeight - gap - (playerSize * 2); // Max height for top pipe, leaving space for bottom pipe and margin
 
-  // Randomly determine the height of the top pipe
+  // Ensure maxTopPipeHeight is not negative or too small
+  if (maxTopPipeHeight < minTopPipeHeight) {
+    maxTopPipeHeight = minTopPipeHeight; // Fallback to minimum if calculation is problematic
+  }
   this.height = minTopPipeHeight + Math.random() * (maxTopPipeHeight - minTopPipeHeight);
 }
 
@@ -143,7 +152,7 @@ Obstacle.prototype.display = function(ctx) {
   this.x -= this.speed;
 
   ctx.fillStyle = "#fff";
-  const gap = 220; // Increased gap size
+  const gap = this.canvasHeight * 0.35; // Use dynamic gap
 
   // Draw top obstacle
   ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
@@ -154,8 +163,8 @@ Obstacle.prototype.display = function(ctx) {
 Obstacle.prototype.detectCollision = function(player) {
   var playerX = player.pos.x;
   var playerY = player.pos.y;
-  var playerSize = player.size;
-  const gap = 220; // Increased gap size
+  var playerSize = player.size; // This will now be dynamic
+  const gap = this.canvasHeight * 0.35; // Use dynamic gap
 
   // Check collision with top obstacle
   if (playerX + playerSize >= this.x - this.width / 2 &&
@@ -185,9 +194,9 @@ export function ObstacleManager(maxNum, canvasWidth, canvasHeight, obstacleSpeed
     this.obstacles = [];
     // Initial obstacles are spaced out
     for (var i = 0; i < this.maxNum; i++) {
-      // Spacing obstacles further apart initially
-      var xPos = this.canvasWidth + (i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * 100);
-      this.obstacles.push(new Obstacle(xPos, this.canvasHeight, this.obstacleSpeed));
+      // Spacing obstacles further apart initially, with random offset relative to width
+      var xPos = this.canvasWidth + (i * (this.canvasWidth / this.maxNum) * 1.5) + Math.floor(Math.random() * (this.canvasWidth * 0.1));
+      this.obstacles.push(new Obstacle(xPos, this.canvasWidth, this.canvasHeight, this.obstacleSpeed)); // Pass canvasWidth and canvasHeight
     }
   };
 
@@ -246,12 +255,15 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
 
   this.score = new Score();
 
-  this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 8, this.WIDTH, this.HEIGHT); // Player maxSpeed and flapStrength
+  // Pass canvas dimensions to Bird constructor
+  this.player = new Bird(this.locVec, this.velVec, this.accVec, this.HEIGHT, this.WIDTH);
 
-  this.obstacleSpeed = 1.5; // Reduced speed at which obstacles move left from 2 to 1.5
-  this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
+  this.obstacleSpeed = 1.5; // Speed at which obstacles move left
+  // Pass canvas dimensions to ObstacleManager constructor
+  this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
 
-  this.gravity = new JVector(0, .03); // Reduced gravity from .05 to .03
+  // Gravity proportional to canvas height
+  this.gravity = new JVector(0, this.HEIGHT * 0.0005);
 
   this.startGame = function() {
     this.startScreen = false;
@@ -300,7 +312,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
       if (this.obstacleManager.obstacles.length > 0 && this.obstacleManager.obstacles[0].x + this.obstacleManager.obstacles[0].width / 2 < 0) {
         this.obstacleManager.obstacles.shift(); // Remove passed obstacle
         // Add new obstacle further to the right, ensuring good spacing
-        this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 150, this.HEIGHT, this.obstacleSpeed));
+        this.obstacleManager.obstacles.push(new Obstacle(this.WIDTH + Math.random() * 200 + 150, this.WIDTH, this.HEIGHT, this.obstacleSpeed)); // Pass canvasWidth and canvasHeight
         this.score.increment();
       }
     }
