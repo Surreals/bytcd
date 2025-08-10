@@ -246,9 +246,9 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
 
   this.score = new Score();
 
-  this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 8, this.WIDTH, this.HEIGHT); // Reduced flapStrength from 10 to 8
+  this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 8, this.WIDTH, this.HEIGHT); // Player maxSpeed and flapStrength
 
-  this.obstacleSpeed = 2; // Speed at which obstacles move left
+  this.obstacleSpeed = 1.5; // Reduced speed at which obstacles move left from 2 to 1.5
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
 
   this.gravity = new JVector(0, .03); // Reduced gravity from .05 to .03
