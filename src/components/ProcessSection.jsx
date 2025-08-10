@@ -48,7 +48,7 @@ const ProcessSection = ({ id }) => {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: "power1.inOut",
+            ease: "power2.in",
             scrollTrigger: {
               trigger: step,
               start: "top 85%",
