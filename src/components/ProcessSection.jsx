@@ -51,7 +51,7 @@ const ProcessSection = ({ id }) => {
             ease: "power2.in",
             scrollTrigger: {
               trigger: step,
-              start: "top 85%",
+              start: "top 75%",
               toggleActions: "play none none reverse",
             },
           }
