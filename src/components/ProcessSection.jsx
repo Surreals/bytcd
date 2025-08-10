@@ -28,7 +28,7 @@ const ProcessSection = ({ id }) => {
         {
           scaleY: 1,
           duration: 1.5,
-          ease: "power1.inOut",
+          ease: "power2.inOut",
           transformOrigin: "top",
           scrollTrigger: {
             trigger: timelineRef.current,
