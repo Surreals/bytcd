@@ -32,9 +32,9 @@ const ProcessSection = ({ id }) => {
           transformOrigin: "top",
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: "top 60%", // Adjusted to start later
+            start: "top 60%",
             end: "bottom 25%",
-            scrub: 0.5,
+            scrub: 1.5, // Increased from 0.5 to 1.5 to slow down the animation
           },
         }
       );
