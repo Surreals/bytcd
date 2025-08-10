@@ -41,7 +41,7 @@ export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth) {
   // Make bird properties proportional to canvas dimensions
   this.size = this.canvasHeight * 0.05; // 5% of canvas height
   this.maxSpeed = this.canvasHeight * 0.05; // 5% of canvas height
-  this.flapStrength = this.canvasHeight * 0.0255; // Reduced flap strength by 15% (0.03 * 0.85)
+  this.flapStrength = this.canvasHeight * 0.035; // Increased flap strength
 
   this.flapping = false; // Initialize flapping state
   this.flapTimeout = null; // To store the timeout ID for animation
@@ -263,7 +263,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
 
   // Gravity proportional to canvas height
-  this.gravity = new JVector(0, this.HEIGHT * 0.00002); // Further reduced gravity
+  this.gravity = new JVector(0, this.HEIGHT * 0.00002); // Gravity remains the same as last adjustment
 
   this.startGame = function() {
     this.startScreen = false;
