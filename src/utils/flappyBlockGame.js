@@ -268,7 +268,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT, isMobile) {
 
   // Gravity proportional to canvas height, adjusted for mobile
   this.gravity = this.isMobile 
-    ? new JVector(0, this.HEIGHT * 0.00002 * 0.85) // 15% slower fall on mobile
+    ? new JVector(0, this.HEIGHT * 0.00002 * 0.80) // 20% slower fall on mobile (1 - 0.20 = 0.80)
     : new JVector(0, this.HEIGHT * 0.00002); // Original gravity for PC
 
   this.startGame = function() {
