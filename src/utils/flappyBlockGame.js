@@ -31,17 +31,20 @@ JVector.prototype.normalize = function() {
 };
 
 // Bird Class
-export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth) {
+export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth, isMobile) {
   this.pos = posVec;
   this.vel = velVec;
   this.acc = accVec;
   this.canvasWidth = canvasWidth;
   this.canvasHeight = canvasHeight;
+  this.isMobile = isMobile; // Store isMobile flag
 
   // Make bird properties proportional to canvas dimensions
   this.size = this.canvasHeight * 0.05; // 5% of canvas height
   this.maxSpeed = this.canvasHeight * 0.05; // 5% of canvas height
-  this.flapStrength = this.canvasHeight * 0.03; // Slightly reduced flap strength for a balanced jump height
+  
+  // Adjust flapStrength based on isMobile
+  this.flapStrength = this.isMobile ? (this.canvasHeight * 0.04) : (this.canvasHeight * 0.03); // Higher for mobile, lower for PC
 
   this.flapping = false; // Initialize flapping state
   this.flapTimeout = null; // To store the timeout ID for animation
@@ -239,11 +242,12 @@ export function Score() {
 }
 
 // Game Class
-export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
+export const Game = function(canvas, ctx, WIDTH, HEIGHT, isMobile) {
   this.canvas = canvas;
   this.ctx = ctx;
   this.WIDTH = WIDTH;
   this.HEIGHT = HEIGHT;
+  this.isMobile = isMobile; // Store isMobile flag
 
   this.startScreen = true;
   this.playing = false;
@@ -255,8 +259,8 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
 
   this.score = new Score();
 
-  // Pass canvas dimensions to Bird constructor
-  this.player = new Bird(this.locVec, this.velVec, this.accVec, this.HEIGHT, this.WIDTH);
+  // Pass canvas dimensions and isMobile to Bird constructor
+  this.player = new Bird(this.locVec, this.velVec, this.accVec, this.HEIGHT, this.WIDTH, this.isMobile);
 
   this.obstacleSpeed = this.WIDTH * 0.002; // Made obstacle speed proportional to canvas width
   // Pass canvas dimensions to ObstacleManager constructor

@@ -1,11 +1,26 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { JVector, Bird, Obstacle, ObstacleManager, Score, Game } from '../utils/flappyBlockGame'; // Import game classes
 
 const FlappyBlockGame = () => {
   const canvasRef = useRef(null);
   const gameInstanceRef = useRef(null); // To hold the game object
+  const [isMobile, setIsMobile] = useState(false); // New state for mobile detection
+
+  // Effect to detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Tailwind's 'md' breakpoint
+    };
+
+    checkMobile(); // Set initial state
+    window.addEventListener('resize', checkMobile); // Update on resize
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   // Main game loop and event handling
   useEffect(() => {
@@ -30,8 +45,8 @@ const FlappyBlockGame = () => {
 
     setCanvasDimensions(); // Initial dimensions
 
-    // Initialize game
-    gameInstanceRef.current = new Game(canvas, ctx, canvas.width, canvas.height);
+    // Initialize game, passing isMobile
+    gameInstanceRef.current = new Game(canvas, ctx, canvas.width, canvas.height, isMobile);
     gameInstanceRef.current.startGame(); // Start game automatically when component mounts
 
     const animate = () => {
@@ -85,7 +100,7 @@ const FlappyBlockGame = () => {
       canvas.removeEventListener("touchstart", handleTouchStart);
       canvas.removeEventListener("click", handleClick); // Remove click listener
     };
-  }, []); // Empty dependency array ensures this runs once on mount and cleans up on unmount
+  }, [isMobile]); // Re-run effect if isMobile changes to re-initialize game with correct settings
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-black">
