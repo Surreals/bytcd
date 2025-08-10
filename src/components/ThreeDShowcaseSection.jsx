@@ -37,7 +37,7 @@ const ThreeDShowcaseSection = () => {
           ? 'Try your skills in our Flappy Block game!'
           : 'Explore a glimpse of our innovative design approach through interactive 3D experiences.'}
       </p>
-      <div className="w-full max-w-4xl h-96 md:h-[500px] lg:h-[600px] bg-gray-900 rounded-lg overflow-hidden">
+      <div className="w-full max-w-4xl aspect-video bg-gray-900 rounded-lg overflow-hidden">
         {showGame ? <FlappyBlockGame /> : <ThreeDShowcase />}
       </div>
     </motion.section>
