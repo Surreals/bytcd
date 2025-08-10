@@ -41,7 +41,7 @@ export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth) {
   // Make bird properties proportional to canvas dimensions
   this.size = this.canvasHeight * 0.05; // 5% of canvas height
   this.maxSpeed = this.canvasHeight * 0.05; // 5% of canvas height
-  this.flapStrength = this.canvasHeight * 0.01; // Further reduced flap strength
+  this.flapStrength = this.canvasHeight * 0.03; // Increased flap strength for higher jumps
 
   this.flapping = false; // Initialize flapping state
   this.flapTimeout = null; // To store the timeout ID for animation
