@@ -27,14 +27,14 @@ const ProcessSection = ({ id }) => {
         { scaleY: 0 },
         {
           scaleY: 1,
-          duration: 3,
+          duration: 1.5,
           ease: "power2.out",
           transformOrigin: "top",
           scrollTrigger: {
             trigger: timelineRef.current,
-            start: "top 40%", // Adjusted to start later
-            end: "bottom 35%",
-            scrub: 0.7,
+            start: "top 60%", // Adjusted to start later
+            end: "bottom 25%",
+            scrub: 0.5,
           },
         }
       );
