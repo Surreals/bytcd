@@ -44,7 +44,7 @@ export function Bird(posVec, velVec, accVec, canvasHeight, canvasWidth, isMobile
   this.maxSpeed = this.canvasHeight * 0.05; // 5% of canvas height
   
   // Adjust flapStrength based on isMobile
-  this.flapStrength = this.isMobile ? (this.canvasHeight * 0.04) : (this.canvasHeight * 0.03); // Higher for mobile, lower for PC
+  this.flapStrength = this.isMobile ? (this.canvasHeight * 0.04) : (this.canvasHeight * 0.0255); // Higher for mobile, 15% less for PC
 
   this.flapping = false; // Initialize flapping state
   this.flapTimeout = null; // To store the timeout ID for animation
@@ -266,8 +266,10 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT, isMobile) {
   // Pass canvas dimensions to ObstacleManager constructor
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
 
-  // Gravity proportional to canvas height
-  this.gravity = new JVector(0, this.HEIGHT * 0.00002); // Gravity remains the same as last adjustment
+  // Gravity proportional to canvas height, adjusted for mobile
+  this.gravity = this.isMobile 
+    ? new JVector(0, this.HEIGHT * 0.00002 * 0.85) // 15% slower fall on mobile
+    : new JVector(0, this.HEIGHT * 0.00002); // Original gravity for PC
 
   this.startGame = function() {
     this.startScreen = false;
