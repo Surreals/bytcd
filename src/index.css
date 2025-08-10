@@ -20,7 +20,7 @@ html {
   border-radius: 50%; /* Make it a circle */
   pointer-events: none; /* Ensure it doesn't block clicks */
   z-index: 9999; /* High z-index to be on top */
-  transition: transform 0.1s ease-out; /* Smooth movement */
+  transition: transform 0.02s ease-out; /* Smooth movement, reduced from 0.1s to 0.02s */
   mix-blend-mode: difference; /* Optional: for interesting visual effect over different backgrounds */
 }
 

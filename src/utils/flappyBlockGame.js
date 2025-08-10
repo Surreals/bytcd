@@ -258,7 +258,7 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
   // Pass canvas dimensions to Bird constructor
   this.player = new Bird(this.locVec, this.velVec, this.accVec, this.HEIGHT, this.WIDTH);
 
-  this.obstacleSpeed = 1.5; // Speed at which obstacles move left
+  this.obstacleSpeed = this.WIDTH * 0.002; // Made obstacle speed proportional to canvas width
   // Pass canvas dimensions to ObstacleManager constructor
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed);
 
