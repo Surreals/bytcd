@@ -133,7 +133,7 @@ export function Obstacle(x, canvasWidth, canvasHeight, speed) {
 
   // Make obstacle properties proportional to canvas dimensions
   this.width = this.canvasWidth * (Math.random() * 0.05 + 0.03); // 3% to 8% of canvas width
-  const gap = this.canvasHeight * 0.35; // 35% of canvas height
+  const gap = this.canvasHeight * 0.45; // Increased gap to 45% of canvas height
   const playerSize = this.canvasHeight * 0.05; // Use the same player size ratio as in Bird
 
   // Ensure there's enough space for the player to pass
@@ -152,7 +152,7 @@ Obstacle.prototype.display = function(ctx) {
   this.x -= this.speed;
 
   ctx.fillStyle = "#fff";
-  const gap = this.canvasHeight * 0.35; // Use dynamic gap
+  const gap = this.canvasHeight * 0.45; // Use dynamic gap (must match constructor)
 
   // Draw top obstacle
   ctx.fillRect(this.x - this.width / 2, 0, this.width, this.height);
@@ -164,7 +164,7 @@ Obstacle.prototype.detectCollision = function(player) {
   var playerX = player.pos.x;
   var playerY = player.pos.y;
   var playerSize = player.size; // This will now be dynamic
-  const gap = this.canvasHeight * 0.35; // Use dynamic gap
+  const gap = this.canvasHeight * 0.45; // Use dynamic gap (must match constructor)
 
   // Check collision with top obstacle
   if (playerX + playerSize >= this.x - this.width / 2 &&
