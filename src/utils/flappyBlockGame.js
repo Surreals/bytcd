@@ -246,12 +246,12 @@ export const Game = function(canvas, ctx, WIDTH, HEIGHT) {
 
   this.score = new Score();
 
-  this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 10, this.WIDTH, this.HEIGHT); // Player maxSpeed and flapStrength
+  this.player = new Bird(this.locVec, this.velVec, this.accVec, 20, 10, 8, this.WIDTH, this.HEIGHT); // Reduced flapStrength from 10 to 8
 
   this.obstacleSpeed = 2; // Speed at which obstacles move left
   this.obstacleManager = new ObstacleManager(4, this.WIDTH, this.HEIGHT, this.obstacleSpeed); // Number of obstacles
 
-  this.gravity = new JVector(0, .05); // Reduced gravity for slower falling
+  this.gravity = new JVector(0, .03); // Reduced gravity from .05 to .03
 
   this.startGame = function() {
     this.startScreen = false;
