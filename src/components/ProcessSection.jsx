@@ -34,7 +34,7 @@ const ProcessSection = ({ id }) => {
             trigger: timelineRef.current,
             start: "top 75%",
             end: "bottom 25%",
-            scrub: 0.5,
+            scrub: true, // Changed from 0.5 to true for direct scroll syncing
           },
         }
       );
