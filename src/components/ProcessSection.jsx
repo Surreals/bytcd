@@ -34,7 +34,7 @@ const ProcessSection = ({ id }) => {
             trigger: timelineRef.current,
             start: "top 40%", // Adjusted to start later
             end: "bottom 25%",
-            scrub: 0.2,
+            scrub: 0.7,
           },
         }
       );
