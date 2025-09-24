@@ -6,24 +6,14 @@ const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    let timeoutId;
-
     const updateCursorPosition = (e) => {
-      // Clear any previous timeout
-      clearTimeout(timeoutId);
-
-      // Set a new timeout to update the position after a short delay
-      timeoutId = setTimeout(() => {
-        setPosition({ x: e.clientX, y: e.clientY });
-      }, 10); // Debounce delay of 10ms
+      setPosition({ x: e.clientX, y: e.clientY });
     };
 
     document.addEventListener('mousemove', updateCursorPosition);
 
-    // Clean up event listener and any pending timeout
     return () => {
       document.removeEventListener('mousemove', updateCursorPosition);
-      clearTimeout(timeoutId);
     };
   }, []);
 
