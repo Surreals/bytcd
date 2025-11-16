@@ -1,6 +1,8 @@
-import carbookImage from '../assets/carbook.jpg'; // Assuming the image is named carbook.jpg in src/assets
+import carbookImage from '../assets/carbook_bg.jpg'; // Updated import for carbook_bg
 import galinfoLogo from '../assets/galinfo_logo.avif'; // Import GalInfo logo
 import infomoLogo from '../assets/infomo_logo.png'; // Import IN-FOMO logo
+import galinfoBg from '../assets/galinfo_bg.avif'; // Import GalInfo background image
+import infomoBg from '../assets/infomo_bg.png'; // Import IN-FOMO background image
 
 export const mainLinks = [
     {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
@@ -57,7 +59,7 @@ export const clientProjects = [
     id: 'galinfo',
     title: 'GalInfo',
     description: 'Leading Ukrainian news portal with a focus on regional and national news.',
-    image: 'https://images.unsplash.com/photo-1495020689067-9588a6b703e5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image
+    image: galinfoBg, // Using the new background image
     logo: galinfoLogo,
     link: 'https://galinfo.com.ua/',
   },
@@ -65,7 +67,7 @@ export const clientProjects = [
     id: 'in-fomo',
     title: 'IN-FOMO',
     description: 'Innovative platform for market research and consumer insights.',
-    image: 'https://images.unsplash.com/photo-1526628953301-3e589a6a0474?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image
+    image: infomoBg, // Using the new background image
     logo: infomoLogo,
     link: 'https://in-fomo.com/',
   },
