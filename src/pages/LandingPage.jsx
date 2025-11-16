@@ -11,7 +11,7 @@ const LandingPage = () => {
       <ThreeDShowcaseSection />
       <AboutSection id="about" />
       <ProcessSection id="process" />
-      <ClientShowcaseSection id="work" />
+      <ClientShowcaseSection id="partners" /> {/* Змінено id з "work" на "partners" */}
       <ServicesSection id="services" />
       <ContactSection id="contact" />
 
