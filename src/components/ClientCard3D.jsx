@@ -11,7 +11,7 @@ const ClientCard3D = ({ project }) => { // Removed onClick prop
         src={project.logo}
         alt={`${project.title} Logo`}
         className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0 bg-black filter invert(1) ${ // Повернуто bg-black та filter invert(1)
-          project.id === 'in-fomo' ? 'p-8' : project.id === 'galinfo' ? 'p-20' : project.id === 'carbook' ? 'p-4' : 'p-8' // Apply p-8 for IN-FOMO, p-20 for GalInfo, p-4 for Carbook, p-8 for others
+          project.id === 'in-fomo' ? 'p-8' : project.id === 'galinfo' ? 'p-16' : project.id === 'carbook' ? 'p-4' : 'p-8' // Зменшено p-20 до p-16 для GalInfo
         }`}
         loading="lazy" // Defer loading until needed
         decoding="async" // Decode asynchronously
