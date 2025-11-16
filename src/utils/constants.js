@@ -1,6 +1,6 @@
 import carbookImage from '../assets/carbook_bg.jpg'; // Updated import for carbook_bg
-import galinfoLogo from '../assets/galinfo_logo.avif'; // Import GalInfo logo
-import infomoLogo from '../assets/infomo_logo.png'; // Corrected import for IN-FOMO logo
+import galinfoLogoGood from '../assets/galinfo_logo_good.png'; // Import GalInfo good logo
+import infomoLogoBlack from '../assets/infomo_logo_black.png'; // Import IN-FOMO black logo
 import galinfoBg from '../assets/galinfo_bg.png'; // Corrected import for GalInfo background image
 import infomoBg from '../assets/infomo_bg.png'; // Import IN-FOMO background image
 import bytcdBg from '../assets/bytcd_bg.png'; // Import BYTCD background image
@@ -61,7 +61,7 @@ export const clientProjects = [
     title: 'GalInfo',
     description: 'Leading Ukrainian news portal with a focus on regional and national news.',
     image: galinfoBg, // Using the correct background image
-    logo: galinfoLogo,
+    logo: galinfoLogoGood,
     link: 'https://galinfo.com.ua/',
   },
   {
@@ -69,7 +69,7 @@ export const clientProjects = [
     title: 'IN-FOMO',
     description: 'Innovative platform for market research and consumer insights.',
     image: infomoBg, // Using the correct background image
-    logo: infomoLogo,
+    logo: infomoLogoBlack,
     link: 'https://in-fomo.com/',
   },
   {
