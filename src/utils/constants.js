@@ -1,5 +1,5 @@
 import carbookImage from '../assets/carbook_bg.jpg'; // Updated import for carbook_bg
-import galinfoLogoGood from '../assets/galinfo_logo_aioff.png'; // Import GalInfo good logo
+import galinfoLogoGood from '../assets/galinfo_logo_aioff.png'; // Corrected import for GalInfo good logo
 import infomoLogoBlack from '../assets/infomo_logo_black.png'; // Import IN-FOMO black logo
 import galinfoBg from '../assets/galinfo_bg.png'; // Corrected import for GalInfo background image
 import infomoBg from '../assets/infomo_bg.png'; // Import IN-FOMO background image
