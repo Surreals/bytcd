@@ -5,16 +5,8 @@
 /* Hubot Sans font definition */
 @font-face {
   font-family: 'Hubot Sans';
-  src: url('/src/assets/fonts/Hubot_Sans/HubotSans-VariableFont_wdth,wght.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-/* Archivo Black font definition */
-@font-face {
-  font-family: 'Archivo Black';
-  src: url('/src/assets/fonts/Archivo_Black/ArchivoBlack-Regular.ttf') format('truetype');
-  font-weight: 400; /* Archivo Black is typically a single, bold weight */
+  src: url('/src/assets/fonts/Hubot_Sans/HubotSans-VariableFont_wdth,wght.ttf') format('truetype-variations'); /* Updated path and format */
+  font-weight: 100 900; /* Define the range of weights available in the variable font */
   font-display: swap;
 }
 
@@ -23,29 +15,30 @@ html {
 }
 
 * {
-  cursor: none !important;
+  cursor: none !important; /* Hide default cursor for all elements, overriding other styles */
 }
 
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
+  width: 20px; /* Size of the cursor */
   height: 20px;
-  background-color: #007bff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.02s ease-out;
-  mix-blend-mode: difference;
+  background-color: #007bff; /* Blue color, matching existing theme */
+  border-radius: 50%; /* Make it a circle */
+  pointer-events: none; /* Ensure it doesn't block clicks */
+  z-index: 9999; /* High z-index to be on top */
+  transition: transform 0.02s ease-out; /* Smooth movement, reduced from 0.1s to 0.02s */
+  mix-blend-mode: difference; /* Optional: for interesting visual effect over different backgrounds */
 }
 
+/* Media query for mobile devices (screens smaller than 768px, Tailwind's 'md' breakpoint) */
 @media (max-width: 767px) {
   * {
-    cursor: auto !important;
+    cursor: auto !important; /* Show default cursor on mobile */
   }
 
   .custom-cursor {
-    display: none;
+    display: none; /* Hide the custom cursor element entirely on mobile */
   }
 }

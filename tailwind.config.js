@@ -1,7 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -9,8 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'hubot-sans': ['Hubot Sans', ...defaultTheme.fontFamily.sans],
-        'archivo-black': ['Archivo Black', ...defaultTheme.fontFamily.sans], // Додано Archivo Black
+        'hubot-sans': ['Hubot Sans', 'sans-serif'], // Changed to Hubot Sans
       },
     },
   },
