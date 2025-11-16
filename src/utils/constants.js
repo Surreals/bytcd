@@ -1,8 +1,9 @@
 import carbookImage from '../assets/carbook_bg.jpg'; // Updated import for carbook_bg
 import galinfoLogo from '../assets/galinfo_logo.avif'; // Import GalInfo logo
-import infomoLogo from '../assets/infomo_logo.png'; // Import IN-FOMO logo
-import galinfoBg from '../assets/galinfo_bg.avif'; // Import GalInfo background image
+import infomoLogo from '../assets/assets/infomo_logo.png'; // Import IN-FOMO logo
+import galinfoBg from '../assets/galinfo_bg.png'; // Corrected import for GalInfo background image
 import infomoBg from '../assets/infomo_bg.png'; // Import IN-FOMO background image
+import bytcdBg from '../assets/bytcd_bg.png'; // Import BYTCD background image
 
 export const mainLinks = [
     {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
@@ -59,7 +60,7 @@ export const clientProjects = [
     id: 'galinfo',
     title: 'GalInfo',
     description: 'Leading Ukrainian news portal with a focus on regional and national news.',
-    image: galinfoBg, // Using the new background image
+    image: galinfoBg, // Using the correct background image
     logo: galinfoLogo,
     link: 'https://galinfo.com.ua/',
   },
@@ -67,9 +68,17 @@ export const clientProjects = [
     id: 'in-fomo',
     title: 'IN-FOMO',
     description: 'Innovative platform for market research and consumer insights.',
-    image: infomoBg, // Using the new background image
+    image: infomoBg, // Using the correct background image
     logo: infomoLogo,
     link: 'https://in-fomo.com/',
+  },
+  {
+    id: 'bytcd-internal',
+    title: 'BYTCD Internal Project',
+    description: 'An internal project showcasing our capabilities in design and development.',
+    image: bytcdBg, // Using the new BYTCD background image
+    logo: '/icon.svg', // Using the BYTCD icon as the logo
+    link: '#',
   },
   {
     id: 'project-3',
