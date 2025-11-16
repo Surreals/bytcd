@@ -5,6 +5,7 @@ import galinfoBg from '../assets/galinfo_bg.png'; // Corrected import for GalInf
 import infomoBg from '../assets/infomo_bg.png'; // Import IN-FOMO background image
 import bytcdBg from '../assets/bytcd_bg.png'; // Import BYTCD background image
 import bytcdWhiteLogo from '../assets/logo/bytcd_white.png'; // Import BYTCD white logo
+import bytcdGrayLogo from '../assets/bytcd_gray.png'; // Import BYTCD gray logo
 
 export const mainLinks = [
     {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
@@ -78,7 +79,7 @@ export const clientProjects = [
     title: 'BYTCD Internal Project',
     description: 'An internal project showcasing our capabilities in design and development.',
     image: bytcdBg, // Using the new BYTCD background image
-    logo: bytcdWhiteLogo, // Using the BYTCD white logo
+    logo: bytcdGrayLogo, // Using the BYTCD gray logo
     link: '#',
   },
   // {
