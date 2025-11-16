@@ -1,4 +1,6 @@
 import carbookImage from '../assets/carbook.jpg'; // Assuming the image is named carbook.jpg in src/assets
+import galinfoLogo from '../assets/galinfo_logo.avif'; // Import GalInfo logo
+import infomoLogo from '../assets/infomo_logo.png'; // Import IN-FOMO logo
 
 export const mainLinks = [
     {name: 'instagram', url: 'https://www.instagram.com/bytcd.co/'},
@@ -51,14 +53,22 @@ export const clientProjects = [
     logo: 'https://shelfy.com.ua/wp-content/uploads/2024/05/carbook.png', // Placeholder logo
     link: 'https://carbook.mobi/',
   },
-  // {
-  //   id: 'project-2',
-  //   title: 'Mobile App Development',
-  //   description: 'Intuitive iOS and Android application for seamless on-the-go access to services.',
-  //   image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   logo: 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Mobile+Logo', // Placeholder logo
-  //   link: '#',
-  // },
+  {
+    id: 'galinfo',
+    title: 'GalInfo',
+    description: 'Leading Ukrainian news portal with a focus on regional and national news.',
+    image: 'https://images.unsplash.com/photo-1495020689067-9588a6b703e5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image
+    logo: galinfoLogo,
+    link: 'https://galinfo.com.ua/',
+  },
+  {
+    id: 'in-fomo',
+    title: 'IN-FOMO',
+    description: 'Innovative platform for market research and consumer insights.',
+    image: 'https://images.unsplash.com/photo-1526628953301-3e589a6a0474?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image
+    logo: infomoLogo,
+    link: 'https://in-fomo.com/',
+  },
   {
     id: 'project-3',
     title: 'Brand Identity & Website',
@@ -67,12 +77,4 @@ export const clientProjects = [
     logo: '/icon.svg', // Using the BYTCD icon as the logo
     link: '#',
   },
-  // {
-  //   id: 'project-4',
-  //   title: 'SaaS Platform UI/UX',
-  //   description: 'Streamlined user interface and experience design for a complex B2B SaaS application.',
-  //   image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  //   logo: 'https://via.placeholder.com/150/008000/FFFFFF?text=SaaS+Logo', // Placeholder logo
-  //   link: '#',
-  // },
 ];
