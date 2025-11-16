@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'hubot-sans': ['Hubot Sans', 'sans-serif'], // Changed to Hubot Sans
+        'hubot-sans': ['Hubot Sans', 'sans-serif'],
+        sans: ['Hubot Sans', 'sans-serif'], // Set Hubot Sans as the default sans-serif font
       },
     },
   },
