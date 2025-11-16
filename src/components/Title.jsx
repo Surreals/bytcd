@@ -119,7 +119,7 @@ const Title = () => {
   return (
     <motion.h1
       ref={titleRef}
-      className="font-hubot-sans uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Changed to font-hubot-sans
+      className="font-hubot-sans font-extrabold uppercase text-8xl md:text-9xl tracking-wides flex justify-center items-center" // Added font-extrabold
       style={{ perspective: 1000 }} // Apply perspective to the container
     >
       {characters.map((char, i) => (
