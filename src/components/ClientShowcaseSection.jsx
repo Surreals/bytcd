@@ -27,7 +27,7 @@ const ClientShowcaseSection = ({ id }) => {
         {clientProjects.map((project) => (
           <div
             key={project.id}
-            className="w-full aspect-video bg-neutral-800 rounded-xl overflow-hidden shadow-lg"
+            className="w-full aspect-video bg-black rounded-xl overflow-hidden shadow-lg" // Повернуто на bg-black
           >
             <ClientCard3D project={project} />
           </div>
