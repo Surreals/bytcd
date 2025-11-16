@@ -11,7 +11,7 @@ const ClientCard3D = ({ project }) => { // Removed onClick prop
         src={project.logo}
         alt={`${project.title} Logo`}
         className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0 bg-gray-300 ${
-          project.id === 'in-fomo' ? 'p-12' : 'p-8' // Apply p-12 for IN-FOMO, p-8 for others
+          project.id === 'in-fomo' ? 'p-12' : project.id === 'carbook' ? 'p-4' : 'p-8' // Apply p-12 for IN-FOMO, p-4 for Carbook, p-8 for others
         }`}
         loading="lazy" // Defer loading until needed
         decoding="async" // Decode asynchronously
