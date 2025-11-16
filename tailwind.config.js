@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'archivo-black': ['Archivo Black', 'sans-serif'],
+        'hubot-sans': ['Hubot Sans', 'sans-serif'], // Changed to Hubot Sans
       },
     },
   },
