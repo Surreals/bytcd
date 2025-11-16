@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isScrolledToTop, setIsScrolledToTop] = useState(true); // New state for scroll position
   const lastScrollY = useRef(0); // Ref to store the last scroll position
   const location = useLocation();
+  
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
