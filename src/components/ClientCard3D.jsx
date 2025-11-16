@@ -1,39 +1,43 @@
+"use client";
+
 import React from 'react';
-import { Link } from 'react-router-dom'; // Assuming Link is used for navigation
-import { ArrowUpRight } from 'lucide-react'; // Assuming Lucide React is used for icons
+import { Link } from 'react-router-dom'; // Import Link for project link
 
-const ClientCard3D = ({ project }) => {
+const ClientCard3D = ({ project }) => { // Removed onClick prop
   return (
-    <div className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg group perspective-1000">
-      {/* Front of the card: Logo and Title */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 text-white p-4 rounded-xl backface-hidden transition-all duration-500 transform-gpu group-hover:rotateY-180">
-        {project.logo && (
-          <img src={project.logo} alt={`${project.title} Logo`} className="h-16 object-contain mb-4" />
-        )}
-        <h3 className="text-xl font-semibold text-center">{project.title}</h3>
-      </div>
+    <div className="block w-full h-full relative group cursor-pointer overflow-hidden rounded-xl shadow-lg">
+      {/* Default state: Logo */}
+      <img
+        src={project.logo}
+        alt={`${project.title} Logo`}
+        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0 bg-gray-300 ${
+          project.id === 'in-fomo' ? 'p-12' : 'p-8' // Apply p-12 for IN-FOMO, p-8 for others
+        }`}
+        loading="lazy" // Defer loading until needed
+        decoding="async" // Decode asynchronously
+      />
 
-      {/* Back of the card: Project Image, Title, Description, and Link */}
+      {/* Hover state: Project Image, Title, Description, and Link */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-cover bg-center rounded-xl backface-hidden transition-all duration-500 transform-gpu rotateY-180 group-hover:rotateY-0"
+        className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-black bg-opacity-80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url(${project.image})`,
+          backgroundImage: `url(${project.image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          backgroundBlendMode: 'overlay', // Blend the image with the black overlay
         }}
       >
-        <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-        <p className="text-sm text-gray-300 mb-4 line-clamp-3">{project.description}</p>
-        {project.link && (
-          <Link
-            to={project.link}
+        <h3 className="text-white text-2xl md:text-3xl font-bold mb-2">{project.title}</h3>
+        <p className="text-gray-300 text-base md:text-lg mb-4 font-light" dangerouslySetInnerHTML={{ __html: project.description }}></p>
+        {project.link && project.link !== '#' && (
+          <a
+            href={project.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
           >
-            View Project
-            <ArrowUpRight className="ml-2 h-4 w-4" />
-          </Link>
+            Visit Project
+          </a>
         )}
       </div>
     </div>
