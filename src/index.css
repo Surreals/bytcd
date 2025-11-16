@@ -5,7 +5,7 @@
 /* Hubot Sans font definition */
 @font-face {
   font-family: 'Hubot Sans';
-  src: url('/src/assets/fonts/Hubot-Sans-Variable.woff2') format('woff2-variations'); /* You need to download and place Hubot-Sans-Variable.woff2 in src/assets/fonts */
+  src: url('/src/assets/fonts/Hubot_Sans/HubotSans-VariableFont_wdth,wght.ttf') format('truetype-variations'); /* Updated path and format */
   font-weight: 100 900; /* Define the range of weights available in the variable font */
   font-display: swap;
 }
