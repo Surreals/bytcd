@@ -2,9 +2,25 @@
 
 import React, { useState } from 'react';
 import { showSuccess, showError, showLoading, dismissToast } from '../utils/toast'; // Import toast utilities
-import { db } from '../firebase'; // Import Firestore instance
-import { collection, addDoc, Timestamp } from 'firebase/firestore'; // Import Firestore functions
+import { getFunctions, httpsCallable } from 'firebase/functions'; // Import Firebase Functions
+import { initializeApp } from 'firebase/app'; // Import initializeApp
 import { Loader2 } from 'lucide-react'; // Import Loader2 icon for spinner
+
+// Your web app's Firebase configuration (same as in src/firebase.js)
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+};
+
+// Initialize Firebase app if not already initialized (to get functions instance)
+const app = initializeApp(firebaseConfig);
+const functions = getFunctions(app); // Get a reference to the functions service
+const submitContactForm = httpsCallable(functions, 'submitContactForm'); // Get the callable function
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -27,25 +43,12 @@ const ContactForm = () => {
     setIsSubmitting(true);
     const loadingToastId = showLoading('Sending your message...');
 
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      dismissToast(loadingToastId);
-      showError('Please fill in all fields.');
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Add a new document with a generated ID to the "messages" collection
-      await addDoc(collection(db, 'messages'), {
-        name: formData.name,
-        email: formData.email,
-        message: formData.message,
-        timestamp: Timestamp.now(), // Add a timestamp
-      });
+      // Call the Cloud Function
+      const result = await submitContactForm(formData);
 
       dismissToast(loadingToastId);
-      showSuccess('Your message has been sent successfully!');
+      showSuccess(result.data.message); // Display success message from the function
 
       // Reset form
       setFormData({
@@ -54,9 +57,10 @@ const ContactForm = () => {
         message: '',
       });
     } catch (error) {
-      console.error('Error sending message: ', error);
+      console.error('Error sending message via Cloud Function: ', error);
       dismissToast(loadingToastId);
-      showError('Failed to send message. Please try again.');
+      // Display error message from the Cloud Function or a generic one
+      showError(error.message || 'Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

@@ -17,6 +17,8 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "firebase": "^10.9.0",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
     "firebase-tools": "^13.5.2",
     "framer-motion": "^12.23.5",
     "gsap": "^3.13.0",
