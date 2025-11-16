@@ -7,8 +7,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'hubot-sans': ['Hubot Sans', 'sans-serif'], // Changed to Hubot Sans
+        'hubot-sans': ['Hubot Sans', 'sans-serif'],
+        'archivo-black': ['Archivo Black', 'sans-serif'], // Додано Archivo Black
       },
+      letterSpacing: {
+        'wides': '.2em', // Custom tracking-wides class
+      }
     },
   },
   plugins: [],
