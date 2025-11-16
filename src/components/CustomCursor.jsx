@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(true); // New state to control visibility
+  const [isVisible, setIsVisible] = useState(false); // Змінено на false, щоб приховати курсор за замовчуванням
 
   useEffect(() => {
     const updateCursorPosition = (e) => {
@@ -12,11 +12,11 @@ const CustomCursor = () => {
     };
 
     const handleMouseEnter = () => {
-      setIsVisible(true); // Show cursor when mouse enters the document
+      setIsVisible(true); // Показати курсор, коли миша входить у документ
     };
 
     const handleMouseLeave = () => {
-      setIsVisible(false); // Hide cursor when mouse leaves the document
+      setIsVisible(false); // Приховати курсор, коли миша залишає документ
     };
 
     document.addEventListener('mousemove', updateCursorPosition);
@@ -32,7 +32,7 @@ const CustomCursor = () => {
 
   return (
     <div
-      className={`custom-cursor ${isVisible ? '' : 'hidden'}`} // Add 'hidden' class based on isVisible state
+      className={`custom-cursor ${isVisible ? '' : 'hidden'}`} // Додати клас 'hidden' на основі стану isVisible
       style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
     ></div>
   );
