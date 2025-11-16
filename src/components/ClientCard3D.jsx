@@ -10,7 +10,7 @@ const ClientCard3D = ({ project }) => { // Removed onClick prop
       <img
         src={project.logo}
         alt={`${project.title} Logo`}
-        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0 bg-black filter brightness(0) invert(1) ${ // Changed bg-gray-300 to bg-black and added filter
+        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0 filter invert(1) brightness(0.7) ${ // Removed bg-black and adjusted filter for gray color
           project.id === 'in-fomo' ? 'p-8' : project.id === 'galinfo' ? 'p-20' : project.id === 'carbook' ? 'p-4' : 'p-8' // Apply p-8 for IN-FOMO, p-20 for GalInfo, p-4 for Carbook, p-8 for others
         }`}
         loading="lazy" // Defer loading until needed
