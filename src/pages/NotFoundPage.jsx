@@ -3,10 +3,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Frown } from 'lucide-react'; // Import an icon
+import SEO from '../components/SEO';
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center p-8 text-center">
+      <SEO
+        title="404 - Page Not Found | BYTCD"
+        description="The page you're looking for doesn't exist. Return to BYTCD homepage."
+        url="https://bytcd.com/404"
+        type="website"
+      />
       <Frown size={80} className="text-gray-500 mb-8" />
       <h1 className="text-5xl md:text-7xl font-bold mb-4">404</h1>
       <h2 className="text-2xl md:text-3xl font-semibold mb-6">Page Not Found</h2>

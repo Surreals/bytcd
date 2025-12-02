@@ -5,12 +5,19 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Navbar, Links, ContactForm } from '../components';
 import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
+import SEO from '../components/SEO';
 
 const ContactUsPage = () => {
   const { ref, inView } = useAnimatedSection();
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">
+      <SEO
+        title="Contact Us - BYTCD | Get in Touch"
+        description="Get in touch with BYTCD. We'd love to hear from you! Whether you have a project in mind, a question, or just want to say hello, feel free to reach out."
+        keywords="contact BYTCD, web development contact, UI/UX design contact, digital design services, get in touch"
+        url="https://bytcd.com/contact-us"
+      />
       {/* Header/Info Section - Replaced with Navbar */}
       <Navbar />
 

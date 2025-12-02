@@ -1,0 +1,22 @@
+# robots.txt for BYTCD
+# https://bytcd.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+
+# Allow important assets
+Allow: /logo.png
+Allow: /icon.svg
+Allow: /fonts/
+
+# Sitemap location
+Sitemap: https://bytcd.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+

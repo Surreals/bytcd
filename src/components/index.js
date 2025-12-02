@@ -17,6 +17,7 @@ import ClientShowcaseSection from "./ClientShowcaseSection";
 import ClientCard3D from "./ClientCard3D";
 import FlappyBlockGame from "./FlappyBlockGame";
 import CustomCursor from "./CustomCursor"; // New import
+import SEO from "./SEO"; // SEO component
 
 export {
     Links,
@@ -38,4 +39,5 @@ export {
     ClientCard3D,
     FlappyBlockGame,
     CustomCursor, // New export
+    SEO, // SEO component export
 }
