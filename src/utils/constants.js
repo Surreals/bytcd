@@ -66,14 +66,14 @@ export const clientProjects = [
     logo: galinfoLogoGood,
     link: 'https://galinfo.com.ua/',
   },
-  {
-    id: 'in-fomo',
-    title: 'IN-FOMO',
-    description: 'Innovative platform for market research and consumer insights.',
-    image: infomoBg, // Using the correct background image
-    logo: infomoLogoBlack,
-    link: 'https://in-fomo.com/',
-  },
+  // {
+  //   id: 'in-fomo',
+  //   title: 'IN-FOMO',
+  //   description: 'Innovative platform for market research and consumer insights.',
+  //   image: infomoBg, // Using the correct background image
+  //   logo: infomoLogoBlack,
+  //   link: 'https://in-fomo.com/',
+  // },
   {
     id: 'bytcd-internal',
     title: 'BYTCD Internal Project',
