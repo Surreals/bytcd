@@ -1,43 +1,33 @@
-import Links  from "./Links";
-import Title  from "./Title";
-import Info  from "./Info";
-import ThreeDShowcase from "./ThreeDShowcase";
-import HeroSection from "./HeroSection";
-import ThreeDShowcaseSection from "./ThreeDShowcaseSection";
-import AboutSection from "./AboutSection";
-import ServicesSection from "./ServicesSection";
-import ContactSection from "./ContactSection";
-import ServiceCard from "./ServiceCard";
-import AnimatedBackground from "./AnimatedBackground";
-import ContactForm from "./ContactForm";
-import Navbar from "./Navbar";
-import BackToTopButton from "./BackToTopButton";
-import ProcessSection from "./ProcessSection";
-import ClientShowcaseSection from "./ClientShowcaseSection";
-import ClientCard3D from "./ClientCard3D";
-import FlappyBlockGame from "./FlappyBlockGame";
-import CustomCursor from "./CustomCursor"; // New import
-import SEO from "./SEO"; // SEO component
+import Links from './Links';
+import HeroSection from './HeroSection';
+import AboutSection from './AboutSection';
+import ServicesSection from './ServicesSection';
+import ContactSection from './ContactSection';
+import ContactForm from './ContactForm';
+import Navbar from './Navbar';
+import BackToTopButton from './BackToTopButton';
+import ProcessSection from './ProcessSection';
+import ClientShowcaseSection from './ClientShowcaseSection';
+import CustomCursor from './CustomCursor';
+import SEO from './SEO';
+import Marquee from './Marquee';
+import PlaygroundSection from './PlaygroundSection';
+import EasterEggs from './EasterEggs';
 
 export {
-    Links,
-    Title,
-    Info,
-    ThreeDShowcase,
-    HeroSection,
-    ThreeDShowcaseSection,
-    AboutSection,
-    ServicesSection,
-    ContactSection,
-    ServiceCard,
-    AnimatedBackground,
-    ContactForm,
-    Navbar,
-    BackToTopButton,
-    ProcessSection,
-    ClientShowcaseSection,
-    ClientCard3D,
-    FlappyBlockGame,
-    CustomCursor, // New export
-    SEO, // SEO component export
-}
+  Links,
+  HeroSection,
+  AboutSection,
+  ServicesSection,
+  ContactSection,
+  ContactForm,
+  Navbar,
+  BackToTopButton,
+  ProcessSection,
+  ClientShowcaseSection,
+  CustomCursor,
+  SEO,
+  Marquee,
+  PlaygroundSection,
+  EasterEggs,
+};

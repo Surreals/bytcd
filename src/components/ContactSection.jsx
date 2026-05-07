@@ -1,38 +1,14 @@
-"use client";
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
-import { Mail } from 'lucide-react'; // Import Mail icon
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom';
 
-const ContactSection = ({ id }) => { // Accept id prop
-  const { ref, inView } = useAnimatedSection();
-
-  return (
-    <motion.section
-      ref={ref}
-      id={id}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={sectionVariants}
-      className="bg-black text-white p-8 md:p-16 py-24"
-    >
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8">Get in Touch</h2>
-        <p className="text-lg md:text-2xl mb-12 font-light">
-          Ready to start your next project? Let's create something amazing together.
-        </p>
-        <Link
-          to="/contact-us"
-          className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full text-xl font-semibold hover:bg-blue-500 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          <Mail size={24} />
-          Contact Us
-        </Link>
-      </div>
-    </motion.section>
-  );
-};
+const ContactSection = ({ id }) => (
+  <section className="cta" id={id}>
+    <h2>let's <em>build</em><br />something.</h2>
+    <Link to="/contact-us" className="big">→ START A PROJECT</Link>
+    <div style={{ marginTop: 24, fontSize: 11, color: 'color-mix(in oklab,var(--paper) 60%,transparent)' }}>
+      or hi@bytcd.com · we reply within a day
+    </div>
+  </section>
+);
 
 export default ContactSection;

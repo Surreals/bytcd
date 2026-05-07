@@ -1,40 +1,51 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isVisible, setIsVisible] = useState(false); // Змінено на false, щоб приховати курсор за замовчуванням
+  const ringRef = useRef(null);
+  const dotRef = useRef(null);
 
   useEffect(() => {
-    const updateCursorPosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    if (window.matchMedia('(max-width: 780px)').matches) return;
+    let x = 0, y = 0, tx = 0, ty = 0, raf;
+    const onMove = (e) => {
+      tx = e.clientX; ty = e.clientY;
+      if (dotRef.current) dotRef.current.style.transform = `translate(${tx - 2}px,${ty - 2}px)`;
     };
-
-    const handleMouseEnter = () => {
-      setIsVisible(true); // Показати курсор, коли миша входить у документ
+    const tick = () => {
+      x += (tx - x) * 0.2; y += (ty - y) * 0.2;
+      if (ringRef.current) ringRef.current.style.transform = `translate(${x - 12}px,${y - 12}px)`;
+      raf = requestAnimationFrame(tick);
     };
+    window.addEventListener('mousemove', onMove);
+    tick();
 
-    const handleMouseLeave = () => {
-      setIsVisible(false); // Приховати курсор, коли миша залишає документ
+    const hoverSel = 'a, button, [data-cursor-hover], .work-row, .svc-card, .person, [data-block]';
+    const enter = () => ringRef.current?.classList.add('is-hover');
+    const leave = () => ringRef.current?.classList.remove('is-hover');
+    const wire = () => {
+      document.querySelectorAll(hoverSel).forEach((el) => {
+        if (el.dataset.cursorWired) return;
+        el.dataset.cursorWired = '1';
+        el.addEventListener('mouseenter', enter);
+        el.addEventListener('mouseleave', leave);
+      });
     };
-
-    document.addEventListener('mousemove', updateCursorPosition);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    wire();
+    const mo = new MutationObserver(wire);
+    mo.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      document.removeEventListener('mousemove', updateCursorPosition);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(raf);
+      mo.disconnect();
     };
   }, []);
 
   return (
-    <div
-      className={`custom-cursor ${isVisible ? '' : 'hidden'}`} // Додати клас 'hidden' на основі стану isVisible
-      style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
-    ></div>
+    <>
+      <div ref={ringRef} className="cursor-ring" />
+      <div ref={dotRef} className="cursor-dot" />
+    </>
   );
 };
 

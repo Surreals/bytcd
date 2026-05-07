@@ -1,29 +1,49 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
-import Title from './Title';
-import AnimatedBackground from './AnimatedBackground';
+import React, { useEffect, useState } from 'react';
 
 const HeroSection = ({ id }) => {
-  const { ref, inView } = useAnimatedSection();
+  const [time, setTime] = useState('— : —');
+
+  useEffect(() => {
+    const tick = () => setTime(new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' WET');
+    tick();
+    const i = setInterval(tick, 30000);
+    return () => clearInterval(i);
+  }, []);
+
+  useEffect(() => {
+    document.querySelectorAll('#bytcd-hero-title [data-ch]').forEach((el, i) => {
+      el.style.transform = 'translateY(110%)';
+      el.style.transition = `transform .9s cubic-bezier(.2,.8,.2,1) ${i * .09 + .1}s`;
+      requestAnimationFrame(() => { el.style.transform = 'translateY(0)'; });
+    });
+  }, []);
 
   return (
-    <motion.section
-      ref={ref}
-      id={id}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={sectionVariants}
-      className="relative flex flex-col items-center justify-center min-h-screen bg-white text-black p-4 md:p-8 overflow-hidden"
-    >
-      <AnimatedBackground />
-      <div className="relative z-10 flex flex-col items-center justify-center">
-        <Title />
-        <p className="mt-8 text-xl md:text-3xl font-light text-center max-w-3xl leading-relaxed">
-          Crafting <span className="font-medium hover:text-blue-600 transition-colors">unique</span> and <span className="font-medium hover:text-blue-600 transition-colors">convenient</span> design and development solutions for your digital presence.
-        </p>
+    <header id={id} className="hero">
+      <div className="meta-row">
+        <div><b>STUDIO</b>independent · est. 2021</div>
+        <div><b>STACK</b>code · design · web</div>
+        <div><b>STATUS</b>{time} · online</div>
+        <div><b>NEXT SLOT</b>q3 · 2026</div>
       </div>
-    </motion.section>
+
+      <h1 className="hero-title" id="bytcd-hero-title">
+        <span className="ln"><span data-ch>BYTE‑</span></span>
+        <span className="ln"><span data-ch><em>sized</em><span className="accent-bar" /></span></span>
+        <span className="ln"><span data-ch>STUDIO.</span></span>
+      </h1>
+
+      <div className="hero-sub">
+        <p>We build websites, products and identities with the care of a typesetter and the speed of a <span className="hl">make file</span>. Three humans. One pipeline. Zero stock components.</p>
+        <a href="#contact" className="hero-cta" onClick={(e) => {
+          e.preventDefault();
+          const el = document.getElementById('contact');
+          if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: 'smooth' });
+        }}>start a project <span className="arrow">→</span></a>
+      </div>
+
+      <div className="scroll-mark">scroll · 8 live demos below</div>
+    </header>
   );
 };
 

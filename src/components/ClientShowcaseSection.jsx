@@ -1,39 +1,42 @@
-"use client";
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
-import ClientCard3D from './ClientCard3D';
-import { clientProjects } from '../utils/constants';
+
+const projects = [
+  { yr: '25', name: 'Carbook.pro', tag: 'design + dev', cat: 'SERVICE STATION CRM · WEB APP', link: 'https://carbook.mobi/' },
+  { yr: '25', name: 'GalInfo', tag: 'design + web', cat: 'NEWS PORTAL · EDITORIAL', link: 'https://galinfo.com.ua/' },
+  { yr: '24', name: 'Brand Identity', tag: 'identity', cat: 'VISUAL IDENTITY · PRINT' },
+  { yr: '24', name: 'Web Platform', tag: 'web + code', cat: 'SAAS · LANDING PAGE' },
+  { yr: '23', name: 'Mobile App', tag: 'design + code', cat: 'iOS · PRODUCT' },
+  { yr: '23', name: 'E-commerce', tag: 'web', cat: 'D2C · SHOPIFY' },
+  { yr: '22', name: 'Design System', tag: 'design system', cat: 'INTERNAL TOOLS · SAAS' },
+  { yr: '21', name: 'Brand & Site', tag: 'identity + site', cat: 'STARTUP · LAUNCH' },
+];
 
 const ClientShowcaseSection = ({ id }) => {
-  const { ref, inView } = useAnimatedSection();
-
+  const open = (link) => { if (link) window.open(link, '_blank', 'noopener,noreferrer'); };
   return (
-    <motion.section
-      ref={ref}
-      id={id}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={sectionVariants}
-      className="bg-black text-white p-8 md:p-16 py-24 flex flex-col items-center justify-center relative overflow-hidden"
-    >
-      <h2 className="text-4xl md:text-6xl font-bold mb-12 text-center z-10">Our Partners</h2>
-      <p className="text-lg md:text-2xl mb-16 text-center max-w-3xl font-light z-10">
-        Explore some of our recent projects that blend innovative design with robust development.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8 w-full max-w-6xl z-0">
-        {clientProjects.map((project) => (
+    <>
+      <div className="sec-head" id={id}>
+        <h2>selected <em>work</em></h2>
+        <div className="meta">2021 — 2026 · 8 PROJECTS<br />REAL CLIENTS · LIVE LINKS</div>
+      </div>
+      <section className="work-list">
+        {projects.map((p) => (
           <div
-            key={project.id}
-            className="w-full aspect-video bg-black rounded-xl overflow-hidden shadow-lg" // Повернуто на bg-black
+            key={p.name}
+            className="work-row"
+            data-cursor-hover={p.link ? '1' : undefined}
+            onClick={() => open(p.link)}
+            style={{ cursor: p.link ? 'pointer' : 'default' }}
           >
-            <ClientCard3D project={project} />
+            <div className="yr">'{p.yr}</div>
+            <div className="name" dangerouslySetInnerHTML={{ __html: p.name.replace(/&/g, '<em>&amp;</em>') }} />
+            <div className="tags">{p.tag}</div>
+            <div className="tags">{p.cat}</div>
+            <div className="arrow">↗</div>
           </div>
         ))}
-      </div>
-    </motion.section>
+      </section>
+    </>
   );
 };
 

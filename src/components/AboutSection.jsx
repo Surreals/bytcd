@@ -1,37 +1,45 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import useAnimatedSection, { sectionVariants } from '../hooks/useAnimatedSection';
+import { Link } from 'react-router-dom';
 
-const textVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut", delay: 0.3 } }, // Added delay
-};
+const team = [
+  { letter: 'a', name: 'Ana Silva', role: 'Design / co-founder' },
+  { letter: 'm', name: 'Marc Petrov', role: 'Code / co-founder' },
+  { letter: 'k', name: 'Kira Okafor', role: 'Web / engineer' },
+];
 
-const AboutSection = ({ id }) => { // Accept id prop
-  const { ref, inView } = useAnimatedSection();
-
-  return (
-    <motion.section
-      ref={ref}
-      id={id}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={sectionVariants}
-      className="bg-black text-white p-8 md:p-16 py-24"
-    >
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8">About BYTCD</h2>
-        <motion.p
-          variants={textVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="text-lg md:text-2xl leading-relaxed font-light"
-        >
-          BYTCD is a creative studio specializing in <strong>bespoke design</strong> and <strong>robust development</strong>. We transform ideas into <strong>stunning digital experiences</strong>, focusing on <strong>user-centric design</strong> and <strong>cutting-edge technology</strong> to deliver solutions that <strong>stand out</strong>.
-        </motion.p>
+const AboutSection = ({ id }) => (
+  <>
+    <div className="sec-head" id={id}>
+      <h2>who we <em>are</em></h2>
+      <div className="meta">THREE PEOPLE · LISBON / NYC<br />HIRING · 2026</div>
+    </div>
+    <section className="about">
+      <div>
+        <h3>A studio of <em>three</em>.</h3>
+        <p>BYTCD is a small, independent practice for code, design and the web. We started in 2021 and we still answer our own emails. Every project is led by the people who'll build it — no account managers, no junior hand-offs.</p>
+        <p>We charge fixed prices, we ship weekly, and we'd rather miss a deadline than miss the point. If we don't think we're the right shop for the job, we'll tell you and recommend someone who is.</p>
+        <p style={{ color: 'var(--mute)', fontSize: 12 }}>↳ <Link style={{ borderBottom: '1px solid currentColor' }} to="/contact-us">read the long version →</Link></p>
       </div>
-    </motion.section>
-  );
-};
+      <div className="team">
+        {team.map((p) => (
+          <div className="person" key={p.letter}>
+            <div className="av">{p.letter}</div>
+            <h5>{p.name}</h5>
+            <p>{p.role}</p>
+          </div>
+        ))}
+        <div className="person" style={{ background: 'var(--ink)', color: 'var(--paper)', borderColor: 'var(--ink)' }}>
+          <div className="av" style={{
+            borderColor: 'rgba(246,245,241,.16)',
+            background: 'repeating-linear-gradient(45deg,rgba(246,245,241,.08) 0,rgba(246,245,241,.08) 1px,transparent 1px,transparent 8px)',
+            color: 'var(--paper)',
+          }}>?</div>
+          <h5 style={{ color: 'var(--paper)' }}>You</h5>
+          <p style={{ color: 'color-mix(in oklab,var(--paper) 60%,transparent)' }}>we're hiring</p>
+        </div>
+      </div>
+    </section>
+  </>
+);
 
 export default AboutSection;
