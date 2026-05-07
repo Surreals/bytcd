@@ -9,7 +9,6 @@ import BackToTopButton from './BackToTopButton';
 import ProcessSection from './ProcessSection';
 import ClientShowcaseSection from './ClientShowcaseSection';
 import CustomCursor from './CustomCursor';
-import SEO from './SEO';
 import Marquee from './Marquee';
 import PlaygroundSection from './PlaygroundSection';
 import EasterEggs from './EasterEggs';
@@ -26,7 +25,6 @@ export {
   ProcessSection,
   ClientShowcaseSection,
   CustomCursor,
-  SEO,
   Marquee,
   PlaygroundSection,
   EasterEggs,

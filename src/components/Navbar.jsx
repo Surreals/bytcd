@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [clicks, setClicks] = useState(0);
@@ -7,7 +10,7 @@ const Navbar = () => {
   const [dark, setDark] = useState(() =>
     document.documentElement.classList.contains('dark')
   );
-  const location = useLocation();
+  const pathname = usePathname();
 
   const onLogoClick = () => {
     setClicks((c) => {
@@ -34,7 +37,7 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => { setOpen(false); }, [pathname]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
@@ -43,7 +46,7 @@ const Navbar = () => {
 
   const handleAnchor = (e, id) => {
     setOpen(false);
-    if (location.pathname !== '/') return;
+    if (pathname !== '/') return;
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) window.scrollTo({ top: el.offsetTop - 30, behavior: 'smooth' });
@@ -56,10 +59,10 @@ const Navbar = () => {
           BYTCD<span className="dot" />
         </div>
         <div className="nav-links">
-          <Link to="/" onClick={(e) => handleAnchor(e, 'work')}>work</Link>
-          <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services</Link>
-          <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process</Link>
-          <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about</Link>
+          <Link href="/" onClick={(e) => handleAnchor(e, 'work')}>work</Link>
+          <Link href="/" onClick={(e) => handleAnchor(e, 'services')}>services</Link>
+          <Link href="/" onClick={(e) => handleAnchor(e, 'process')}>process</Link>
+          <Link href="/" onClick={(e) => handleAnchor(e, 'about')}>about</Link>
           <button
             className="theme-btn"
             aria-label={dark ? 'switch to light mode' : 'switch to dark mode'}
@@ -67,7 +70,7 @@ const Navbar = () => {
           >
             {dark ? '○' : '●'}
           </button>
-          <Link to="/contact-us" className="nav-pill">
+          <Link href="/contact-us" className="nav-pill">
             <span className="pulse" aria-hidden="true" />
             <span>open</span>
             <span className="nav-pill-sep" aria-hidden="true">
@@ -87,11 +90,11 @@ const Navbar = () => {
       </nav>
 
       <div className={`mobile-sheet open${open ? ' on' : ''}`} aria-hidden={!open}>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'work')}>work <span className="arr">→</span></Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services <span className="arr">→</span></Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process <span className="arr">→</span></Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about <span className="arr">→</span></Link>
-        <Link to="/contact-us" onClick={() => setOpen(false)}><em>contact</em> <span className="arr">↗</span></Link>
+        <Link href="/" onClick={(e) => handleAnchor(e, 'work')}>work <span className="arr">→</span></Link>
+        <Link href="/" onClick={(e) => handleAnchor(e, 'services')}>services <span className="arr">→</span></Link>
+        <Link href="/" onClick={(e) => handleAnchor(e, 'process')}>process <span className="arr">→</span></Link>
+        <Link href="/" onClick={(e) => handleAnchor(e, 'about')}>about <span className="arr">→</span></Link>
+        <Link href="/contact-us" onClick={() => setOpen(false)}><em>contact</em> <span className="arr">↗</span></Link>
         <div className="ms-foot">
           <span>BYTCD © {new Date().getFullYear()}</span>
           <button
