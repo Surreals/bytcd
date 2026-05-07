@@ -6,7 +6,8 @@
       "Bash(python -c ' *)",
       "Bash(dir \"C:\\\\Users\\\\maria\\\\Desktop\\\\prj\\\\bytcd\\\\.claude\\\\worktrees\\\\festive-wiles-52ef08\\\\src\")",
       "Bash(git checkout *)",
-      "Bash(rm blocks.js eggs.js main.js tweaks-app.jsx tweaks-panel.jsx)"
+      "Bash(rm blocks.js eggs.js main.js tweaks-app.jsx tweaks-panel.jsx)",
+      "Bash(pnpm build *)"
     ]
   }
 }

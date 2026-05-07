@@ -11,9 +11,9 @@ import { useEffect } from 'react';
  * @param {string} props.type - Open Graph type (default: 'website')
  */
 const SEO = ({
-  title = 'BYTCD - Creative Design & Development Studio',
-  description = 'BYTCD is a creative studio specializing in bespoke design and robust development. We transform ideas into stunning digital experiences, focusing on user-centric design and cutting-edge technology.',
-  keywords = 'web development, UI/UX design, digital design, web design, custom web applications, e-commerce solutions, brand identity, graphic design, digital strategy',
+  title = 'BYTCD — Code · Design · Web',
+  description = 'BYTCD is a byte-sized studio for code, design and the web. Three humans, fixed prices, weekly demos. Selected work: Carbook.pro and GalInfo.',
+  keywords = 'bytcd, web development, ui/ux design, web design, react, vite, brand identity, frontend, backend, custom web applications, carbook, galinfo',
   image = 'https://bytcd.com/logo.png',
   url = 'https://bytcd.com',
   type = 'website',
