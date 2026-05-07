@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const team = [
-  { letter: 'a', name: 'Ana Silva', role: 'Design / co-founder' },
-  { letter: 'm', name: 'Marc Petrov', role: 'Code / co-founder' },
-  { letter: 'k', name: 'Kira Okafor', role: 'Web / engineer' },
+  { letter: 'm', name: 'Marian F', role: 'Code / co-founder' },
+  { letter: 'm', name: 'Mark K', role: 'Design / co-founder' },
+  { letter: 's', name: 'Sergii L', role: 'Web / engineer' },
 ];
 
 const AboutSection = ({ id }) => (
@@ -18,7 +18,7 @@ const AboutSection = ({ id }) => (
         <h3>A studio of <em>three</em>.</h3>
         <p>BYTCD is a small, independent practice for code, design and the web. We started in 2024 and we still answer our own emails. Every project is led by the people who'll build it — no account managers, no junior hand-offs.</p>
         <p>We charge fixed prices, we ship weekly, and we'd rather miss a deadline than miss the point. If we don't think we're the right shop for the job, we'll tell you and recommend someone who is.</p>
-        <p style={{ color: 'var(--mute)', fontSize: 12 }}>↳ <Link style={{ borderBottom: '1px solid currentColor' }} to="/contact-us">read the long version →</Link></p>
+        <p style={{ color: 'var(--mute)', fontSize: 12 }}>↳ <Link style={{ borderBottom: '1px solid currentColor' }} href="/contact-us">read the long version →</Link></p>
       </div>
       <div className="team">
         {team.map((p) => (

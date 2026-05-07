@@ -11,9 +11,9 @@
   --mute:rgba(10,10,10,.55);
   --accent:#ff5a36;
   --accent-ink:#ffffff;
-  --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --mono:'JetBrains Mono Variable','JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --serif:'Instrument Serif', ui-serif, Georgia, serif;
-  --sans:'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --sans:'Space Grotesk Variable','Space Grotesk', ui-sans-serif, system-ui, sans-serif;
 }
 html.dark{
   --paper:#0a0a0a;
