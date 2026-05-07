@@ -9,7 +9,11 @@ const CustomCursor = () => {
     let x = 0, y = 0, tx = 0, ty = 0, raf;
     const onMove = (e) => {
       tx = e.clientX; ty = e.clientY;
-      if (dotRef.current) dotRef.current.style.transform = `translate(${tx - 2}px,${ty - 2}px)`;
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${tx - 2}px,${ty - 2}px)`;
+        dotRef.current.classList.add('ready');
+        ringRef.current?.classList.add('ready');
+      }
     };
     const tick = () => {
       x += (tx - x) * 0.2; y += (ty - y) * 0.2;
