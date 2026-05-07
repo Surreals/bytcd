@@ -7,7 +7,10 @@
       "Bash(dir \"C:\\\\Users\\\\maria\\\\Desktop\\\\prj\\\\bytcd\\\\.claude\\\\worktrees\\\\festive-wiles-52ef08\\\\src\")",
       "Bash(git checkout *)",
       "Bash(rm blocks.js eggs.js main.js tweaks-app.jsx tweaks-panel.jsx)",
-      "Bash(pnpm build *)"
+      "Bash(pnpm build *)",
+      "Bash(git push *)",
+      "Bash(gh pr *)",
+      "PowerShell(gh pr list --head claude/festive-wiles-52ef08 --json url,number)"
     ]
   }
 }
