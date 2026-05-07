@@ -7,7 +7,7 @@ import SEO from '../components/SEO';
 
 const NotFoundPage = () => {
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center p-8 text-center">
+    <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
       <SEO
         title="404 - Page Not Found | BYTCD"
         description="The page you're looking for doesn't exist. Return to BYTCD homepage."

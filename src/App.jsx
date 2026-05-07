@@ -16,7 +16,7 @@ const App = () => {
     <Router>
       <CustomCursor /> {/* Render CustomCursor here globally */}
       <Suspense fallback={
-        <div className="flex items-center justify-center min-h-screen bg-white text-black">
+        <div className="flex items-center justify-center min-h-screen" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
           Loading...
         </div>
       }> {/* Add Suspense for lazy loaded components */}

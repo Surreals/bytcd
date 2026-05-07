@@ -22,15 +22,20 @@ const MagnetBlock = () => {
     fit();
     const onResize = () => fit();
     window.addEventListener('resize', onResize);
-    const onMove = (e) => {
+    const setM = (cx, cy) => {
       const r = stage.getBoundingClientRect();
-      mouse.x = (e.clientX - r.left) * devicePixelRatio;
-      mouse.y = (e.clientY - r.top) * devicePixelRatio;
+      mouse.x = (cx - r.left) * devicePixelRatio;
+      mouse.y = (cy - r.top) * devicePixelRatio;
       mouse.inside = true;
     };
+    const onMove = (e) => setM(e.clientX, e.clientY);
     const onLeave = () => { mouse.inside = false; };
+    const onTouch = (e) => { e.preventDefault(); setM(e.touches[0].clientX, e.touches[0].clientY); };
+    const onTouchEnd = () => { mouse.inside = false; };
     stage.addEventListener('mousemove', onMove);
     stage.addEventListener('mouseleave', onLeave);
+    stage.addEventListener('touchmove', onTouch, { passive: false });
+    stage.addEventListener('touchend', onTouchEnd);
     const tick = () => {
       ctx.clearRect(0, 0, W, H);
       const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#c6ff00';
@@ -53,6 +58,8 @@ const MagnetBlock = () => {
       window.removeEventListener('resize', onResize);
       stage.removeEventListener('mousemove', onMove);
       stage.removeEventListener('mouseleave', onLeave);
+      stage.removeEventListener('touchmove', onTouch);
+      stage.removeEventListener('touchend', onTouchEnd);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -117,14 +124,19 @@ const ParticlesBlock = () => {
     fit();
     const onResize = () => fit();
     window.addEventListener('resize', onResize);
-    const onMove = (e) => {
+    const setM = (cx, cy) => {
       const r = stage.getBoundingClientRect();
-      mouse.x = (e.clientX - r.left) * devicePixelRatio;
-      mouse.y = (e.clientY - r.top) * devicePixelRatio;
+      mouse.x = (cx - r.left) * devicePixelRatio;
+      mouse.y = (cy - r.top) * devicePixelRatio;
     };
+    const onMove = (e) => setM(e.clientX, e.clientY);
     const onLeave = () => { mouse.x = -9e3; mouse.y = -9e3; };
+    const onTouch = (e) => { e.preventDefault(); setM(e.touches[0].clientX, e.touches[0].clientY); };
+    const onTouchEnd = () => { mouse.x = -9e3; mouse.y = -9e3; };
     stage.addEventListener('mousemove', onMove);
     stage.addEventListener('mouseleave', onLeave);
+    stage.addEventListener('touchmove', onTouch, { passive: false });
+    stage.addEventListener('touchend', onTouchEnd);
     const tick = () => {
       ctx.clearRect(0, 0, W, H);
       const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#c6ff00';
@@ -154,6 +166,8 @@ const ParticlesBlock = () => {
       window.removeEventListener('resize', onResize);
       stage.removeEventListener('mousemove', onMove);
       stage.removeEventListener('mouseleave', onLeave);
+      stage.removeEventListener('touchmove', onTouch);
+      stage.removeEventListener('touchend', onTouchEnd);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -232,12 +246,15 @@ const AsciiBlock = () => {
     };
     fit();
     window.addEventListener('resize', fit);
-    const onMove = (e) => {
+    const setM = (cx, cy) => {
       const r = stage.getBoundingClientRect();
-      mouse.x = (e.clientX - r.left) / r.width * cols;
-      mouse.y = (e.clientY - r.top) / r.height * rows;
+      mouse.x = (cx - r.left) / r.width * cols;
+      mouse.y = (cy - r.top) / r.height * rows;
     };
+    const onMove = (e) => setM(e.clientX, e.clientY);
+    const onTouch = (e) => { e.preventDefault(); setM(e.touches[0].clientX, e.touches[0].clientY); };
     stage.addEventListener('mousemove', onMove);
+    stage.addEventListener('touchmove', onTouch, { passive: false });
     const tick = () => {
       t += 0.04;
       let s = '';
@@ -257,6 +274,7 @@ const AsciiBlock = () => {
     return () => {
       window.removeEventListener('resize', fit);
       stage.removeEventListener('mousemove', onMove);
+      stage.removeEventListener('touchmove', onTouch);
       cancelAnimationFrame(raf);
     };
   }, []);

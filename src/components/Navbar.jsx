@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [clicks, setClicks] = useState(0);
+  const [open, setOpen] = useState(false);
   const location = useLocation();
 
   const onLogoClick = () => {
@@ -25,7 +26,16 @@ const Navbar = () => {
     return () => clearTimeout(t);
   }, [clicks]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
+
+  // close sheet on route change
+  useEffect(() => { setOpen(false); }, [location.pathname]);
+
   const handleAnchor = (e, id) => {
+    setOpen(false);
     if (location.pathname !== '/') return;
     e.preventDefault();
     const el = document.getElementById(id);
@@ -33,20 +43,42 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="nav">
-      <div className="logo" id="bytcd-logo" onClick={onLogoClick} title="bit + code">
-        BYTCD<span className="dot" />
+    <>
+      <nav className="nav">
+        <div className="logo" id="bytcd-logo" onClick={onLogoClick} title="bit + code">
+          BYTCD<span className="dot" />
+        </div>
+        <div className="nav-links">
+          <Link to="/" onClick={(e) => handleAnchor(e, 'work')}>work</Link>
+          <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services</Link>
+          <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process</Link>
+          <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about</Link>
+          <Link to="/contact-us" className="nav-pill">
+            <span className="pulse" />open · q3
+          </Link>
+        </div>
+        <button
+          className={`menu-btn${open ? ' on' : ''}`}
+          aria-label="menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span /><span /><span />
+        </button>
+      </nav>
+
+      <div className={`mobile-sheet open${open ? ' on' : ''}`} aria-hidden={!open}>
+        <Link to="/" onClick={(e) => handleAnchor(e, 'work')}>work <span className="arr">→</span></Link>
+        <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services <span className="arr">→</span></Link>
+        <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process <span className="arr">→</span></Link>
+        <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about <span className="arr">→</span></Link>
+        <Link to="/contact-us" onClick={() => setOpen(false)}><em>contact</em> <span className="arr">↗</span></Link>
+        <div className="ms-foot">
+          <span>BYTCD © {new Date().getFullYear()}</span>
+          <span>hi@bytcd.com</span>
+        </div>
       </div>
-      <div className="nav-links">
-        <Link to="/" onClick={(e) => handleAnchor(e, 'work')}>work</Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services</Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process</Link>
-        <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about</Link>
-        <Link to="/contact-us" className="nav-pill">
-          <span className="pulse" />open · q3
-        </Link>
-      </div>
-    </nav>
+    </>
   );
 };
 
