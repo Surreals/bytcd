@@ -1,14 +1,14 @@
 import React from 'react';
 
 const projects = [
-  { yr: '25', name: 'Carbook.pro', tag: 'design + dev', cat: 'SERVICE STATION CRM · WEB APP', link: 'https://carbook.mobi/' },
+  { yr: '26', name: 'Brand & Site', tag: 'identity + site', cat: 'STARTUP · LAUNCH' },
   { yr: '25', name: 'GalInfo', tag: 'design + web', cat: 'NEWS PORTAL · EDITORIAL', link: 'https://galinfo.com.ua/' },
+  { yr: '24', name: 'Carbook.pro', tag: 'design + dev', cat: 'SERVICE STATION CRM · WEB APP', link: 'https://carbook.mobi/' },
   { yr: '24', name: 'Brand Identity', tag: 'identity', cat: 'VISUAL IDENTITY · PRINT' },
-  { yr: '24', name: 'Web Platform', tag: 'web + code', cat: 'SAAS · LANDING PAGE' },
-  { yr: '23', name: 'Mobile App', tag: 'design + code', cat: 'iOS · PRODUCT' },
-  { yr: '23', name: 'E-commerce', tag: 'web', cat: 'D2C · SHOPIFY' },
-  { yr: '22', name: 'Design System', tag: 'design system', cat: 'INTERNAL TOOLS · SAAS' },
-  { yr: '21', name: 'Brand & Site', tag: 'identity + site', cat: 'STARTUP · LAUNCH' },
+  // { yr: '24', name: 'Web Platform', tag: 'web + code', cat: 'SAAS · LANDING PAGE' },
+  // { yr: '23', name: 'Mobile App', tag: 'design + code', cat: 'iOS · PRODUCT' },
+  // { yr: '23', name: 'E-commerce', tag: 'web', cat: 'D2C · SHOPIFY' },
+  // { yr: '22', name: 'Design System', tag: 'design system', cat: 'INTERNAL TOOLS · SAAS' },
 ];
 
 const ClientShowcaseSection = ({ id }) => {
