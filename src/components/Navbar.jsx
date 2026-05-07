@@ -4,6 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const [clicks, setClicks] = useState(0);
   const [open, setOpen] = useState(false);
+  const [dark, setDark] = useState(() =>
+    document.documentElement.classList.contains('dark')
+  );
   const location = useLocation();
 
   const onLogoClick = () => {
@@ -31,8 +34,12 @@ const Navbar = () => {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  // close sheet on route change
   useEffect(() => { setOpen(false); }, [location.pathname]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark);
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+  }, [dark]);
 
   const handleAnchor = (e, id) => {
     setOpen(false);
@@ -53,8 +60,20 @@ const Navbar = () => {
           <Link to="/" onClick={(e) => handleAnchor(e, 'services')}>services</Link>
           <Link to="/" onClick={(e) => handleAnchor(e, 'process')}>process</Link>
           <Link to="/" onClick={(e) => handleAnchor(e, 'about')}>about</Link>
+          <button
+            className="theme-btn"
+            aria-label={dark ? 'switch to light mode' : 'switch to dark mode'}
+            onClick={() => setDark((v) => !v)}
+          >
+            {dark ? '○' : '●'}
+          </button>
           <Link to="/contact-us" className="nav-pill">
-            <span className="pulse" />open · q3
+            <span className="pulse" aria-hidden="true" />
+            <span>open</span>
+            <span className="nav-pill-sep" aria-hidden="true">
+              ·
+            </span>
+            <span>q3</span>
           </Link>
         </div>
         <button
@@ -75,7 +94,13 @@ const Navbar = () => {
         <Link to="/contact-us" onClick={() => setOpen(false)}><em>contact</em> <span className="arr">↗</span></Link>
         <div className="ms-foot">
           <span>BYTCD © {new Date().getFullYear()}</span>
-          <span>hi@bytcd.com</span>
+          <button
+            className="theme-btn"
+            style={{ border: 'none', color: 'rgba(246,245,241,.55)', padding: 0, background: 'none' }}
+            onClick={() => setDark((v) => !v)}
+          >
+            {dark ? '○ light' : '● dark'}
+          </button>
         </div>
       </div>
     </>

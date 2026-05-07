@@ -11,12 +11,12 @@ const AboutSection = ({ id }) => (
   <>
     <div className="sec-head" id={id}>
       <h2>who we <em>are</em></h2>
-      <div className="meta">THREE PEOPLE · LISBON / NYC<br />HIRING · 2026</div>
+      <div className="meta">THREE PEOPLE · UZHHOROD, UKRAINE<br />HIRING · 2026</div>
     </div>
     <section className="about">
       <div>
         <h3>A studio of <em>three</em>.</h3>
-        <p>BYTCD is a small, independent practice for code, design and the web. We started in 2021 and we still answer our own emails. Every project is led by the people who'll build it — no account managers, no junior hand-offs.</p>
+        <p>BYTCD is a small, independent practice for code, design and the web. We started in 2024 and we still answer our own emails. Every project is led by the people who'll build it — no account managers, no junior hand-offs.</p>
         <p>We charge fixed prices, we ship weekly, and we'd rather miss a deadline than miss the point. If we don't think we're the right shop for the job, we'll tell you and recommend someone who is.</p>
         <p style={{ color: 'var(--mute)', fontSize: 12 }}>↳ <Link style={{ borderBottom: '1px solid currentColor' }} to="/contact-us">read the long version →</Link></p>
       </div>

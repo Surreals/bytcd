@@ -395,7 +395,7 @@ const TerminalBlock = () => {
     const run = (cmd) => {
       const c = cmd.trim().toLowerCase(); let r = '';
       if (c === 'help') r = `available: help · about · services · clear · whoami · sudo · open work · ls · echo &lt;text&gt;`;
-      else if (c === 'about') r = `BYTCD — three humans making code, design and the web. since 2021.`;
+      else if (c === 'about') r = `BYTCD — three humans making code, design and the web. since 2024.`;
       else if (c === 'services') r = `1. code     2. design     3. web`;
       else if (c === 'whoami') r = `you are: a person of taste`;
       else if (c === 'ls') r = `index.html  contact-us  ./.secrets`;
@@ -439,9 +439,17 @@ const TerminalBlock = () => {
 };
 
 // ── 09 Variable type ──────────────────────────────────────────
+const TYPE_FONTS = [
+  { label: 'JetBrains Mono', value: 'var(--mono)' },
+  { label: 'Instrument Serif', value: 'var(--serif)' },
+  { label: 'Space Grotesk', value: 'var(--sans)' },
+];
+
 const TypeBlock = () => {
   const stageRef = useRef(null);
   const wordRef = useRef(null);
+  const [fontIdx, setFontIdx] = React.useState(0);
+
   useEffect(() => {
     const stage = stageRef.current, word = wordRef.current;
     let locked = false;
@@ -458,15 +466,30 @@ const TypeBlock = () => {
     stage.addEventListener('click', onClick);
     return () => { stage.removeEventListener('mousemove', onMove); stage.removeEventListener('click', onClick); };
   }, []);
+
   return (
     <article className="blk span-6" data-block="type">
       <div className="blk-hd"><span className="num">[09]</span><span>type · variable axis</span></div>
       <h3 className="blk-ti">Variable type</h3>
-      <p className="blk-tag">Cursor X drives weight. Y drives size. Click to lock.</p>
+      <p className="blk-tag" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <span>Cursor X → weight · Y → size · click to lock.</span>
+        <span style={{ display: 'inline-flex', gap: 4 }}>
+          {TYPE_FONTS.map((f, i) => (
+            <button key={f.label} onClick={() => setFontIdx(i)} style={{
+              fontFamily: 'var(--mono)', fontSize: 10, padding: '2px 7px',
+              border: '1px solid', borderColor: i === fontIdx ? 'var(--ink)' : 'var(--line)',
+              background: i === fontIdx ? 'var(--ink)' : 'transparent',
+              color: i === fontIdx ? 'var(--paper)' : 'var(--mute)',
+              borderRadius: 999, cursor: 'pointer', letterSpacing: '.04em',
+            }}>{f.label}</button>
+          ))}
+        </span>
+      </p>
       <div className="stage" ref={stageRef} style={{ padding: 0 }}>
         <div ref={wordRef} style={{
-          fontFamily: 'var(--mono)', fontWeight: 400, fontSize: 60,
+          fontFamily: TYPE_FONTS[fontIdx].value, fontWeight: 400, fontSize: 60,
           letterSpacing: '-.02em', lineHeight: 1, transition: 'font-weight .08s',
+          fontStyle: fontIdx === 1 ? 'italic' : 'normal',
         }}>BYTCD</div>
       </div>
     </article>

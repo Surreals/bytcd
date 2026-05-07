@@ -14,7 +14,11 @@
       "Bash(curl -s \"https://api.github.com/repos/Surreals/bytcd/pulls?head=Surreals:claude/festive-wiles-52ef08&state=all\")",
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\([{'url':p['html_url'],'state':p['state'],'title':p['title']} for p in d], indent=2\\) if d else 'NONE'\\)\")",
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d if isinstance\\(d, dict\\) else \\(d if d else 'NONE'\\)\\)\")",
-      "Bash(python)"
+      "Bash(python)",
+      "Bash(curl -s --compressed \"https://api.anthropic.com/v1/design/h/V011QnP8MSGVDpTwuNfuuw?open_file=index.html\")",
+      "Bash(curl -s -L -A \"Mozilla/5.0\" --header \"Accept: text/html,application/xhtml+xml\" \"https://api.anthropic.com/v1/design/h/V011QnP8MSGVDpTwuNfuuw?open_file=index.html\" -o -)",
+      "Bash(curl -s -L -A \"Mozilla/5.0\" \"https://api.anthropic.com/v1/design/h/V011QnP8MSGVDpTwuNfuuw?open_file=index.html\")",
+      "Bash(gunzip -c)"
     ]
   }
 }

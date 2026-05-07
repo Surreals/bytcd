@@ -23,25 +23,9 @@ const CustomCursor = () => {
     window.addEventListener('mousemove', onMove);
     tick();
 
-    const hoverSel = 'a, button, [data-cursor-hover], .work-row, .svc-card, .person, [data-block]';
-    const enter = () => ringRef.current?.classList.add('is-hover');
-    const leave = () => ringRef.current?.classList.remove('is-hover');
-    const wire = () => {
-      document.querySelectorAll(hoverSel).forEach((el) => {
-        if (el.dataset.cursorWired) return;
-        el.dataset.cursorWired = '1';
-        el.addEventListener('mouseenter', enter);
-        el.addEventListener('mouseleave', leave);
-      });
-    };
-    wire();
-    const mo = new MutationObserver(wire);
-    mo.observe(document.body, { childList: true, subtree: true });
-
     return () => {
       window.removeEventListener('mousemove', onMove);
       cancelAnimationFrame(raf);
-      mo.disconnect();
     };
   }, []);
 

@@ -4,7 +4,7 @@ const HeroSection = ({ id }) => {
   const [time, setTime] = useState('— : —');
 
   useEffect(() => {
-    const tick = () => setTime(new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' WET');
+    const tick = () => setTime(new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' }) + ' EET');
     tick();
     const i = setInterval(tick, 30000);
     return () => clearInterval(i);
@@ -21,7 +21,7 @@ const HeroSection = ({ id }) => {
   return (
     <header id={id} className="hero">
       <div className="meta-row">
-        <div><b>STUDIO</b>independent · est. 2021</div>
+        <div><b>STUDIO</b>independent · est. 2024</div>
         <div><b>STACK</b>code · design · web</div>
         <div><b>STATUS</b>{time} · online</div>
         <div><b>NEXT SLOT</b>q3 · 2026</div>
@@ -29,7 +29,7 @@ const HeroSection = ({ id }) => {
 
       <h1 className="hero-title" id="bytcd-hero-title">
         <span className="ln"><span data-ch>BYTE‑</span></span>
-        <span className="ln"><span data-ch><em>sized</em><span className="accent-bar" /></span></span>
+        <span className="ln"><span data-ch><em>coded</em><span className="accent-bar" /></span></span>
         <span className="ln"><span data-ch>STUDIO.</span></span>
       </h1>
 

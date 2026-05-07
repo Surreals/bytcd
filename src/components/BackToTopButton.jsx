@@ -1,47 +1,43 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react'; // Icon for the button
 
 const BackToTopButton = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Show button when page is scrolled down
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) { // Show after scrolling 300px
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  // Scroll to top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  if (!visible) return null;
+
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={24} />
-        </button>
-      )}
-    </div>
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      style={{
+        position: 'fixed', bottom: 28, right: 28, zIndex: 48,
+        fontFamily: 'var(--mono)', fontSize: 11, fontWeight: 700,
+        letterSpacing: '.06em', textTransform: 'uppercase',
+        background: 'var(--ink)', color: 'var(--paper)',
+        border: '1px solid var(--ink)', borderRadius: 999,
+        padding: '8px 14px', cursor: 'pointer',
+        display: 'flex', alignItems: 'center', gap: 6,
+        transition: 'background .2s, color .2s, border-color .2s',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = 'var(--accent)';
+        e.currentTarget.style.color = 'var(--accent-ink)';
+        e.currentTarget.style.borderColor = 'var(--accent)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = 'var(--ink)';
+        e.currentTarget.style.color = 'var(--paper)';
+        e.currentTarget.style.borderColor = 'var(--ink)';
+      }}
+    >
+      ↑ top
+    </button>
   );
 };
 

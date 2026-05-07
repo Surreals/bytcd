@@ -9,8 +9,8 @@ const EasterEggs = () => {
 
   useEffect(() => {
     console.log(
-      '%cBYTCD%c — code · design · web\n\n%cyou opened the console. nice.\ntry the konami code → ↑ ↑ ↓ ↓ ← → ← → b a\nor type "BYTCD" anywhere on the page\nor click the logo seven times\nor stand still for 30s\nor hold any block for 1.5s\n\nwe\'re hiring. hi@bytcd.com',
-      'font:800 28px ui-monospace;background:#c6ff00;color:#0a0a0a;padding:4px 10px',
+      '%cBYTCD%c — code · design · web\n\n%cyou opened the console. nice.\ntry the konami code → ↑ ↑ ↓ ↓ ← → ← → b a\nor type "BYTCD" anywhere on the page\nor click the logo seven times\nor stand still for 30s\nor hold any block for 1.5s\n\nwe\'re hiring. bytcdco@gmail.com',
+      'font:800 28px ui-monospace;background:#ff5a36;color:#ffffff;padding:4px 10px',
       'font:400 14px ui-monospace;color:inherit',
       'font:400 12px ui-monospace;color:#888'
     );
@@ -65,7 +65,7 @@ const EasterEggs = () => {
   // Idle screensaver
   useEffect(() => {
     let idleT, raf, fX = 120, fY = 120, vX = 2.2, vY = 1.6, pi = 0;
-    const phrases = ['BYTCD ✦', 'code · design · web', 'press any key', 'still here?', 'byte‑sized studio', '✦ ✦ ✦', 'hi@bytcd.com'];
+    const phrases = ['BYTCD ✦', 'code · design · web', 'press any key', 'still here?', 'byte‑sized studio', '✦ ✦ ✦', 'bytcdco@gmail.com'];
     const start = () => {
       const saver = saverRef.current, floater = floaterRef.current;
       if (!saver) return;
@@ -88,7 +88,7 @@ const EasterEggs = () => {
         cancelAnimationFrame(raf);
       }
     };
-    const reset = () => { stop(); clearTimeout(idleT); idleT = setTimeout(start, 30000); };
+    const reset = () => { stop(); clearTimeout(idleT); idleT = setTimeout(start, 120000); };
     const evs = ['mousemove', 'keydown', 'scroll', 'touchstart', 'click'];
     evs.forEach((ev) => window.addEventListener(ev, reset, { passive: true }));
     reset();

@@ -1,10 +1,10 @@
 import React from 'react';
 
 const projects = [
-  { yr: '26', name: 'Brand & Site', tag: 'identity + site', cat: 'STARTUP · LAUNCH' },
+  { yr: '26', name: 'Brand & Site', tag: 'identity + site', cat: 'STARTUP · LAUNCH', link: 'https://bytcd.com/' },
   { yr: '25', name: 'GalInfo', tag: 'design + web', cat: 'NEWS PORTAL · EDITORIAL', link: 'https://galinfo.com.ua/' },
   { yr: '24', name: 'Carbook.pro', tag: 'design + dev', cat: 'SERVICE STATION CRM · WEB APP', link: 'https://carbook.mobi/' },
-  { yr: '24', name: 'Brand Identity', tag: 'identity', cat: 'VISUAL IDENTITY · PRINT' },
+  { yr: '24', name: 'Brand Identity', tag: 'identity', cat: 'VISUAL IDENTITY · PRINT', link: 'https://bytcd.com/' },
   // { yr: '24', name: 'Web Platform', tag: 'web + code', cat: 'SAAS · LANDING PAGE' },
   // { yr: '23', name: 'Mobile App', tag: 'design + code', cat: 'iOS · PRODUCT' },
   // { yr: '23', name: 'E-commerce', tag: 'web', cat: 'D2C · SHOPIFY' },
@@ -17,7 +17,7 @@ const ClientShowcaseSection = ({ id }) => {
     <>
       <div className="sec-head" id={id}>
         <h2>selected <em>work</em></h2>
-        <div className="meta">2021 — 2026 · 8 PROJECTS<br />REAL CLIENTS · LIVE LINKS</div>
+        <div className="meta">2024 — {new Date().getFullYear()} · {projects.length} PROJECTS<br />REAL CLIENTS · LIVE LINKS</div>
       </div>
       <section className="work-list">
         {projects.map((p) => (
