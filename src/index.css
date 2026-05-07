@@ -24,14 +24,15 @@ html.dark{
   --mute:rgba(246,245,241,.55);
 }
 
-html{scroll-behavior:smooth}
-html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--mono);overflow-x:hidden}
-body{cursor:default}
+html{scroll-behavior:smooth;font-family:var(--mono)}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--mono) !important;overflow-x:hidden}
+body, button, input, select, textarea{font-family:var(--mono)}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent);color:var(--accent-ink)}
 
-@media (min-width:781px){
-  *{cursor:none !important}
+/* Hide native cursor on real-pointer devices; the ring + dot in CustomCursor render the replacement */
+@media (hover:hover) and (pointer:fine){
+  html,body,*,*::before,*::after{cursor:none !important}
 }
 
 /* custom cursor */
@@ -132,8 +133,8 @@ html.dark .preview-pane{background:#111;color:#f6f5f1}
 .svc-card:hover .svc-icon{transform:rotate(45deg);background:var(--accent);border-color:var(--accent)}
 
 /* ── work ── */
-.work-list{border-top:1px solid var(--ink)}
-.work-row{display:grid;grid-template-columns:60px 1.4fr 1fr 1fr 100px;gap:24px;align-items:center;padding:26px 28px;border-bottom:1px solid var(--line);font-size:14px;position:relative;transition:background .25s,color .25s}
+.work-list{border-top:1px solid var(--ink);background:var(--paper);color:var(--ink)}
+.work-row{display:grid;grid-template-columns:60px 1.4fr 1fr 1fr 100px;gap:24px;align-items:center;padding:26px 28px;border-bottom:1px solid var(--line);font-size:14px;position:relative;background:var(--paper);color:var(--ink);transition:background .25s,color .25s}
 .work-row:hover{background:var(--ink);color:var(--paper)}
 .work-row .yr{font-family:var(--mono);color:var(--mute);font-size:12px}
 .work-row:hover .yr{color:var(--paper)}

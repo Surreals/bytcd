@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        'hubot-sans': ['Hubot Sans', 'sans-serif'],
-        sans: ['Hubot Sans', 'sans-serif'], // Set Hubot Sans as the default sans-serif font
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        serif: ['Instrument Serif', 'ui-serif', 'Georgia', 'serif'],
+        sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

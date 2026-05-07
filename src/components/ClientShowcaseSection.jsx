@@ -26,7 +26,6 @@ const ClientShowcaseSection = ({ id }) => {
             className="work-row"
             data-cursor-hover={p.link ? '1' : undefined}
             onClick={() => open(p.link)}
-            style={{ cursor: p.link ? 'pointer' : 'default' }}
           >
             <div className="yr">'{p.yr}</div>
             <div className="name" dangerouslySetInnerHTML={{ __html: p.name.replace(/&/g, '<em>&amp;</em>') }} />
